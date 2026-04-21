@@ -246,6 +246,18 @@ Sadece önemli 5-10 nokta sade Türkçe ile açıklanacak.
 Öğrenme anlatımı scope'u büyütmeyecek.
 Eğitim veriliyor diye gereksiz refactor, ekstra dosya, ekstra paket veya ekstra özellik eklenmeyecek.
 
+## GITHUB CHECK KURALI
+
+Her Roo çıktısından sonra GPT, GitHub bağlantısı üzerinden repo kontrolü yapacaktır.
+
+- local ve remote branch senkron mu?
+- working tree temiz mi?
+- commit mesajları anlaşılır mı?
+- beklenmeyen dosya değişikliği var mı?
+
+Sonraki Roo prompt sadece bu kontrol tamamlandıktan sonra verilecektir.
+Bu kural session handoff yapısının bir parçasıdır.
+
 ## ÇALIŞMA ZİHNİYETİ
 
 Önce gerçek durum, sonra plan, sonra uygulama.

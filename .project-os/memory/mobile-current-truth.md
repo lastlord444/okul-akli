@@ -98,8 +98,10 @@ Okul Aklı/
 │   │   └── 00-ask-rules.md
 │   ├── rules-debug/              # Debug modu kuralları
 │   │   └── 00-debug-rules.md
-│   └── rules-test/               # Test modu kuralları
-│       └── 00-test-rules.md
+│ └── rules-test/ # Test modu kuralları
+│ └── 00-test-rules.md
+│ ├── rules-orchestrator/ # Orchestrator modu kuralları
+│ │ └── 00-orchestrator-rules.md
 ├── .project-os/
 │   └── memory/                   # Proje hafıza dosyaları
 │       ├── mobile-current-truth.md
@@ -110,5 +112,6 @@ Okul Aklı/
 
 ## SON GÜNCELLEME
 
-**Tarih:** 2026-04-21  
-**Durum:** İlk kurulum tamamlandı. Mobil uygulama iskeleti henüz oluşturulmadı.
+**Tarih:** 2026-04-21
+**Durum:** Proje kurulumu %95 tamamlandı. Roo kuralları ve proje hafızası oluşturuldu. Mobil uygulama iskeleti henüz kurulmadı. CI/CD yok. Gerçek Android run doğrulaması yapılmadı.
+**Bilinen Riskler:** Mobil scaffold eksikliği, Roo kurallarının gerçek mobil uygulama üzerinde henüz doğrulanmamış olması.
