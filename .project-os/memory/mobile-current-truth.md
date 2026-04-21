@@ -103,9 +103,11 @@ Okul Aklı/
 │ ├── rules-orchestrator/ # Orchestrator modu kuralları
 │ │ └── 00-orchestrator-rules.md
 ├── .project-os/
-│   └── memory/                   # Proje hafıza dosyaları
-│       ├── mobile-current-truth.md
-│       └── mobile-module-registry.md
+│   ├── memory/                   # Proje hafıza dosyaları
+│   │   ├── mobile-current-truth.md
+│   │   └── mobile-module-registry.md
+│   └── skills/                   # Agent-skills referansları
+│       └── agent-skills-index.md
 └── apps/
     └── mobile/                   # Mobil uygulama (henüz oluşturulmadı)
 ```
@@ -113,5 +115,5 @@ Okul Aklı/
 ## SON GÜNCELLEME
 
 **Tarih:** 2026-04-21
-**Durum:** Proje kurulumu %95 tamamlandı. Roo kuralları ve proje hafızası oluşturuldu. Mobil uygulama iskeleti henüz kurulmadı. CI/CD yok. Gerçek Android run doğrulaması yapılmadı.
-**Bilinen Riskler:** Mobil scaffold eksikliği, Roo kurallarının gerçek mobil uygulama üzerinde henüz doğrulanmamış olması.
+**Durum:** Proje kurulumu %100 tamamlandı. Roo kuralları, proje hafızası ve session handoff oluşturuldu. Agent-skills adapter eklendi (tam repo kopyalanmadı, sadece süreç referansı). Mobil uygulama iskeleti henüz kurulmadı. CI/CD yok. Gerçek Android run doğrulaması yapılmadı.
+**Bilinen Riskler:** Mobil scaffold eksikliği, Roo kurallarının gerçek mobil uygulama üzerinde henüz doğrulanmamış olması, agent-skills ve Okul Aklı kuralları arası potansiyel çakışma (çözüldü: Okul Aklı her zaman üstte).
