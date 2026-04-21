@@ -89,7 +89,8 @@ Aşağıdaki özellikler şu an aktif kapsam dışındadır:
 Okul Aklı/
 ├── .roo/
 │   ├── rules/                    # Ortak kurallar
-│   │   └── 00-core-project-rules.md
+│   │   ├── 00-core-project-rules.md
+│   │   └── 10-agent-skills-adapter.md
 │   ├── rules-architect/          # Architect modu kuralları
 │   │   └── 00-architect-rules.md
 │   ├── rules-code/               # Code modu kuralları
@@ -98,14 +99,24 @@ Okul Aklı/
 │   │   └── 00-ask-rules.md
 │   ├── rules-debug/              # Debug modu kuralları
 │   │   └── 00-debug-rules.md
-│ └── rules-test/ # Test modu kuralları
-│ └── 00-test-rules.md
-│ ├── rules-orchestrator/ # Orchestrator modu kuralları
-│ │ └── 00-orchestrator-rules.md
+│   ├── rules-test/               # Test modu kuralları
+│   │   └── 00-test-rules.md
+│   └── rules-orchestrator/       # Orchestrator modu kuralları
+│       └── 00-orchestrator-rules.md
+├── .github/
+│   └── pull_request_template.md  # PR kontrol şablonu
 ├── .project-os/
 │   ├── memory/                   # Proje hafıza dosyaları
 │   │   ├── mobile-current-truth.md
-│   │   └── mobile-module-registry.md
+│   │   ├── mobile-module-registry.md
+│   │   └── session-handoff.md
+│   ├── protocols/                # Çalışma protokolleri
+│   │   ├── STARTUP_PROTOCOL.md
+│   │   ├── DELIVERY_GATE.md
+│   │   └── SESSION_WRAPUP_PROTOCOL.md
+│   ├── adr/                      # Mimari karar kayıtları
+│   │   ├── 0001-mobile-stack-and-execution-strategy.md
+│   │   └── 0002-agent-workflow-and-scope-control.md
 │   └── skills/                   # Agent-skills referansları
 │       └── agent-skills-index.md
 └── apps/
@@ -115,5 +126,5 @@ Okul Aklı/
 ## SON GÜNCELLEME
 
 **Tarih:** 2026-04-21
-**Durum:** Proje kurulumu %100 tamamlandı. Roo kuralları, proje hafızası ve session handoff oluşturuldu. Agent-skills adapter eklendi (tam repo kopyalanmadı, sadece süreç referansı). Mobil uygulama iskeleti henüz kurulmadı. CI/CD yok. Gerçek Android run doğrulaması yapılmadı.
-**Bilinen Riskler:** Mobil scaffold eksikliği, Roo kurallarının gerçek mobil uygulama üzerinde henüz doğrulanmamış olması, agent-skills ve Okul Aklı kuralları arası potansiyel çakışma (çözüldü: Okul Aklı her zaman üstte).
+**Durum:** Proje kurulumu %100 tamamlandı. Roo kuralları, proje hafızası, session handoff, agent-skills adapter, çalışma protokolleri, ADR kayıtları ve PR template oluşturuldu. Mobil uygulama iskeleti henüz kurulmadı. CI/CD yok. Gerçek Android run doğrulaması yapılmadı.
+**Bilinen Riskler:** Mobil scaffold eksikliği, protokollerin gerçek mobil uygulama üzerinde henüz doğrulanmamış olması, CI/CD eksikliği.
