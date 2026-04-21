@@ -1,0 +1,54 @@
+# ============================================
+# Okul Aklı - Git Görmezden Gelme Kuralları
+# ============================================
+
+# --- Node.js ---
+node_modules/
+
+# --- Ortam Değişkenleri ---
+.env
+.env.*
+!.env.example
+
+# --- Derleme Çıktıları ---
+dist/
+build/
+
+# --- Expo ---
+.expo/
+.expo-shared/
+
+# --- Turbo (Monorepo) ---
+.turbo/
+
+# --- Test Kapsamı ---
+coverage/
+
+# --- macOS ---
+.DS_Store
+
+# --- Günlük Dosyaları ---
+*.log
+npm-debug.log*
+
+# --- IDE ve Editörler ---
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# --- Android ---
+*.keystore
+*.jks
+local.properties
+
+# --- iOS ---
+Pods/
+xcuserdata/
+*.xcworkspace
+
+# --- Geçici Dosyalar ---
+*.tmp
+*.temp
+Thumbs.db
