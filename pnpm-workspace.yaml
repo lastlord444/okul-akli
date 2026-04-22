@@ -1,0 +1,4 @@
+# Okul Aklı - pnpm Workspace
+# Monorepo yapılandırması
+packages:
+  - "apps/*"

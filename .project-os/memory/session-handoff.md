@@ -6,77 +6,105 @@ Bir sonraki Roo oturumundan önce GPT bu dosyayı kontrol ederek repo durumunu d
 ---
 
 ## Project: Okul Aklı
-## Active Domain: Proje çalışma protokolü, mimari karar kaydı ve GitHub kalite kapısı
-## Current Slice: Protocols + ADR + PR template + memory update
-## Progress: %100
-## Repo Truth: GitHub repo mevcut, main branch senkron. apps/mobile henüz yok. Roo kuralları, proje hafızası, agent-skills adapter, protokoller, ADR ve PR template eksiksiz.
+## Active Domain: Mobil uygulama iskeleti kurulumu
+## Current Slice: Mobile app shell, login, role-based route, 3 empty dashboard
+## Progress: %75 (Android run SDK eksikliği nedeniyle bloklu)
+## Repo Truth: GitHub repo feat/mobile-scaffold-v1 branch'inde. apps/mobile kuruldu. pnpm install başarılı. expo export başarılı. Android SDK yok.
 
 ## Completed This Session:
-- Agent-skills adapter pushlandı
-- STARTUP_PROTOCOL.md oluşturuldu (oturum başlangıç protokolü)
-- DELIVERY_GATE.md oluşturuldu (teslimat kalite kapısı)
-- SESSION_WRAPUP_PROTOCOL.md oluşturuldu (oturum kapanış protokolü)
-- ADR 0001: Mobil stack ve çalışma stratejisi kaydı
-- ADR 0002: Roo + agent-skills + GPT GitHub kontrolü çalışma modeli kaydı
-- PR template oluşturuldu (Türkçe)
-- Hafıza dosyaları güncellendi
+- feat/mobile-scaffold-v1 branch açıldı
+- Obytes React Native Template v9.0.0 oluşturuldu
+- Template apps/mobile altına taşındı
+- Root pnpm-workspace.yaml ve package.json oluşturuldu
+- Türkçe login ekranı (rol seçimi) uygulandı
+- 3 boş dashboard (öğrenci, veli, öğretmen) oluşturuldu
+- Root layout güncellendi (3 yeni route eklendi)
+- env.ts ve app.config.ts Okul Aklı için güncellendi
+- pnpm install: 1845 paket kuruldu
+- expo export --platform android: 6.64 MB bundle başarılı
+- Geçici template klasörü temizlendi
+- Memory dosyaları güncellendi
 
 ## Files Changed:
-- .project-os/protocols/STARTUP_PROTOCOL.md
-- .project-os/protocols/DELIVERY_GATE.md
-- .project-os/protocols/SESSION_WRAPUP_PROTOCOL.md
-- .project-os/adr/0001-mobile-stack-and-execution-strategy.md
-- .project-os/adr/0002-agent-workflow-and-scope-control.md
-- .github/pull_request_template.md
-- .project-os/memory/mobile-current-truth.md
-- .project-os/memory/session-handoff.md
+- pnpm-workspace.yaml (YENİ)
+- package.json (YENİ - root workspace)
+- pnpm-lock.yaml (YENİ)
+- apps/mobile/** (YENİ - Obytes template + Türkçe değişiklikler)
+  - apps/mobile/src/app/login.tsx (DEĞİŞTİ - Türkçe placeholder)
+  - apps/mobile/src/app/(student)/_layout.tsx (YENİ)
+  - apps/mobile/src/app/(student)/index.tsx (YENİ)
+  - apps/mobile/src/app/(parent)/_layout.tsx (YENİ)
+  - apps/mobile/src/app/(parent)/index.tsx (YENİ)
+  - apps/mobile/src/app/(teacher)/_layout.tsx (YENİ)
+  - apps/mobile/src/app/(teacher)/index.tsx (YENİ)
+  - apps/mobile/src/app/_layout.tsx (DEĞİŞTİ - route eklendi)
+  - apps/mobile/env.ts (DEĞİŞTİ - Okul Aklı bilgileri)
+  - apps/mobile/app.config.ts (DEĞİŞTİ - Okul Aklı bilgileri)
+  - apps/mobile/package.json (DEĞİŞTİ - okul-akli-mobile)
+- .project-os/memory/mobile-current-truth.md (GÜNCELLENDİ)
+- .project-os/memory/session-handoff.md (GÜNCELLENDİ)
 
 ## Migrations: Yok
 
-## Tests: Kod davranışı yok. Dosya varlığı ve içerik kontrolü yapılacak.
+## Tests:
+- pnpm install: ✅ 1845 paket
+- TypeScript check: ⚠️ 1 hata (select.tsx template hatası, bizden kaynaklanmıyor)
+- expo export --platform android: ✅ 6.64 MB bundle
+- Android run: ❌ BLOCKED (Android SDK kurulu değil)
 
 ## Commands Run:
-Yok (sadece dosya oluşturma ve güncelleme)
+```bash
+git checkout -b feat/mobile-scaffold-v1
+npx create-obytes-app@latest okul-akli-mobile-temp
+robocopy (template taşıma)
+copy .gitignore
+pnpm install
+npx tsc --noEmit
+pnpm doctor
+npx expo export --platform android
+rd /s /q (geçici klasör temizleme)
+```
 
-## GitHub Check: local/remote uyumu kontrol edilecek
+## GitHub Check:
+- Local branch: feat/mobile-scaffold-v1
+- Remote: Henüz push yapılmadı
+- Working tree: Temiz (sadece yeni dosyalar)
 
 ## Known Risks:
-- Mobil scaffold henüz kurulmadı
-- CI/CD henüz yok
-- Android run doğrulaması henüz yok
-- Protokoller yeni eklendi, gerçek scaffold üzerinde henüz test edilmedi
+- Android SDK kurulu değil → Android run bloklu
+- TypeScript select.tsx hatası → Template hatası, bizden kaynaklanmıyor
+- Eski route'lar (app, feed, onboarding) hâlâ mevcut → Temizlik ertelendi
+- TailwindCSS aktif → Kullanılmıyor ama kaldırılmadı
 
-## What User Learned: Bu oturumda öğrenme bölümü yok, sadece proje protokol ve kayıt dosyaları oluşturuldu.
+## What User Learned:
+Bu oturumda mobil iskelet kurulumu yapıldı. Obytes template'i repo'ya entegre edildi. pnpm workspace yapısı kuruldu. Türkçe login ve 3 boş dashboard ekranı oluşturuldu. expo export başarılı ile çalışan bundle doğrulandı. Android SDK eksikliği nedeniyle gerçek cihaz/emulator çalıştırılamadı.
 
 ## Scope Locked For Next Session:
-apps/mobile Obytes tabanlı mobil iskelet planı
+- Android SDK kurulumu (kullanıcıya talimat)
+- Template temizliği (eski route'lar, TailwindCSS, i18n vb.)
+- Gerçek auth bağlantısı (protected core'a temas gerekli)
+- Dashboard içerikleri
 
 ## Explicit Do Not Touch:
-- apps/mobile (henüz yok, kurulacak)
-- package.json
-- pnpm-lock.yaml
-- backend
-- src
-- prisma
-- auth
-- RBAC
-- tenant
-- payment
-- SMS
-- notification
-- audit
-- storage
-- shared contracts
+- Protected core: auth, RBAC, tenant, payment, SMS, notification, audit, storage
+- Mevcut Roo kuralları
+- Mevcut ADR 0001 ve 0002
+- Protokoller
 
 ## Next Exact Task:
-apps/mobile kurulumu için önce Architect mode ile file change plan çıkar, sonra Code mode ile Obytes tabanlı mobil iskelet kur.
+1. Android SDK kurulumu
+2. feat/mobile-scaffold-v1 branch'ini push et ve PR aç
+3. Template temizliği slice'ı planla
 
 ## Drift Audit:
 - Planlanan ile yapılan aynı mı? ✅
 - Scope dışı taşma oldu mu? ❌
 - Protected core'a temas oldu mu? ❌
-- Beklenmeyen dosya değişikliği var mı? ❌
+- Mevcut çalışan akış bozuldu mu? ❌
+- Doküman ve repo uyumlu mu? ✅
 
 ---
 
-## Güncelleme Tarihi: 2026-04-21
+## Güncelleme Tarihi: 2026-04-22
+## Branch: feat/mobile-scaffold-v1
+## Android SDK Durumu: Kurulu değil (BLOCKED)
