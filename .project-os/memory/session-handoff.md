@@ -6,84 +6,63 @@ Bir sonraki Roo oturumundan önce GPT bu dosyayı kontrol ederek repo durumunu d
 ---
 
 ## Project: Okul Aklı
-## Active Domain: Mobil uygulama iskeleti kurulumu
-## Current Slice: Mobile app shell, login, role-based route, 3 empty dashboard
-## Progress: %75 (Android run SDK eksikliği nedeniyle bloklu)
-## Repo Truth: GitHub repo feat/mobile-scaffold-v1 branch'inde. apps/mobile kuruldu. pnpm install başarılı. expo export başarılı. Android SDK yok.
+## Active Domain: Mobil uygulama kalite kapısı fix
+## Current Slice: TypeScript hatası fix, type-check script düzeltmesi
+## Progress: %80 (TypeScript fix tamamlandı, Android run SDK eksikliği nedeniyle bloklu)
+## Repo Truth: GitHub repo feat/mobile-scaffold-v1 branch'inde. PR #1 açık. TypeScript check yeşil. expo export başarılı. Pushlanmış.
 
 ## Completed This Session:
-- feat/mobile-scaffold-v1 branch açıldı
-- Obytes React Native Template v9.0.0 oluşturuldu
-- Template apps/mobile altına taşındı
-- Root pnpm-workspace.yaml ve package.json oluşturuldu
-- Türkçe login ekranı (rol seçimi) uygulandı
-- 3 boş dashboard (öğrenci, veli, öğretmen) oluşturuldu
-- Root layout güncellendi (3 yeni route eklendi)
-- env.ts ve app.config.ts Okul Aklı için güncellendi
-- pnpm install: 1845 paket kuruldu
-- expo export --platform android: 6.64 MB bundle başarılı
-- Geçici template klasörü temizlendi
-- Memory dosyaları güncellendi
+- TypeScript hatası yeniden üretildi (select.tsx:104 estimatedItemSize)
+- En küçük fix ile düzeltildi (prop kaldırıldı)
+- type-check script `--noemit` → `--noEmit` olarak düzeltildi
+- expo export doğrulandı (6.64 MB bundle başarılı)
+- Memory drift düzeltmesi yapıldı
 
 ## Files Changed:
-- pnpm-workspace.yaml (YENİ)
-- package.json (YENİ - root workspace)
-- pnpm-lock.yaml (YENİ)
-- apps/mobile/** (YENİ - Obytes template + Türkçe değişiklikler)
-  - apps/mobile/src/app/login.tsx (DEĞİŞTİ - Türkçe placeholder)
-  - apps/mobile/src/app/(student)/_layout.tsx (YENİ)
-  - apps/mobile/src/app/(student)/index.tsx (YENİ)
-  - apps/mobile/src/app/(parent)/_layout.tsx (YENİ)
-  - apps/mobile/src/app/(parent)/index.tsx (YENİ)
-  - apps/mobile/src/app/(teacher)/_layout.tsx (YENİ)
-  - apps/mobile/src/app/(teacher)/index.tsx (YENİ)
-  - apps/mobile/src/app/_layout.tsx (DEĞİŞTİ - route eklendi)
-  - apps/mobile/env.ts (DEĞİŞTİ - Okul Aklı bilgileri)
-  - apps/mobile/app.config.ts (DEĞİŞTİ - Okul Aklı bilgileri)
-  - apps/mobile/package.json (DEĞİŞTİ - okul-akli-mobile)
-- .project-os/memory/mobile-current-truth.md (GÜNCELLENDİ)
-- .project-os/memory/session-handoff.md (GÜNCELLENDİ)
+- apps/mobile/src/components/ui/select.tsx (estimatedItemSize prop kaldırıldı)
+- apps/mobile/package.json (type-check script: tsc --noEmit)
+- .project-os/memory/session-handoff.md (güncellendi)
+- .project-os/memory/mobile-current-truth.md (güncellendi)
 
 ## Migrations: Yok
 
 ## Tests:
-- pnpm install: ✅ 1845 paket
-- TypeScript check: ⚠️ 1 hata (select.tsx template hatası, bizden kaynaklanmıyor)
+- TypeScript check (tsc --noEmit): ✅ YEŞİL (sıfır hata)
 - expo export --platform android: ✅ 6.64 MB bundle
 - Android run: ❌ BLOCKED (Android SDK kurulu değil)
 
 ## Commands Run:
 ```bash
-git checkout -b feat/mobile-scaffold-v1
-npx create-obytes-app@latest okul-akli-mobile-temp
-robocopy (template taşıma)
-copy .gitignore
-pnpm install
-npx tsc --noEmit
-pnpm doctor
-npx expo export --platform android
-rd /s /q (geçici klasör temizleme)
+git checkout feat/mobile-scaffold-v1
+npx tsc --noEmit (hata yeniden üretildi)
+# select.tsx fix: estimatedItemSize prop kaldırıldı
+# package.json fix: type-check script --noEmit
+rmdir /s /q node_modules (temiz kurulum)
+cd apps/mobile && pnpm install
+npx tsc --noEmit (yeşil doğrulama)
+npx expo export --platform android (6.64 MB bundle başarılı)
 ```
 
 ## GitHub Check:
 - Local branch: feat/mobile-scaffold-v1
-- Remote: Henüz push yapılmadı
-- Working tree: Temiz (sadece yeni dosyalar)
+- Remote: Pushlanmış (ilk commit), fix commit henüz pushlanmadı
+- PR #1: AÇIK
+- Working tree: Değişiklikler var (staged edilecek)
 
 ## Known Risks:
 - Android SDK kurulu değil → Android run bloklu
-- TypeScript select.tsx hatası → Template hatası, bizden kaynaklanmıyor
-- Eski route'lar (app, feed, onboarding) hâlâ mevcut → Temizlik ertelendi
-- TailwindCSS aktif → Kullanılmıyor ama kaldırılmadı
+- Eski route'lar (app, feed, onboarding) mevcut → Temizlik ertelendi
+- TailwindCSS aktif ama kullanılmıyor → Temizlik ertelendi
+- pnpm workspace root install → SHA-1 hatası verebilir (çözüm: cd apps/mobile && pnpm install)
 
 ## What User Learned:
-Bu oturumda mobil iskelet kurulumu yapıldı. Obytes template'i repo'ya entegre edildi. pnpm workspace yapısı kuruldu. Türkçe login ve 3 boş dashboard ekranı oluşturuldu. expo export başarılı ile çalışan bundle doğrulandı. Android SDK eksikliği nedeniyle gerçek cihaz/emulator çalıştırılamadı.
+TypeScript hatası @shopify/flash-list ve @gorhom/bottom-sheet arasındaki type mismatch'ten kaynaklanıyordu. En küçük fix ile prop kaldırıldı. pnpm workspace'te root install vs sub-project install farklı sonuçlar verebiliyor — OneDrive + uzun path sorunu var.
 
 ## Scope Locked For Next Session:
-- Android SDK kurulumu (kullanıcıya talimat)
-- Template temizliği (eski route'lar, TailwindCSS, i18n vb.)
-- Gerçek auth bağlantısı (protected core'a temas gerekli)
-- Dashboard içerikleri
+- Android SDK kurulumu (kullanıcı tarafından)
+- pnpm workspace OneDrive uzun path sorunu çözümü
+- Template temizliği slice'ı (eski route'lar, TailwindCSS, i18n)
+- PR #1 merge
 
 ## Explicit Do Not Touch:
 - Protected core: auth, RBAC, tenant, payment, SMS, notification, audit, storage
@@ -93,8 +72,8 @@ Bu oturumda mobil iskelet kurulumu yapıldı. Obytes template'i repo'ya entegre 
 
 ## Next Exact Task:
 1. Android SDK kurulumu
-2. feat/mobile-scaffold-v1 branch'ini push et ve PR aç
-3. Template temizliği slice'ı planla
+2. PR #1 merge
+3. pnpm workspace OneDrive sorunu çözümü (ayrı görev)
 
 ## Drift Audit:
 - Planlanan ile yapılan aynı mı? ✅
@@ -107,4 +86,7 @@ Bu oturumda mobil iskelet kurulumu yapıldı. Obytes template'i repo'ya entegre 
 
 ## Güncelleme Tarihi: 2026-04-22
 ## Branch: feat/mobile-scaffold-v1
+## PR: #1 AÇIK
 ## Android SDK Durumu: Kurulu değil (BLOCKED)
+## TypeScript: ✅ YEŞİL
+## expo export: ✅ BAŞARILI (6.64 MB bundle)
