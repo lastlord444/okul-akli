@@ -1,9 +1,9 @@
-# Okul Aklı Mobil - Mevcut Durum (Current Truth)
+# Okul Akli Mobil - Mevcut Durum (Current Truth)
 
-Bu dosya projenin mevcut durumunu belgelemek için kullanılır.
-Her değişiklikten sonra güncellenir.
+Bu dosya projenin mevcut durumunu belgelemek icin kullanilir.
+Her degisiklikten sonra guncellenir.
 
-## PROJE BİLGİLERİ
+## PROJE BILGILERI
 
 | Alan | deger |
 |------|-------|
@@ -22,7 +22,7 @@ Her değişiklikten sonra güncellenir.
 | Alan | deger |
 |------|-------|
 | Branch | feat/mobile-minimal-v1 |
-| Son Commit | 203a7d9 chore: son hygiene drift fix - head hash cbd27d8, PR body dolduruldu |
+| Son Commit | ba14ef6 chore: memory hash 203a7d9 final |
 | Working Tree | Temiz |
 | Remote Senkron | Up to date |
 | Acik PR | #2 (https://github.com/lastlord444/okul-akli/pull/2) |
@@ -109,4 +109,4 @@ Okul Akli/
 ## SON GUNCELLEME
 
 **Tarih:** 2026-04-23
-**Durum:** PR #2 acik. Memory dosyalari head hash 203a7d9 ile uyumlu.
+**Durum:** PR #2 MERGEABLE. Memory dosyalari head hash ba14ef6 ile uyumlu.
