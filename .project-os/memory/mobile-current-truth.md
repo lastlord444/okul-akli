@@ -17,14 +17,15 @@ Her değişiklikten sonra güncellenir.
 | Çalışma Yönü | Android-first |
 | iOS Durumu | Gelecek uyumluluğu düşünülür ama aktif kapsam dışı |
 
-## AKTİF BRANCH
+## AKTİF BRANCH VE PR
 
 | Alan | Değer |
 |------|-------|
 | Branch | feat/mobile-minimal-v1 |
-| Son Commit | bacf3a4 feat(mobile): minimal Expo Router scaffold - PR#1 replacement |
+| Son Commit | c549a06 feat(mobile): root app.json silindi, src/app/index.tsx login redirect eklendi |
 | Working Tree | Temiz |
 | Remote Senkron | Up to date |
+| Açık PR | #2 (https://github.com/lastlord444/okul-akli/pull/2) |
 
 ## DOSYA YAPISI (GERÇEK)
 
@@ -66,11 +67,11 @@ Okul Aklı/
         ├── assets/
         └── src/
             └── app/
-                ├── index.tsx       # Root redirect → /login ✓
+                ├── index.tsx       # Root redirect → /login
                 ├── _layout.tsx     # Stack layout (login, student, parent, teacher)
                 ├── login.tsx       # Rol seçim ekranı
                 ├── (student)/
-                ��   └── index.tsx   # Öğrenci paneli
+                │   └── index.tsx   # Öğrenci paneli
                 ├── (parent)/
                 │   └── index.tsx   # Veli paneli
                 └── (teacher)/
@@ -81,23 +82,23 @@ Okul Aklı/
 
 | Hedef | Durum |
 |-------|--------|
-| mobile app shell (mobil uygulama iskeleti) | ✅ Tamamlandı |
-| login entry point (giriş noktası) | ✅ Tamamlandı |
-| role-based route skeleton (rol tabanlı yönlendirme iskeleti) | ✅ Tamamlandı |
-| student empty dashboard (öğrenci boş paneli) | ✅ Tamamlandı |
-| parent empty dashboard (veli boş paneli) | ✅ Tamamlandı |
-| teacher empty dashboard (öğretmen boş paneli) | ✅ Tamamlandı |
-| Android run flow (Android çalışma akışı) | ✅ Prebuild green |
-| Root index redirect → login | ✅ Tamamlandı |
+| mobile app shell (mobil uygulama iskeleti) | Tamamlandı |
+| login entry point (giriş noktası) | Tamamlandı |
+| role-based route skeleton (rol tabanlı yönlendirme iskeleti) | Tamamlandı |
+| student empty dashboard (öğrenci boş paneli) | Tamamlandı |
+| parent empty dashboard (veli boş paneli) | Tamamlandı |
+| teacher empty dashboard (öğretmen boş paneli) | Tamamlandı |
+| Android run flow (Android çalışma akışı) | Prebuild green |
+| Root index redirect → login | Tamamlandı |
 
 ## BUILD DURUMU
 
 | Kontrol | Sonuç |
 |---------|-------|
-| pnpm install | ✅ Green |
-| tsc --noEmit | ✅ Green |
-| expo prebuild --platform android | ✅ Green |
-| expo export --platform android | ❌expo-asset bağımlılığı eksik |
+| pnpm install | Green |
+| tsc --noEmit | Green |
+| expo prebuild --platform android | Green |
+| expo export --platform android | Hata (expo-asset eksik) |
 
 ## DİL KURALLARI
 
@@ -130,7 +131,7 @@ Okul Aklı/
 
 | Risk | Derece | Detay |
 |------|--------|-------|
-| expo-asset eksik | Orta | export komutu çalışmıyor, expo-asset bağımlılığa eklenmeli (ayrı görev) |
+| expo-asset eksik | Orta | export komutu çalışmıyor, ayrı görev olarak ertelendi |
 | CI/CD yok | Düşük | Henüz otomatik build yok |
 | Gerçek Android cihaz doğrulaması yok | Orta | Prebuild green ama cihazda test edilmedi |
 | Auth store yok | Düşük | Login sadece rol seçimi, gerçek auth yok (kasıtlı erteleme) |
@@ -138,4 +139,4 @@ Okul Aklı/
 ## SON GÜNCELLEME
 
 **Tarih:** 2026-04-23
-**Durum:** Minimal mobile scaffold tamamlandı. Root app.json kaldırıldı. src/app/index.tsx login redirect eklendi. tsc ve prebuild green. Export expo-asset eksikliğinden başarısız. Memory dosyaları repo truth ile güncellendi.
+**Durum:** PR #2 açık. Memory dosyaları repo truth ile uyumlu. Hygiene fix tamamlandı.
