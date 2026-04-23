@@ -42,8 +42,8 @@ gh pr view 1
 - Local branch: feat/mobile-scaffold-v1
 - Remote: Pushlanmış
 - PR #1: AÇIK
-- Working tree: Değişiklik var (bu oturumda yapılan memory güncellemeleri)
-- Commit edilecek: session-handoff.md + mobile-current-truth.md + PR body
+- Working tree: Temiz
+- Son commit: f1f1275 chore(mobile): sync scaffold handoff truth
 
 ## Known Risks:
 - Android SDK kurulu değil → Android run bloklu
@@ -89,4 +89,4 @@ session-handoff.md içindeki GitHub Check bölümünde "Working tree: Temiz" yaz
 ## Android SDK Durumu: Kurulu değil (BLOCKED)
 ## TypeScript: ✅ YEŞİL
 ## expo export: ✅ BAŞARILI
-## Working Tree: Değişiklik var (bu oturumdan)
+## Working Tree: Temiz
