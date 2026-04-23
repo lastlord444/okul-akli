@@ -1,0 +1,16 @@
+{
+  "name": "okul-akli",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "pnpm@10.12.3",
+  "scripts": {
+    "mobile:start": "pnpm --filter okul-akli-mobile start",
+    "mobile:android": "pnpm --filter okul-akli-mobile android",
+    "mobile:ios": "pnpm --filter okul-akli-mobile ios",
+    "mobile:doctor": "pnpm --filter okul-akli-mobile doctor",
+    "mobile:type-check": "pnpm --filter okul-akli-mobile type-check",
+    "mobile:lint": "pnpm --filter okul-akli-mobile lint",
+    "mobile:test": "pnpm --filter okul-akli-mobile test",
+    "mobile:check-all": "pnpm --filter okul-akli-mobile check-all"
+  }
+}

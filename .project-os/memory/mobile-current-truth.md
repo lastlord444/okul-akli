@@ -12,119 +12,60 @@ Her değişiklikten sonra güncellenir.
 | Teknik Klasör | apps/mobile |
 | Teknik Paket Adı | okul-akli-mobile |
 | Stack | React Native + Expo + TypeScript |
-| Başlangıç Adayı | Obytes React Native Template |
+| Başlangıç Adayı | Obytes React Native Template v9.0.0 |
 | Çalışma Yönü | Android-first |
-| iOS Durumu | Gelecek uyumluluğu düşünülür ama aktif kapsam dışı |
+| pnpm Workspace | Evet (root pnpm-workspace.yaml) |
+| Root package.json | Evet (minimal workspace yönetimi) |
 
 ## İLK MOBİL SLICE
 
-Şu anda sadece şu hedefler aktif scope içindedir:
-
 | Hedef | Durum |
 |-------|--------|
-| mobile app shell (mobil uygulama iskeleti) | Planlandı |
-| login entry point (giriş noktası) | Planlandı |
-| role-based route skeleton (rol tabanlı yönlendirme iskeleti) | Planlandı |
-| student empty dashboard (öğrenci boş paneli) | Planlandı |
-| parent empty dashboard (veli boş paneli) | Planlandı |
-| teacher empty dashboard (öğretmen boş paneli) | Planlandı |
-| Android run flow (Android çalışma akışı) | Planlandı |
+| mobile app shell (mobil uygulama iskeleti) | ✅ Kuruldu |
+| login entry point (giriş noktası) | ✅ Türkçe placeholder login |
+| role-based route skeleton (rol tabanlı yönlendirme iskeleti) | ✅ 3 rol route'u |
+| student empty dashboard (öğrenci boş paneli) | ✅ Türkçe boş ekran |
+| parent empty dashboard (veli boş paneli) | ✅ Türkçe boş ekran |
+| teacher empty dashboard (öğretmen boş paneli) | ✅ Türkçe boş ekran |
+| Android run flow (Android çalışma akışı) | ❌ BLOCKED: Android SDK kurulu değil |
 
-## DİL KURALLARI
+## DOĞRULAMA SONUÇLARI
 
-| Alan | Kural |
+| Kontrol | Sonuç |
+|---------|-------|
+| pnpm install | ✅ cd apps/mobile && pnpm install |
+| TypeScript check (tsc --noEmit) | ✅ YEŞİL (sıfır hata) |
+| expo export --platform android | ✅ 6.64 MB bundle, 2566 modül |
+| Android run (expo run:android) | ❌ BLOCKED: Android SDK kurulu değil |
+
+## KALİTE KAPISI FIX GEÇMİŞİ
+
+| Tarih | Fix | Açıklama |
+|-------|-----|----------|
+| 2026-04-22 | select.tsx estimatedItemSize | @shopify/flash-list ile @gorhom/bottom-sheet type mismatch. Prop kaldırıldı. |
+| 2026-04-22 | type-check script | `tsc --noemit` → `tsc --noEmit` (büyük E) |
+
+## BİLİNEN RİSKLER
+
+| Risk | Derece | Açıklama |
+|------|--------|----------|
+| Android SDK eksik | YÜKSEK | Android run yapılamıyor |
+| pnpm workspace OneDrive sorunu | ORTA | Root pnpm install → expo export başarısız (SHA-1). cd apps/mobile && pnpm install ile çözümleniyor |
+| Eski route'lar mevcut | DÜŞÜK | (app), feed, onboarding hâlâ template'den kalmış |
+| TailwindCSS aktif | DÜŞÜK | Kullanılmıyor ama kaldırılmadı (temizlik ertelendi) |
+| i18n aktif | DÜŞÜK | Kullanılmıyor ama kaldırılmadı (temizlik ertelendi) |
+
+## PR DURUMU
+
+| Alan | Değer |
 |------|-------|
-| Kullanıcı arayüzü | Tamamen Türkçe |
-| Roo raporları | Tamamen Türkçe |
-| Teknik terimler | Yanında kısa Türkçe açıklama |
-| Kod yorumları ve açıklamaları | Türkçe |
-| Dosya adları, kütüphane adları | İngilizce kalabilir (ekosistem gereği) |
-
-## MARKA VE RAKİP KURALLARI
-
-| Kural | Durum |
-|-------|--------|
-| Yasaklı isimler | Ebtex, Eyotek, K12NET, Edroof veya başka rakip isimleri ürün adı, modül adı, ekran adı veya marka kimliği olarak kullanılamaz |
-| Kopyalama yasağı | Rakiplerin ekran tasarımı, metinleri, ikonları, akışları, marka dili, özel modül kurgusu veya birebir iş mantığı kopyalanamaz |
-| Proje konumu | Kopya ürün değil; Türkiye'deki okul ve kursların gerçek ihtiyaçlarına göre özgün geliştirilecek profesyonel bir okul işletim sistemi |
-
-## KABUL KRİTERLERİ
-
-| Kriter | Değer |
-|--------|-------|
-| Expo Go | Kabul kriteri değildir |
-| Gerçek Kabul | Android development build veya doğrulanmış Android cihaz/emulator çalışması |
-
-## MOBİLDE ŞİMDİLİK KAPSAM DIŞI
-
-Aşağıdaki özellikler şu an aktif kapsam dışındadır:
-
-| Alan | Durum | Neden |
-|------|--------|-------|
-| ödeme | Kapsam dışı | Protected core |
-| SMS | Kapsam dışı | Protected core |
-| push notification | Kapsam dışı | Protected core |
-| chat | Kapsam dışı | Gelecek özellik |
-| servis / otobüs takibi | Kapsam dışı | Gelecek özellik |
-| harita | Kapsam dışı | Gelecek özellik |
-| offline-first sync engine | Kapsam dışı | Karmaşıklık |
-| PWA | Kapsam dışı | Farklı platform |
-| iOS release | Kapsam dışı | Android öncelikli |
-| App Store / TestFlight | Kapsam dışı | Android öncelikli |
-| shared package extraction | Kapsam dışı | Premature optimization |
-| backend auth/RBAC/tenant redesign | Kapsam dışı | Protected core |
-
-## ÖĞRETİCİ GELİŞTİRME MODU
-
-| Durum | Aktif |
-|-------|-------|
-| Öğretici mod | Evet |
-| Zorunlu bölüm | Her görev sonunda "Bu Görevde Ne Öğrendik?" |
-| Kod notu | Kod varsa "Satır Satır Önemli Noktalar" |
-| Scope kuralı | Öğrenme anlatımı scope'u büyütmeyecek |
-
-## DOSYA YAPISI
-
-```
-Okul Aklı/
-├── .roo/
-│   ├── rules/                    # Ortak kurallar
-│   │   ├── 00-core-project-rules.md
-│   │   └── 10-agent-skills-adapter.md
-│   ├── rules-architect/          # Architect modu kuralları
-│   │   └── 00-architect-rules.md
-│   ├── rules-code/               # Code modu kuralları
-│   │   └── 00-code-rules.md
-│   ├── rules-ask/                # Ask modu kuralları
-│   │   └── 00-ask-rules.md
-│   ├── rules-debug/              # Debug modu kuralları
-│   │   └── 00-debug-rules.md
-│   ├── rules-test/               # Test modu kuralları
-│   │   └── 00-test-rules.md
-│   └── rules-orchestrator/       # Orchestrator modu kuralları
-│       └── 00-orchestrator-rules.md
-├── .github/
-│   └── pull_request_template.md  # PR kontrol şablonu
-├── .project-os/
-│   ├── memory/                   # Proje hafıza dosyaları
-│   │   ├── mobile-current-truth.md
-│   │   ├── mobile-module-registry.md
-│   │   └── session-handoff.md
-│   ├── protocols/                # Çalışma protokolleri
-│   │   ├── STARTUP_PROTOCOL.md
-│   │   ├── DELIVERY_GATE.md
-│   │   └── SESSION_WRAPUP_PROTOCOL.md
-│   ├── adr/                      # Mimari karar kayıtları
-│   │   ├── 0001-mobile-stack-and-execution-strategy.md
-│   │   └── 0002-agent-workflow-and-scope-control.md
-│   └── skills/                   # Agent-skills referansları
-│       └── agent-skills-index.md
-└── apps/
-    └── mobile/                   # Mobil uygulama (henüz oluşturulmadı)
-```
+| PR # | 1 |
+| Branch | feat/mobile-scaffold-v1 |
+| Durum | AÇIK |
+| URL | https://github.com/lastlord444/okul-akli/pull/1 |
+| Merge | Henüz yapılmadı |
 
 ## SON GÜNCELLEME
 
-**Tarih:** 2026-04-21
-**Durum:** Proje kurulumu %100 tamamlandı. Roo kuralları, proje hafızası, session handoff, agent-skills adapter, çalışma protokolleri, ADR kayıtları ve PR template oluşturuldu. Mobil uygulama iskeleti henüz kurulmadı. CI/CD yok. Gerçek Android run doğrulaması yapılmadı.
-**Bilinen Riskler:** Mobil scaffold eksikliği, protokollerin gerçek mobil uygulama üzerinde henüz doğrulanmamış olması, CI/CD eksikliği.
+**Tarih:** 2026-04-23
+**Durum:** Mobil iskelet kuruldu. TypeScript fix tamamlandı (yeşil). expo export başarılı. Android run SDK eksikliği nedeniyle bloklu. PR #1 açık. PR hygiene fix tamamlandı.

@@ -6,77 +6,86 @@ Bir sonraki Roo oturumundan önce GPT bu dosyayı kontrol ederek repo durumunu d
 ---
 
 ## Project: Okul Aklı
-## Active Domain: Proje çalışma protokolü, mimari karar kaydı ve GitHub kalite kapısı
-## Current Slice: Protocols + ADR + PR template + memory update
-## Progress: %100
-## Repo Truth: GitHub repo mevcut, main branch senkron. apps/mobile henüz yok. Roo kuralları, proje hafızası, agent-skills adapter, protokoller, ADR ve PR template eksiksiz.
+## Active Domain: Mobil uygulama PR hygiene fix
+## Current Slice: PR #1 body güncelleme, session-handoff drift düzeltme
+## Progress: %90 (Hygiene fix tamamlandı, PR body güncellendi)
+## Repo Truth: GitHub repo feat/mobile-scaffold-v1 branch'inde. PR #1 açık. TypeScript check yeşil. expo export başarılı. Pushlanmış. Android run SDK eksikliği nedeniyle bloklu.
 
 ## Completed This Session:
-- Agent-skills adapter pushlandı
-- STARTUP_PROTOCOL.md oluşturuldu (oturum başlangıç protokolü)
-- DELIVERY_GATE.md oluşturuldu (teslimat kalite kapısı)
-- SESSION_WRAPUP_PROTOCOL.md oluşturuldu (oturum kapanış protokolü)
-- ADR 0001: Mobil stack ve çalışma stratejisi kaydı
-- ADR 0002: Roo + agent-skills + GPT GitHub kontrolü çalışma modeli kaydı
-- PR template oluşturuldu (Türkçe)
-- Hafıza dosyaları güncellendi
+- PR hygiene kontrolü yapıldı
+- GitHub Check bölümündeki drift düzeltildi (working tree durumu)
+- PR #1 body kalite kapısına uygun şekilde güncellendi
+- Memory dosyaları pushlandı
 
 ## Files Changed:
-- .project-os/protocols/STARTUP_PROTOCOL.md
-- .project-os/protocols/DELIVERY_GATE.md
-- .project-os/protocols/SESSION_WRAPUP_PROTOCOL.md
-- .project-os/adr/0001-mobile-stack-and-execution-strategy.md
-- .project-os/adr/0002-agent-workflow-and-scope-control.md
-- .github/pull_request_template.md
-- .project-os/memory/mobile-current-truth.md
-- .project-os/memory/session-handoff.md
+- .project-os/memory/session-handoff.md (GitHub Check drift düzeltmesi)
+- .project-os/memory/mobile-current-truth.md (güncellendi - gerekirse)
+- PR #1 body (kalite kapısına uygun)
 
 ## Migrations: Yok
 
-## Tests: Kod davranışı yok. Dosya varlığı ve içerik kontrolü yapılacak.
+## Tests:
+- TypeScript check (tsc --noEmit): ✅ YEŞİL (sıfır hata)
+- expo export --platform android: ✅ Başarılı
+- Android run: ❌ BLOCKED (Android SDK kurulu değil)
 
 ## Commands Run:
-Yok (sadece dosya oluşturma ve güncelleme)
+```bash
+git fetch origin
+git checkout feat/mobile-scaffold-v1
+git status
+git log -2 --oneline
+gh pr view 1
+```
 
-## GitHub Check: local/remote uyumu kontrol edilecek
+## GitHub Check:
+- Local branch: feat/mobile-scaffold-v1
+- Remote: Pushlanmış
+- PR #1: AÇIK
+- Working tree: Temiz
 
 ## Known Risks:
-- Mobil scaffold henüz kurulmadı
-- CI/CD henüz yok
-- Android run doğrulaması henüz yok
-- Protokoller yeni eklendi, gerçek scaffold üzerinde henüz test edilmedi
+- Android SDK kurulu değil → Android run bloklu
+- pnpm workspace / OneDrive uzun path riski mevcut
+- Eski route'lar (app, feed, onboarding) mevcut → Temizlik ertelendi
+- TailwindCSS aktif ama kullanılmıyor → Temizlik ertelendi
+- i18n aktif ama kullanılmıyor → Temizlik ertelendi
 
-## What User Learned: Bu oturumda öğrenme bölümü yok, sadece proje protokol ve kayıt dosyaları oluşturuldu.
+## What User Learned:
+session-handoff.md içindeki GitHub Check bölümünde "Working tree: Temiz" yazıyordu ama aslında dosyada kaydedilmemiş değişiklikler vardı. Bu tür drift'ler oturum handoff'larında kontrol edilmeli.
 
 ## Scope Locked For Next Session:
-apps/mobile Obytes tabanlı mobil iskelet planı
+- Android SDK kurulumu (kullanıcı tarafından)
+- pnpm workspace OneDrive uzun path sorunu çözümü
+- Template temizliği slice'ı (eski route'lar, TailwindCSS, i18n)
+- PR #1 merge (Android SDK kurulduktan sonra)
 
 ## Explicit Do Not Touch:
-- apps/mobile (henüz yok, kurulacak)
-- package.json
-- pnpm-lock.yaml
-- backend
-- src
-- prisma
-- auth
-- RBAC
-- tenant
-- payment
-- SMS
-- notification
-- audit
-- storage
-- shared contracts
+- Protected core: auth, RBAC, tenant, payment, SMS, notification, audit, storage
+- Mevcut Roo kuralları
+- Mevcut ADR 0001 ve 0002
+- Protokoller
+- apps/mobile/** (scaffold kodu)
+- package.json, pnpm-lock.yaml, pnpm-workspace.yaml
 
 ## Next Exact Task:
-apps/mobile kurulumu için önce Architect mode ile file change plan çıkar, sonra Code mode ile Obytes tabanlı mobil iskelet kur.
+1. Android SDK kurulumu (kullanıcı tarafından)
+2. Android run doğrulaması
+3. PR #1 merge
 
 ## Drift Audit:
 - Planlanan ile yapılan aynı mı? ✅
 - Scope dışı taşma oldu mu? ❌
 - Protected core'a temas oldu mu? ❌
-- Beklenmeyen dosya değişikliği var mı? ❌
+- Mevcut çalışan akış bozuldu mu? ❌
+- Doküman ve repo uyumlu mu? ✅ (drift düzeltildi)
 
 ---
 
-## Güncelleme Tarihi: 2026-04-21
+## Güncelleme Tarihi: 2026-04-23
+## Branch: feat/mobile-scaffold-v1
+## PR: #1 AÇIK
+## Android SDK Durumu: Kurulu değil (BLOCKED)
+## TypeScript: ✅ YEŞİL
+## expo export: ✅ BAŞARILI
+## Working Tree: Temiz
