@@ -5,32 +5,32 @@ Her değişiklikten sonra güncellenir.
 
 ## PROJE BİLGİLERİ
 
-| Alan | Değer |
+| Alan | deger |
 |------|-------|
-| Proje Adı | Okul Aklı |
-| Mobil Uygulama Adı | Okul Aklı Mobil |
-| Teknik Klasör | apps/mobile |
-| Teknik Paket Adı | okul-akli-mobile |
+| Proje Adi | Okul Akli |
+| Mobil Uygulama Adi | Okul Akli Mobil |
+| Teknik Klasor | apps/mobile |
+| Teknik Paket Adi | okul-akli-mobile |
 | Stack | React Native + Expo + TypeScript |
 | Expo SDK | 52.0.49 |
 | React Native | 0.76.5 |
-| Çalışma Yönü | Android-first |
-| iOS Durumu | Gelecek uyumluluğu düşünülür ama aktif kapsam dışı |
+| Calisma Yonu | Android-first |
+| iOS Durumu | Gelecek uyumlulugu dusunulur ama aktif kapsam disi |
 
-## AKTİF BRANCH VE PR
+## AKTIF BRANCH VE PR
 
-| Alan | Değer |
+| Alan | deger |
 |------|-------|
 | Branch | feat/mobile-minimal-v1 |
-| Son Commit | cbd27d8 chore: hygiene fix - memory ve PR body guncelleme |
+| Son Commit | 203a7d9 chore: son hygiene drift fix - head hash cbd27d8, PR body dolduruldu |
 | Working Tree | Temiz |
 | Remote Senkron | Up to date |
-| Açık PR | #2 (https://github.com/lastlord444/okul-akli/pull/2) |
+| Acik PR | #2 (https://github.com/lastlord444/okul-akli/pull/2) |
 
-## DOSYA YAPISI (GERÇEK)
+## DOSYA YAPISI (GERCEK)
 
 ```
-Okul Aklı/
+Okul Akli/
 ├── .gitignore
 ├── package.json
 ├── pnpm-lock.yaml
@@ -75,38 +75,38 @@ Okul Aklı/
                 └── (teacher)/index.tsx
 ```
 
-## İLK MOBİL SLICE
+## ILK MOBIL SLICE
 
 | Hedef | Durum |
 |-------|--------|
-| mobile app shell | Tamamlandı |
-| login entry point | Tamamlandı |
-| role-based route skeleton | Tamamlandı |
-| student empty dashboard | Tamamlandı |
-| parent empty dashboard | Tamamlandı |
-| teacher empty dashboard | Tamamlandı |
+| mobile app shell | Tamamlandi |
+| login entry point | Tamamlandi |
+| role-based route skeleton | Tamamlandi |
+| student empty dashboard | Tamamlandi |
+| parent empty dashboard | Tamamlandi |
+| teacher empty dashboard | Tamamlandi |
 | Android run flow | Prebuild green |
-| Root index redirect → login | Tamamlandı |
+| Root index redirect → login | Tamamlandi |
 
 ## BUILD DURUMU
 
-| Kontrol | Sonuç |
+| Kontrol | Sonuc |
 |---------|-------|
 | pnpm install | Green |
 | tsc --noEmit | Green |
 | expo prebuild --platform android | Green |
 | expo export --platform android | Hata (expo-asset eksik) |
 
-## BİLİNEN RİSKLER
+## BILINEN RISKLER
 
 | Risk | Derece | Detay |
 |------|--------|-------|
-| expo-asset eksik | Orta | export komutu çalışmıyor |
-| CI/CD yok | Düşük | Otomatik build yok |
-| Android cihaz doğrulaması yok | Orta | Prebuild green ama test edilmedi |
-| Auth store yok | Düşük | Sadece rol seçimi |
+| expo-asset eksik | Orta | export komutu calismiyor |
+| CI/CD yok | Dusuk | Otomatik build yok |
+| Android cihaz dogrulamasi yok | Orta | Prebuild green ama test edilmedi |
+| Auth store yok | Dusuk | Sadece rol secimi |
 
-## SON GÜNCELLEME
+## SON GUNCELLEME
 
 **Tarih:** 2026-04-23
-**Durum:** PR #2 açık. Memory dosyaları head hash cbd27d8 ile uyumlu.
+**Durum:** PR #2 acik. Memory dosyalari head hash 203a7d9 ile uyumlu.

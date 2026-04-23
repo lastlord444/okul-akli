@@ -1,26 +1,26 @@
-# Session Handoff - Okul Aklı
+# Session Handoff - Okul Akli
 
-Bu dosya her Roo oturumundan sonra güncellenir.
-Bir sonraki Roo oturumundan önce GPT bu dosyayı kontrol ederek repo durumunu doğrular.
+Bu dosya her Roo oturumundan sonra guncellenir.
+Bir sonraki Roo oturumundan once GPT bu dosyayi kontrol ederek repo durumunu dogrular.
 
 ---
 
-## Project: Okul Aklı
-## Active Domain: Mobil minimal scaffold kalite kapısı
+## Project: Okul Akli
+## Active Domain: Mobil minimal scaffold kalite kapisi
 ## Current Slice: PR #2 son hygiene drift fix
 ## Progress: %100
 
 ## Repo Truth:
 - Branch: feat/mobile-minimal-v1
-- Son Commit: cbd27d8 chore: hygiene fix - memory ve PR body guncelleme
+- Son Commit: 203a7d9 chore: son hygiene drift fix - head hash cbd27d8, PR body dolduruldu
 - Working Tree: Temiz
 - Remote: Up to date with origin/feat/mobile-minimal-v1
-- Açık PR: #2 (https://github.com/lastlord444/okul-akli/pull/2)
+- Acik PR: #2 (https://github.com/lastlord444/okul-akli/pull/2)
 
 ## Completed This Session:
-1. mobile-current-truth.md head hash cbd27d8 olarak güncellendi
-2. session-handoff.md head hash ve GitHub Check güncellendi
-3. PR #2 body kalite kapısı şablonuna uygun dolduruldu
+1. mobile-current-truth.md head hash 203a7d9 olarak guncellendi
+2. session-handoff.md head hash ve GitHub Check guncellendi
+3. PR #2 body --body-file ile 9 baslik dolduruldu
 
 ## Files Changed:
 - .project-os/memory/mobile-current-truth.md
@@ -28,29 +28,29 @@ Bir sonraki Roo oturumundan önce GPT bu dosyayı kontrol ederek repo durumunu d
 
 ## Migrations: Yok
 
-## Tests: Kod davranışı değişmedi. Sadece hygiene düzeltme.
+## Tests: Kod davranisi degismedi. Sadece hygiene duzeltme.
 
 ## GitHub Check:
 - Working tree: Temiz
-- Remote senkron: cbd27d8
-- PR #2: OPEN, body dolu
+- Remote senkron: 203a7d9
+- PR #2: OPEN, body dolu (9 baslik)
 
 ## Known Risks:
 1. expo-asset eksik (Orta)
-2. Android cihaz doğrulaması yok (Düşük)
-3. Auth store yok (Düşük)
+2. Android cihaz dogrulamasi yok (Dusuk)
+3. Auth store yok (Dusuk)
 
 ## Next Exact Task:
-1. expo-asset bağımlılık ekleme (ayrı görev)
-2. Android emulator doğrulaması
+1. expo-asset bagimlilik ekleme (ayri gorev)
+2. Android emulator dogrulamasi
 3. CI/CD pipeline
 
 ## Drift Audit:
-- Planlanan ile yapılan aynı: Evet
-- Scope dışı taşma: Yok
+- Planlanan ile yapilan ayni: Evet
+- Scope disi tasma: Yok
 - Protected core temas: Yok
 - Memory repo truth ile uyumlu: Evet
 
 ---
 
-## Güncelleme Tarihi: 2026-04-23
+## Guncelleme Tarihi: 2026-04-23
