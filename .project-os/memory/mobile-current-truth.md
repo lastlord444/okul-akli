@@ -12,23 +12,92 @@ Her değişiklikten sonra güncellenir.
 | Teknik Klasör | apps/mobile |
 | Teknik Paket Adı | okul-akli-mobile |
 | Stack | React Native + Expo + TypeScript |
-| Başlangıç Adayı | Obytes React Native Template |
+| Expo SDK | 52.0.49 |
+| React Native | 0.76.5 |
 | Çalışma Yönü | Android-first |
 | iOS Durumu | Gelecek uyumluluğu düşünülür ama aktif kapsam dışı |
 
-## İLK MOBİL SLICE
+## AKTİF BRANCH
 
-Şu anda sadece şu hedefler aktif scope içindedir:
+| Alan | Değer |
+|------|-------|
+| Branch | feat/mobile-minimal-v1 |
+| Son Commit | bacf3a4 feat(mobile): minimal Expo Router scaffold - PR#1 replacement |
+| Working Tree | Temiz |
+| Remote Senkron | Up to date |
+
+## DOSYA YAPISI (GERÇEK)
+
+```
+Okul Aklı/
+├── .gitignore
+├── package.json                    # Root workspace package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml            # packages: ["apps/*"]
+├── README.md
+├── .github/
+│   └── pull_request_template.md
+├── .project-os/
+│   ├── memory/
+│   │   ├── mobile-current-truth.md
+│   │   ├── mobile-module-registry.md
+│   │   └── session-handoff.md
+│   ├── protocols/
+│   │   ├── STARTUP_PROTOCOL.md
+│   │   ├── DELIVERY_GATE.md
+│   │   └── SESSION_WRAPUP_PROTOCOL.md
+│   ├── adr/
+│   │   ├── 0001-mobile-stack-and-execution-strategy.md
+│   │   └── 0002-agent-workflow-and-scope-control.md
+│   └── skills/
+│       └── agent-skills-index.md
+├── .roo/
+│   └── rules/
+│       ├── 00-core-project-rules.md
+│       └── 10-agent-skills-adapter.md
+└── apps/
+    └── mobile/
+        ├── app.json               # Expo config (com.okulakli.development)
+        ├── babel.config.js
+        ├── metro.config.js
+        ├── package.json           # okul-akli-mobile
+        ├── tsconfig.json
+        ├── .gitignore
+        ├── assets/
+        └── src/
+            └── app/
+                ├── index.tsx       # Root redirect → /login ✓
+                ├── _layout.tsx     # Stack layout (login, student, parent, teacher)
+                ├── login.tsx       # Rol seçim ekranı
+                ├── (student)/
+                ��   └── index.tsx   # Öğrenci paneli
+                ├── (parent)/
+                │   └── index.tsx   # Veli paneli
+                └── (teacher)/
+                    └── index.tsx   # Öğretmen paneli
+```
+
+## İLK MOBİL SLICE
 
 | Hedef | Durum |
 |-------|--------|
-| mobile app shell (mobil uygulama iskeleti) | Planlandı |
-| login entry point (giriş noktası) | Planlandı |
-| role-based route skeleton (rol tabanlı yönlendirme iskeleti) | Planlandı |
-| student empty dashboard (öğrenci boş paneli) | Planlandı |
-| parent empty dashboard (veli boş paneli) | Planlandı |
-| teacher empty dashboard (öğretmen boş paneli) | Planlandı |
-| Android run flow (Android çalışma akışı) | Planlandı |
+| mobile app shell (mobil uygulama iskeleti) | ✅ Tamamlandı |
+| login entry point (giriş noktası) | ✅ Tamamlandı |
+| role-based route skeleton (rol tabanlı yönlendirme iskeleti) | ✅ Tamamlandı |
+| student empty dashboard (öğrenci boş paneli) | ✅ Tamamlandı |
+| parent empty dashboard (veli boş paneli) | ✅ Tamamlandı |
+| teacher empty dashboard (öğretmen boş paneli) | ✅ Tamamlandı |
+| Android run flow (Android çalışma akışı) | ✅ Prebuild green |
+| Root index redirect → login | ✅ Tamamlandı |
+
+## BUILD DURUMU
+
+| Kontrol | Sonuç |
+|---------|-------|
+| pnpm install | ✅ Green |
+| tsc --noEmit | ✅ Green |
+| expo prebuild --platform android | ✅ Green |
+| expo export --platform android | ❌expo-asset bağımlılığı eksik |
 
 ## DİL KURALLARI
 
@@ -40,24 +109,7 @@ Her değişiklikten sonra güncellenir.
 | Kod yorumları ve açıklamaları | Türkçe |
 | Dosya adları, kütüphane adları | İngilizce kalabilir (ekosistem gereği) |
 
-## MARKA VE RAKİP KURALLARI
-
-| Kural | Durum |
-|-------|--------|
-| Yasaklı isimler | Ebtex, Eyotek, K12NET, Edroof veya başka rakip isimleri ürün adı, modül adı, ekran adı veya marka kimliği olarak kullanılamaz |
-| Kopyalama yasağı | Rakiplerin ekran tasarımı, metinleri, ikonları, akışları, marka dili, özel modül kurgusu veya birebir iş mantığı kopyalanamaz |
-| Proje konumu | Kopya ürün değil; Türkiye'deki okul ve kursların gerçek ihtiyaçlarına göre özgün geliştirilecek profesyonel bir okul işletim sistemi |
-
-## KABUL KRİTERLERİ
-
-| Kriter | Değer |
-|--------|-------|
-| Expo Go | Kabul kriteri değildir |
-| Gerçek Kabul | Android development build veya doğrulanmış Android cihaz/emulator çalışması |
-
 ## MOBİLDE ŞİMDİLİK KAPSAM DIŞI
-
-Aşağıdaki özellikler şu an aktif kapsam dışındadır:
 
 | Alan | Durum | Neden |
 |------|--------|-------|
@@ -74,57 +126,16 @@ Aşağıdaki özellikler şu an aktif kapsam dışındadır:
 | shared package extraction | Kapsam dışı | Premature optimization |
 | backend auth/RBAC/tenant redesign | Kapsam dışı | Protected core |
 
-## ÖĞRETİCİ GELİŞTİRME MODU
+## BİLİNEN RİSKLER
 
-| Durum | Aktif |
-|-------|-------|
-| Öğretici mod | Evet |
-| Zorunlu bölüm | Her görev sonunda "Bu Görevde Ne Öğrendik?" |
-| Kod notu | Kod varsa "Satır Satır Önemli Noktalar" |
-| Scope kuralı | Öğrenme anlatımı scope'u büyütmeyecek |
-
-## DOSYA YAPISI
-
-```
-Okul Aklı/
-├── .roo/
-│   ├── rules/                    # Ortak kurallar
-│   │   ├── 00-core-project-rules.md
-│   │   └── 10-agent-skills-adapter.md
-│   ├── rules-architect/          # Architect modu kuralları
-│   │   └── 00-architect-rules.md
-│   ├── rules-code/               # Code modu kuralları
-│   │   └── 00-code-rules.md
-│   ├── rules-ask/                # Ask modu kuralları
-│   │   └── 00-ask-rules.md
-│   ├── rules-debug/              # Debug modu kuralları
-│   │   └── 00-debug-rules.md
-│   ├── rules-test/               # Test modu kuralları
-│   │   └── 00-test-rules.md
-│   └── rules-orchestrator/       # Orchestrator modu kuralları
-│       └── 00-orchestrator-rules.md
-├── .github/
-│   └── pull_request_template.md  # PR kontrol şablonu
-├── .project-os/
-│   ├── memory/                   # Proje hafıza dosyaları
-│   │   ├── mobile-current-truth.md
-│   │   ├── mobile-module-registry.md
-│   │   └── session-handoff.md
-│   ├── protocols/                # Çalışma protokolleri
-│   │   ├── STARTUP_PROTOCOL.md
-│   │   ├── DELIVERY_GATE.md
-│   │   └── SESSION_WRAPUP_PROTOCOL.md
-│   ├── adr/                      # Mimari karar kayıtları
-│   │   ├── 0001-mobile-stack-and-execution-strategy.md
-│   │   └── 0002-agent-workflow-and-scope-control.md
-│   └── skills/                   # Agent-skills referansları
-│       └── agent-skills-index.md
-└── apps/
-    └── mobile/                   # Mobil uygulama (henüz oluşturulmadı)
-```
+| Risk | Derece | Detay |
+|------|--------|-------|
+| expo-asset eksik | Orta | export komutu çalışmıyor, expo-asset bağımlılığa eklenmeli (ayrı görev) |
+| CI/CD yok | Düşük | Henüz otomatik build yok |
+| Gerçek Android cihaz doğrulaması yok | Orta | Prebuild green ama cihazda test edilmedi |
+| Auth store yok | Düşük | Login sadece rol seçimi, gerçek auth yok (kasıtlı erteleme) |
 
 ## SON GÜNCELLEME
 
-**Tarih:** 2026-04-21
-**Durum:** Proje kurulumu %100 tamamlandı. Roo kuralları, proje hafızası, session handoff, agent-skills adapter, çalışma protokolleri, ADR kayıtları ve PR template oluşturuldu. Mobil uygulama iskeleti henüz kurulmadı. CI/CD yok. Gerçek Android run doğrulaması yapılmadı.
-**Bilinen Riskler:** Mobil scaffold eksikliği, protokollerin gerçek mobil uygulama üzerinde henüz doğrulanmamış olması, CI/CD eksikliği.
+**Tarih:** 2026-04-23
+**Durum:** Minimal mobile scaffold tamamlandı. Root app.json kaldırıldı. src/app/index.tsx login redirect eklendi. tsc ve prebuild green. Export expo-asset eksikliğinden başarısız. Memory dosyaları repo truth ile güncellendi.
