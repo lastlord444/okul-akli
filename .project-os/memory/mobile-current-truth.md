@@ -13,7 +13,7 @@
 | Alan | Deger |
 |------|-------|
 | Branch | feat/mobile-minimal-v1 |
-| Son Commit | 7447efd chore: memory 6a7c7d8 |
+| Son Commit | e884d80 chore: memory 7447efd, PR MERGEABLE |
 | Working Tree | Temiz |
 | Remote | Up to date |
 | Acik PR | #2 MERGEABLE (https://github.com/lastlord444/okul-akli/pull/2) |
