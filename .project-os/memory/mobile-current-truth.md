@@ -67,5 +67,5 @@ Her değişiklikten sonra güncellenir.
 
 ## SON GÜNCELLEME
 
-**Tarih:** 2026-04-22
-**Durum:** Mobil iskelet kuruldu. TypeScript fix tamamlandı (yeşil). expo export başarılı. Android run SDK eksikliği nedeniyle bloklu. PR #1 açık.
+**Tarih:** 2026-04-23
+**Durum:** Mobil iskelet kuruldu. TypeScript fix tamamlandı (yeşil). expo export başarılı. Android run SDK eksikliği nedeniyle bloklu. PR #1 açık. PR hygiene fix tamamlandı.
