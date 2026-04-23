@@ -43,7 +43,7 @@ gh pr view 1
 - Remote: Pushlanmış
 - PR #1: AÇIK
 - Working tree: Temiz
-- Son commit: f1f1275 chore(mobile): sync scaffold handoff truth
+- Son commit: 5877dcf chore(mobile): finalize handoff truth
 
 ## Known Risks:
 - Android SDK kurulu değil → Android run bloklu
