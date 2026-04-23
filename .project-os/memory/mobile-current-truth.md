@@ -22,7 +22,7 @@ Her değişiklikten sonra güncellenir.
 | Alan | Değer |
 |------|-------|
 | Branch | feat/mobile-minimal-v1 |
-| Son Commit | c549a06 feat(mobile): root app.json silindi, src/app/index.tsx login redirect eklendi |
+| Son Commit | cbd27d8 chore: hygiene fix - memory ve PR body guncelleme |
 | Working Tree | Temiz |
 | Remote Senkron | Up to date |
 | Açık PR | #2 (https://github.com/lastlord444/okul-akli/pull/2) |
@@ -32,9 +32,9 @@ Her değişiklikten sonra güncellenir.
 ```
 Okul Aklı/
 ├── .gitignore
-├── package.json                    # Root workspace package.json
+├── package.json
 ├── pnpm-lock.yaml
-├── pnpm-workspace.yaml            # packages: ["apps/*"]
+├── pnpm-workspace.yaml
 ├── README.md
 ├── .github/
 │   └── pull_request_template.md
@@ -58,37 +58,34 @@ Okul Aklı/
 │       └── 10-agent-skills-adapter.md
 └── apps/
     └── mobile/
-        ├── app.json               # Expo config (com.okulakli.development)
+        ├── app.json
         ├── babel.config.js
         ├── metro.config.js
-        ├── package.json           # okul-akli-mobile
+        ├── package.json
         ├── tsconfig.json
         ├── .gitignore
         ├── assets/
         └── src/
             └── app/
-                ├── index.tsx       # Root redirect → /login
-                ├── _layout.tsx     # Stack layout (login, student, parent, teacher)
-                ├── login.tsx       # Rol seçim ekranı
-                ├── (student)/
-                │   └── index.tsx   # Öğrenci paneli
-                ├── (parent)/
-                │   └── index.tsx   # Veli paneli
-                └── (teacher)/
-                    └── index.tsx   # Öğretmen paneli
+                ├── index.tsx
+                ├── _layout.tsx
+                ├── login.tsx
+                ├── (student)/index.tsx
+                ├── (parent)/index.tsx
+                └── (teacher)/index.tsx
 ```
 
 ## İLK MOBİL SLICE
 
 | Hedef | Durum |
 |-------|--------|
-| mobile app shell (mobil uygulama iskeleti) | Tamamlandı |
-| login entry point (giriş noktası) | Tamamlandı |
-| role-based route skeleton (rol tabanlı yönlendirme iskeleti) | Tamamlandı |
-| student empty dashboard (öğrenci boş paneli) | Tamamlandı |
-| parent empty dashboard (veli boş paneli) | Tamamlandı |
-| teacher empty dashboard (öğretmen boş paneli) | Tamamlandı |
-| Android run flow (Android çalışma akışı) | Prebuild green |
+| mobile app shell | Tamamlandı |
+| login entry point | Tamamlandı |
+| role-based route skeleton | Tamamlandı |
+| student empty dashboard | Tamamlandı |
+| parent empty dashboard | Tamamlandı |
+| teacher empty dashboard | Tamamlandı |
+| Android run flow | Prebuild green |
 | Root index redirect → login | Tamamlandı |
 
 ## BUILD DURUMU
@@ -100,43 +97,16 @@ Okul Aklı/
 | expo prebuild --platform android | Green |
 | expo export --platform android | Hata (expo-asset eksik) |
 
-## DİL KURALLARI
-
-| Alan | Kural |
-|------|-------|
-| Kullanıcı arayüzü | Tamamen Türkçe |
-| Roo raporları | Tamamen Türkçe |
-| Teknik terimler | Yanında kısa Türkçe açıklama |
-| Kod yorumları ve açıklamaları | Türkçe |
-| Dosya adları, kütüphane adları | İngilizce kalabilir (ekosistem gereği) |
-
-## MOBİLDE ŞİMDİLİK KAPSAM DIŞI
-
-| Alan | Durum | Neden |
-|------|--------|-------|
-| ödeme | Kapsam dışı | Protected core |
-| SMS | Kapsam dışı | Protected core |
-| push notification | Kapsam dışı | Protected core |
-| chat | Kapsam dışı | Gelecek özellik |
-| servis / otobüs takibi | Kapsam dışı | Gelecek özellik |
-| harita | Kapsam dışı | Gelecek özellik |
-| offline-first sync engine | Kapsam dışı | Karmaşıklık |
-| PWA | Kapsam dışı | Farklı platform |
-| iOS release | Kapsam dışı | Android öncelikli |
-| App Store / TestFlight | Kapsam dışı | Android öncelikli |
-| shared package extraction | Kapsam dışı | Premature optimization |
-| backend auth/RBAC/tenant redesign | Kapsam dışı | Protected core |
-
 ## BİLİNEN RİSKLER
 
 | Risk | Derece | Detay |
 |------|--------|-------|
-| expo-asset eksik | Orta | export komutu çalışmıyor, ayrı görev olarak ertelendi |
-| CI/CD yok | Düşük | Henüz otomatik build yok |
-| Gerçek Android cihaz doğrulaması yok | Orta | Prebuild green ama cihazda test edilmedi |
-| Auth store yok | Düşük | Login sadece rol seçimi, gerçek auth yok (kasıtlı erteleme) |
+| expo-asset eksik | Orta | export komutu çalışmıyor |
+| CI/CD yok | Düşük | Otomatik build yok |
+| Android cihaz doğrulaması yok | Orta | Prebuild green ama test edilmedi |
+| Auth store yok | Düşük | Sadece rol seçimi |
 
 ## SON GÜNCELLEME
 
 **Tarih:** 2026-04-23
-**Durum:** PR #2 açık. Memory dosyaları repo truth ile uyumlu. Hygiene fix tamamlandı.
+**Durum:** PR #2 açık. Memory dosyaları head hash cbd27d8 ile uyumlu.
