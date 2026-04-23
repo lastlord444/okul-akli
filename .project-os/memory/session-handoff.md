@@ -41,9 +41,8 @@ gh pr view 1
 ## GitHub Check:
 - Local branch: feat/mobile-scaffold-v1
 - Remote: Pushlanmış
-- PR #1: AÇIK, MERGEABLE, CLEAN (conflict yok, branch protection yok)
+- PR #1: AÇIK
 - Working tree: Temiz
-- Son commit: `git log -1 --oneline` ile kontrol edilmeli (self-invalidating olduğu için buraya yazılmaz)
 
 ## Known Risks:
 - Android SDK kurulu değil → Android run bloklu
