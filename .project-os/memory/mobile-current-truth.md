@@ -3,7 +3,7 @@
 Bu dosya projenin mevcut durumunu belgelemek icin kullanilir.
 Her degisiklikten sonra guncellenir.
 
-## PROJE BILGILERI
+## PROJE BILGILARI
 
 | Alan | deger |
 |------|-------|
@@ -22,7 +22,7 @@ Her degisiklikten sonra guncellenir.
 | Alan | deger |
 |------|-------|
 | Branch | feat/mobile-minimal-v1 |
-| Son Commit | ba14ef6 chore: memory hash 203a7d9 final |
+| Son Commit | 6a7c7d8 chore: final memory fix - head hash ba14ef6, PR mergeable |
 | Working Tree | Temiz |
 | Remote Senkron | Up to date |
 | Acik PR | #2 (https://github.com/lastlord444/okul-akli/pull/2) |
@@ -109,4 +109,4 @@ Okul Akli/
 ## SON GUNCELLEME
 
 **Tarih:** 2026-04-23
-**Durum:** PR #2 MERGEABLE. Memory dosyalari head hash ba14ef6 ile uyumlu.
+**Durum:** PR #2 acik, mergeability UNKNOWN (GitHub hesaplaniyor). Memory dosyalari head hash 6a7c7d8 ile uyumlu.
