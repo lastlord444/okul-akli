@@ -13,7 +13,7 @@
 | Alan | Deger |
 |------|-------|
 | Branch | feat/mobile-minimal-v1 |
-| Last Verified PR Head | GitHub PR #2 uzerinden dogrulanir (exact hash memory commitleri tarafindan gecersiz kilinir) |
+| Last Verified PR Head | 4a77bf143a90af4b60ac4ec46dfc2fafd8198ed9 |
 | Working Tree | Temiz |
 | Remote | Up to date |
 | Acik PR | #2 MERGEABLE (https://github.com/lastlord444/okul-akli/pull/2) |
