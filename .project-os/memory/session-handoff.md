@@ -2,7 +2,7 @@
 
 ## Repo Truth:
 - Branch: feat/mobile-minimal-v1
-- Son Commit: e884d80 chore: memory 7447efd, PR MERGEABLE
+- Son Commit: 088863a1298ad1d9d482ff70ed6d0e1aeee85831
 - Working Tree: Temiz
 - Remote: Up to date
 - Acik PR: #2 MERGEABLE
@@ -21,4 +21,4 @@
 1. expo-asset bagimlilik ekleme
 2. CI/CD pipeline
 
-## Guncelleme: 2026-04-23
+## Guncelleme: 2026-04-24
