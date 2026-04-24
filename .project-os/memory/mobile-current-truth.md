@@ -13,8 +13,8 @@
 | Alan | Deger |
 |------|-------|
 | Branch | feat/mobile-minimal-v1 |
-| Last Verified PR Head | 1b95ad5abe7811198d1f082573cd7070673b63d1 |
-| Working Tree | Temiz (commit bekliyor) |
+| Last Verified PR Head | 443484fb80afaa8e2e60a6b6a6f9fce6d4b5b8e6 |
+| Working Tree | Temiz |
 | Remote | Up to date |
 | Acik PR | #2 MERGEABLE (https://github.com/lastlord444/okul-akli/pull/2) |
 
@@ -27,7 +27,7 @@
 | expo prebuild --platform android | Green |
 | ./gradlew assembleDebug | GREEN - BUILD SUCCESSFUL |
 | APK Olusturma | Green - app-debug.apk (122MB) |
-| Cihaz Kurulumu | Green - 24122RKC7G |
+| Cihaz Kurulumu | Green - e3484f25 |
 
 ## BUILD SORUNLARI COZULDU
 
@@ -51,16 +51,12 @@ sdk.dir=C\:\\Users\\musab\\AppData\\Local\\Android\\Sdk
 - **Sorun:** public-hoist-pattern eksikligi
 - **Cozum:** `.npmrc` dosyasi olusturuldu: `public-hoist-pattern[]=*`
 
-## BILINEN TEKNIK SORUN
-
-| Sorun | Durum | Etki |
-|-------|-------|------|
-| Metro Header Hata (Turkce "i") | Biliniyor | Dusuk - Sadece dev server, APK calisiyor |
-
-**Metro Hata Detayi:** `TypeError: Invalid character in header content ["X-React-Native-Project-Root"]`
-- **Neden:** Windows path'inde Turkce "i" karakteri (Okul Akli)
-- **Etki:** Sadece Metro dev server (live reload)
-- **Cozum Gerekmiyor:** APK'da JS bundle gomulu, uygulama calisiyor
+### 5. Metro Header Hata (Turkce Karakter)
+- **Sorun:** Windows path'inde Turkce "i" karakteri HTTP header encoding sorununa neden oluyordu
+- **Cozum:** Expo CLI middleware patch'lendi:
+  - Dosya: `node_modules/.pnpm/@expo+cli@0.22.28/node_modules/@expo/cli/build/src/start/server/metro/dev-server/createMetroMiddleware.js`
+  - Satir 73: `metroConfig.projectRoot.replace(/[^\x20-\x7E]/g, '_')`
+- **Not:** Bu patch node_modules icinde, pnpm reinstall sonrasi tekrar uygulanmasi gerekebilir
 
 ## DEGISIKLIK DOSYALARI
 
@@ -80,4 +76,5 @@ sdk.dir=C\:\\Users\\musab\\AppData\\Local\\Android\\Sdk
 
 **Tarih:** 2026-04-24
 **Build:** 15:00-15:15
+**Metro Patch:** 16:30-16:40
 **Durum:** BASARILI
