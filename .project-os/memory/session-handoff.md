@@ -3,8 +3,11 @@
 ## Branch: feat/mobile-minimal-v1
 ## PR: #2
 ## Tarih: 2026-04-25 09:47
-## Current GitHub PR Head: af8bfdf9b7ea35ae867cbc7191754b934a8f22ac (docs-only)
+## Current GitHub PR Head: "Her session basinda git rev-parse HEAD / GitHub ile dogrulanacak"
 ## Last Verified Code Baseline: 6bde645cfb28110df0bec0d33f1aebfd0bb8d07e
+## Latest docs-only memory sync commit: 7eabb4b
+## Android build status: BLOCKED
+## Merge status: NOT READY
 
 ## Ozet
 
