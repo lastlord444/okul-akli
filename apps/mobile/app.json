@@ -1,13 +1,16 @@
 {
-  "expo": {
-    "name": "Okul Akli",
-    "slug": "okul-akli-mobile",
-    "version": "0.0.1",
-    "orientation": "portrait",
-    "scheme": "okulakli",
-    "newArchEnabled": true,
-    "android": {
-      "package": "com.okulakli.development"
-    }
-  }
+    "expo":  {
+                 "name":  "Okul Akli",
+                 "slug":  "okul-akli-mobile",
+                 "version":  "0.0.1",
+                 "orientation":  "portrait",
+                 "scheme":  "okulakli",
+                 "newArchEnabled":  false,
+                 "android":  {
+                                 "package":  "com.okulakli.development"
+                             },
+                 "plugins":  [
+                                 "./plugins/withKotlinVersion"
+                             ]
+             }
 }

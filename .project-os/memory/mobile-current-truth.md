@@ -15,8 +15,8 @@
 | Branch | feat/mobile-minimal-v1 |
 | Current GitHub PR Head | Her session basinda git rev-parse HEAD / GitHub ile dogrulanacak |
 | Last Verified Code Baseline | 6bde645cfb28110df0bec0d33f1aebfd0bb8d07e |
-| Android Build Status | GREEN (Local Probe) |
-| Merge Status | NOT READY (Kalıcı fix gerekli, Build: başarılı, Smoke: yok) |
+| Android Build Status | GREEN (Persistent Fix Applied) |
+| Merge Status | NOT READY (Build: başarılı, Smoke: yok) |
 | Working Tree | Temiz |
 | Remote | Up to date |
 | Acik PR | #2 DURUM BILINMIYOR - build dogrulanmadi |
@@ -34,10 +34,10 @@
 
 ## BUILD SORUNU — BLOKE EDICI
 
-### 1. Kotlin/Compose Uyumsuzluğu (LOCAL PROBE İLE AŞILDI)
+### 1. Kotlin/Compose Uyumsuzluğu (KALICI OLARAK AŞILDI)
 - **Sorun:** Gradle build sırasında `:expo-modules-core:compileDebugKotlin FAILED` hatası alınıyordu.
-- **Kanıtlanmış Hipotez:** `gradle.properties` dosyasına `android.kotlinVersion=1.9.24` eklenerek mismatch çözüldü ve build `5m 42s` sürede yeşile döndü.
-- **Durum:** **GEREKSİNİM** - Bu geçici bir fix olduğu için kalıcı Expo config plugin çözümüne ihtiyaç var.
+- **Çözüm:** `withKotlinVersion.js` config plugin'i yazılarak prebuild sırasında `android.kotlinVersion=1.9.24` enjeksiyonu kalıcı hale getirildi.
+- **Durum:** **ÇÖZÜLDÜ** - `gradlew assembleDebug` 1m 49s sürede yeşile döndü.
 
 ### 2. Windows Path + Gradle + pnpm Symlink (MASKELENMİŞ BLOKER)
 - **Sorun:** Proje dizini Türkçe karakter ("Okul Aklı") içerdiği için Gradle pnpm virtual store symlink'lerini çözemiyor.
@@ -93,6 +93,6 @@ Bu commit sadece memory dosyalarini guncelliyor. Kod degisikligi yok.
 ## SON GUNCELLEME
 
 **Tarih:** 2026-04-25
-**Saat:** 17:28
-**Durum:** GREEN (Local Probe) - Kalıcı fix bekliyor
-**Audit Sonucu:** `android.kotlinVersion=1.9.24` hipotezi test edildi. `gradlew assembleDebug` komutu 5m 42s sürede başarıyla tamamlandı ve `app-debug.apk` oluşturuldu. Kalıcı bir Expo config plugin çözümü yazılması planlanıyor.
+**Saat:** 17:42
+**Durum:** GREEN (Persistent Fix Applied)
+**Audit Sonucu:** `withKotlinVersion.js` config plugin eklendi, `app.json`'da `newArchEnabled: false` ayarlandı. `expo prebuild --clean` sonrası `gradlew assembleDebug` hatasız tamamlandı. `app-debug.apk` (~126MB) başarıyla üretildi. Sırada Smoke Test var.
