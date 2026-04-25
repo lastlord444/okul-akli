@@ -13,11 +13,10 @@
 
 ## Ozet
 
-Bu session'da KOD DEGISIKLIGI YAPILMADI. Memory hygiene duzeltmesi yapildi:
-- Self-invalidating "Last Verified PR Head" alani kaldirildi
-- Yerine "Current GitHub PR Head" (session basinda dogrulanacak) + "Last Verified Code Baseline" (sabit) eklendi
-- session-handoff.md'de PR head ve code baseline ayrimi netlestirildi
-- ASCII-only path recovery audit'i hazirlandi (bu session'da veya sonraki session'da uygulanabilir)
+Bu session'da ASCII-only path recovery audit yapıldı. KOD DEGISIKLIGI YAPILMADI:
+- `C:\Projects\okul-akli` dizininde repo klonlanıp temiz kurulum ve prebuild/build testleri koşuldu.
+- Türkçe karakter/pnpm symlink hatasının ASCII path ile aşıldığı kanıtlandı.
+- Android build sürecinin önündeki asıl (root cause) hatanın `Kotlin/Compose Mismatch` olduğu doğrulandı.
 
 ## Onceki Session Gecmisi
 
@@ -33,23 +32,31 @@ Bu session'da KOD DEGISIKLIGI YAPILMADI. Memory hygiene duzeltmesi yapildi:
 - PR head `443484fb` → `6bde645` duzeltildi
 - Build durumu "BASARILI" → BLOKE duzeltildi
 
-### 2026-04-25 09:47 Session (BU SESSION)
-- mobile-current-truth.md: "Last Verified PR Head" kaldirildi, yerine 4 alan eklendi:
-  - Current GitHub PR Head (session basinda dogrulanacak)
-  - Last Verified Code Baseline (6bde645 - sabit)
-  - Android Build Status (BLOCKED)
-  - Merge Status (NOT READY)
-- session-handoff.md: Header'a PR Head ve Code Baseline eklendi
-- Kod degisikligi YOK, Dependency degisikligi YOK
+### 2026-04-25 09:47 Session
+- Memory drift duzeltildi: Self-invalidating docs hash'leri kaldirildi.
+
+### 2026-04-25 13:05 Session (BU SESSION)
+- ASCII-only path recovery audit tamamlandı (`C:\Projects\okul-akli`).
+- `tsc --noEmit` ve `expo prebuild` başarılı oldu.
+- `gradlew assembleDebug` yeni bir hatayla (Kotlin/Compose uyumsuzluğu) patladı, böylece root cause teşhis edildi.
+- Kod değişikliği yapılmadı, sadece teşhis raporlandı.
 
 ## Bilinen Sorunlar
 
-### BLOKE EDICI: Windows Gradle + pnpm Symlink + Turkce Karakter
-- **Root Cause:** Proje yolu `C:\Users\musab\OneDrive\Desktop\Okul Aklı` Turkce "i" iceriyor
-- **Gradle Hatasi:** `Included build '...node_modules\.pnpm\@react-native+gradle-plugin@...' does not exist`
-- **Neden:** Java/Gradle Windows Unicode path encoding sorunu
-- **Daha da kotusu:** OneDrive sync path'i de sorun cikarabilir
-- **Calisan Cozum:** `node-linker=hoisted` → YASAKLI
+### BLOKE EDICI: Kotlin/Compose Mismatch (YENI)
+- **Hangi komut patladı?**: `./gradlew assembleDebug`
+- **Hangi dosya/modül?**: `:expo-modules-core:compileDebugKotlin`
+- **Beklenen Kotlin/Compose versiyonu**: Compose Compiler 1.5.15 için Kotlin 1.9.25
+- **Mevcut Kotlin/Compose versiyonu**: Kotlin 1.9.24
+- **Hata mesajının özü**:
+```
+> Task :expo-modules-core:compileDebugKotlin FAILED
+e: This version (1.5.15) of the Compose Compiler requires Kotlin version 1.9.25 but you appear to be using Kotlin version 1.9.24 which is not known to be compatible.  Please consult the Compose-Kotlin compatibility map located at https://developer.android.com/jetpack/androidx/releases/compose-kotlin to choose a compatible version pair (or `suppressKotlinVersionCompatibilityCheck` but don't say I didn't warn you!).
+```
+- **Hedef:** Sonraki adımda ASCII path üzerinde bu uyuşmazlığın giderilmesi.
+
+### AŞILAN BLOKER: Windows Gradle + pnpm Symlink + Turkce Karakter
+- **Çözüm:** `C:\Projects\okul-akli` gibi ASCII-only bir dizin kullanılarak hata aşıldı. Geliştirme burada sürmeli.
 
 ### EXPO-LINKING DURUMU
 - apps/mobile/package.json'da expo-linking eksik gorunuyor
@@ -61,49 +68,11 @@ Bu session'da KOD DEGISIKLIGI YAPILMADI. Memory hygiene duzeltmesi yapildi:
 - Bu da build'i engelliyor
 - `--non-interactive` flag'i denenecek (recovery plan'da)
 
-## Recovery Stratejisi (SONRAKI SESSION ICIN)
+## Sırada Ne Var? (Next Exact Task)
 
-### A) ASCII-only Path Klonlama
-```
-mkdir C:\Projects
-cd C:\Projects
-git clone https://github.com/lastlord444/okul-akli.git
-cd okul-akli
-git checkout feat/mobile-minimal-v1
-git rev-parse HEAD
-```
-Beklenen current branch head: (git rev-parse HEAD ile dogrulanacak)
-Last verified code baseline: 6bde645cfb28110df0bec0d33f1aebfd0bb8d07e
-
-### B) Temiz Install
-```
-pnpm install
-```
-
-### C) expo-linking Test
-```
-pnpm --filter okul-akli-mobile list expo-linking
-```
-Eger yoksa: `pnpm --filter okul-akli-mobile exec expo install expo-linking`
-YALNIZCA apps/mobile/package.json'a eklenmeli
-
-### D) Build Test
-```
-pnpm --filter okul-akli-mobile exec expo prebuild --platform android --clean
-```
-Eger dependency prompt verirse: dur ve raporla, otomatik genis paket ekleme yapma
-
-### E) Gradle Build
-```
-cd apps/mobile/android
-gradlew assembleDebug
-```
-
-### F) Basarili Olursa
-1. git status --short → sadece apps/mobile/package.json + pnpm-lock.yaml degismemeli
-2. Memory guncelle
-3. Commit: `fix(mobile): add required Expo native dependencies for Android smoke`
-4. Push
+1. **Çalışma Dizini:** Kesinlikle `C:\Projects\okul-akli` üzerinden devam edilecek.
+2. **Kod Değişikliği:** Sadece Kotlin/Compose compiler uyuşmazlığını giderecek olan `gradle.properties` veya sürüm bump fixleri uygulanacak.
+3. **Build Onayı:** `gradlew assembleDebug` başarılı olduktan sonra PR merge onayı alınabilir.
 
 ## Stash Durumu
 ```

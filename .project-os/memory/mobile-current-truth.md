@@ -26,26 +26,22 @@
 | Kontrol | Sonuc |
 |---------|-------|
 | pnpm install | Green |
-| tsc --noEmit | TEST EDILEMEDI |
-| expo prebuild --platform android | TEST EDILEMEDI - prebuild non-interactive modda basarisiz |
-| ./gradlew assembleDebug | **BLOKE EDILDI** - Gradle + pnpm symlink + Turkce karakter |
+| tsc --noEmit | Green (ASCII path'te test edildi) |
+| expo prebuild --platform android | Green (ASCII path'te test edildi, prompt vermedi) |
+| ./gradlew assembleDebug | **BLOKE EDİLDİ** - Kotlin/Compose mismatch (ASCII path'te) |
 | APK Olusturma | **YOK** |
 | Cihaz Kurulumu | **YOK** |
 
 ## BUILD SORUNU — BLOKE EDICI
 
-### Windows Path + Gradle + pnpm Symlink (KRITIK BLOKER)
-- **Sorun:** Gradle Java process, pnpm virtual store yolundaki Turkce "i" karakterini cozemiyor
-- **Hata:** `Included build '...\node_modules\.pnpm\@react-native+gradle-plugin@0.76.X\node_modules\@react-native\gradle-plugin' does not exist`
-- **Hata Kodu:** Gradle Java Windows Unicode path encoding sorunu
-- **Prebuild Durumu:** Non-interactive modda "Install updated dependencies?" prompt veriyor, devam edemiyor
-- **Durum:** **BLOKE EDILDI - COZUM GEREKLI**
+### 1. Kotlin/Compose Uyumsuzluğu (GERÇEK BLOKER)
+- **Sorun:** Gradle build sırasında `:expo-modules-core:compileDebugKotlin FAILED` hatası alınıyor.
+- **Hata:** `e: This version (1.5.15) of the Compose Compiler requires Kotlin version 1.9.25 but you appear to be using Kotlin version 1.9.24`
+- **Durum:** **BLOKE EDİLDİ - ÇÖZÜM GEREKLİ**
 
-### Onemli Not - Onceki Build Girişimleri
-- **2026-04-24:** .npmrc'de `node-linker=hoisted` ile build calisiyordu GORUNUYOR
-- **2026-04-25:** `node-linker=hoisted` YASAKLI listesine eklendi
-- **2026-04-25:** `node-linker=hoisted` olmadan build BASTARISIZ
-- **Sonuc:** Build yapabilmek icin `node-linker=hoisted` GEREKLI ama YASAKLI
+### 2. Windows Path + Gradle + pnpm Symlink (MASKELENMİŞ BLOKER)
+- **Sorun:** Proje dizini Türkçe karakter ("Okul Aklı") içerdiği için Gradle pnpm virtual store symlink'lerini çözemiyor.
+- **Çözüm/Durum:** `C:\Projects\okul-akli` gibi ASCII-only bir dizine geçilerek bu sorun tamamen aşıldı. Geliştirme bu dizinde devam etmeli.
 
 ## BILINEN SORUNLAR
 
@@ -61,8 +57,7 @@ sdk.dir=C\:\\Users\\musab\\AppData\\Local\\Android\\Sdk
 ```
 
 ### 3. Kotlin/Compose Uyumsuzlugu
-- **Sorun:** expo-modules-core Kotlin 1.9.24 kullanirken Compose Compiler 1.5.15 istedi
-- **Gecici Cozum:** `gradle.properties`'e `android.suppressKotlinVersionCompatibilityCheck=true`
+- **Durum:** Güncel bloker (Yukarıda açıklandı). `suppressKotlinVersionCompatibilityCheck=true` veya version bump ile çözülmesi planlanıyor.
 
 ### 4. pnpm Symlink + Windows Turkce Karakter
 - **Sorun:** `public-hoist-pattern[]=*` tek basina YETERLI DEGIL
@@ -81,9 +76,7 @@ Bu commit sadece memory dosyalarini guncelliyor. Kod degisikligi yok.
 
 ## EXPO-LINKING DURUMU
 
-- **ekspo-linking eksik mi:** OLASI - transitive dependency olarak mevcut gorunuyor
-- **Minimal fix gerekecek mi:** Belki - test sonrasi belli olacak
-- **Onay:** apps/mobile/package.json'a `expo-linking` eklemesi gerekirse YALNIZCA oraya ekle
+- **Durum:** ASCII-only path audit sırasında `expo prebuild` sorunsuz tamamlandığı için şu an doğrudan bir `package.json` dependency'si olarak eklenmesine gerek kalmadı. Transitive olarak başarıyla çözülüyor.
 
 ## CI/CD
 
@@ -93,16 +86,13 @@ Bu commit sadece memory dosyalarini guncelliyor. Kod degisikligi yok.
 
 ## RECOVERY PLAN
 
-1. **ASCII-only path'te klonlama:** `C:\Projects\okul-akli` gibi
-2. **Temiz install:** `pnpm install`
-3. **expo-linking test:** `pnpm --filter okul-akli-mobile list expo-linking`
-4. **Build test:** `pnpm --filter okul-akli-mobile exec expo prebuild --platform android --clean --non-interactive`
-5. **Gradle test:** `cd apps/mobile/android && gradlew assembleDebug`
+1. **ASCII-only path:** Geliştirme `C:\Projects\okul-akli` üzerinden yürütülmeli.
+2. **Fix Kotlin/Compose:** Gradle Kotlin version mismatch (`1.9.24` vs `1.5.15`) hatasının giderilmesi.
+3. **Re-test:** `gradlew assembleDebug` başarılı olana kadar kod/yapılandırma değişikliklerinin uygulanması.
 
 ## SON GUNCELLEME
 
 **Tarih:** 2026-04-25
-**Saat:** 09:47
-**Durum:** BLOKE - BUILD YAPILAMADI
-**Recovery:** ASCII path deneyin veya CI kullanin
-**Memory Duzeltme:** Self-invalidating "PR Head" alani duzeltildi — artık "Current GitHub PR Head" (session basinda dogrulanacak) ve "Last Verified Code Baseline" (sabit commit) olarak ayrildi
+**Saat:** 13:05
+**Durum:** BLOKE (Kotlin/Compose Mismatch)
+**Audit Sonucu:** ASCII-only path kullanılarak pnpm symlink hatası aşıldı. Asıl hatanın Kotlin/Compose sürüm uyuşmazlığı olduğu kanıtlandı.
