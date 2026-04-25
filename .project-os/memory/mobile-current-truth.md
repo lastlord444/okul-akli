@@ -1,6 +1,6 @@
 # Okul Akli Mobil - Mevcut Durum (Current Truth)
 
-## PROJE BILGILERI
+## PROJE BILGILARI
 
 | Alan | Deger |
 |------|-------|
@@ -13,27 +13,42 @@
 | Alan | Deger |
 |------|-------|
 | Branch | feat/mobile-minimal-v1 |
-| Last Verified PR Head | 443484fb80afaa8e2e60a6b6a6f9fce6d4b5b8e6 |
+| Last Verified PR Head | 6bde645cfb28110df0bec0d33f1aebfd0bb8d07e |
 | Working Tree | Temiz |
 | Remote | Up to date |
-| Acik PR | #2 MERGEABLE (https://github.com/lastlord444/okul-akli/pull/2) |
+| Acik PR | #2 DURUM BILINMIYOR - build dogrulanmadi |
 
 ## BUILD DURUMU
 
 | Kontrol | Sonuc |
 |---------|-------|
 | pnpm install | Green |
-| tsc --noEmit | Green |
-| expo prebuild --platform android | Green |
-| ./gradlew assembleDebug | GREEN - BUILD SUCCESSFUL |
-| APK Olusturma | Green - app-debug.apk (122MB) |
-| Cihaz Kurulumu | Green - e3484f25 |
+| tsc --noEmit | TEST EDILEMEDI |
+| expo prebuild --platform android | TEST EDILEMEDI - prebuild non-interactive modda basarisiz |
+| ./gradlew assembleDebug | **BLOKE EDILDI** - Gradle + pnpm symlink + Turkce karakter |
+| APK Olusturma | **YOK** |
+| Cihaz Kurulumu | **YOK** |
 
-## BUILD SORUNLARI COZULDU
+## BUILD SORUNU — BLOKE EDICI
+
+### Windows Path + Gradle + pnpm Symlink (KRITIK BLOKER)
+- **Sorun:** Gradle Java process, pnpm virtual store yolundaki Turkce "i" karakterini cozemiyor
+- **Hata:** `Included build '...\node_modules\.pnpm\@react-native+gradle-plugin@0.76.X\node_modules\@react-native\gradle-plugin' does not exist`
+- **Hata Kodu:** Gradle Java Windows Unicode path encoding sorunu
+- **Prebuild Durumu:** Non-interactive modda "Install updated dependencies?" prompt veriyor, devam edemiyor
+- **Durum:** **BLOKE EDILDI - COZUM GEREKLI**
+
+### Onemli Not - Onceki Build Girişimleri
+- **2026-04-24:** .npmrc'de `node-linker=hoisted` ile build calisiyordu GORUNUYOR
+- **2026-04-25:** `node-linker=hoisted` YASAKLI listesine eklendi
+- **2026-04-25:** `node-linker=hoisted` olmadan build BASTARISIZ
+- **Sonuc:** Build yapabilmek icin `node-linker=hoisted` GEREKLI ama YASAKLI
+
+## BILINEN SORUNLAR
 
 ### 1. CMake Path Limiti (Windows 260 char)
 - **Sorun:** pnpm virtual store path'i Windows 260 karakter limitini asti
-- **Cozum:** `newArchEnabled=false` ayari eklendi
+- **Gecici Cozum:** `newArchEnabled=false` ayari (prebuild sonrasi ekleniyor)
 
 ### 2. SDK Path Eksikligi
 - **Sorun:** local.properties dosyasi yoktu
@@ -44,37 +59,47 @@ sdk.dir=C\:\\Users\\musab\\AppData\\Local\\Android\\Sdk
 
 ### 3. Kotlin/Compose Uyumsuzlugu
 - **Sorun:** expo-modules-core Kotlin 1.9.24 kullanirken Compose Compiler 1.5.15 istedi
-- **Cozum:** `gradle.properties`'e `android.suppressKotlinVersionCompatibilityCheck=true` ve `android.kotlinVersion=1.9.25` eklendi
-- **Cozum:** `build.gradle`'da Kotlin plugin classpath duzeltildi
+- **Gecici Cozum:** `gradle.properties`'e `android.suppressKotlinVersionCompatibilityCheck=true`
 
-### 4. pnpm Symlink Sorunu
-- **Sorun:** public-hoist-pattern eksikligi
-- **Cozum:** `.npmrc` dosyasi olusturuldu: `public-hoist-pattern[]=*`
+### 4. pnpm Symlink + Windows Turkce Karakter
+- **Sorun:** `public-hoist-pattern[]=*` tek basina YETERLI DEGIL
+- **Gercek Sorun:** pnpm virtual store yolunda Turkce "i" karakteri
+- **YASAKLI Cozum:** `node-linker=hoisted` (flat node_modules ile calisiyor)
+- **Durum:** **BLOKE - COZUM BULUNMADI**
 
 ### 5. Metro Header Hata (Turkce Karakter)
 - **Sorun:** Windows path'inde Turkce "i" karakteri HTTP header encoding sorununa neden oluyordu
-- **Cozum:** Expo CLI middleware patch'lendi:
-  - Dosya: `node_modules/.pnpm/@expo+cli@0.22.28/node_modules/@expo/cli/build/src/start/server/metro/dev-server/createMetroMiddleware.js`
-  - Satir 73: `metroConfig.projectRoot.replace(/[^\x20-\x7E]/g, '_')`
-- **Not:** Bu patch node_modules icinde, pnpm reinstall sonrasi tekrar uygulanmasi gerekebilir
+- **Gecici Cozum:** Expo CLI middleware patch (node_modules icinde)
+- **Not:** pnpm reinstall sonrasi tekrar uygulanmasi gerekebilir
 
-## DEGISIKLIK DOSYALARI
+## DEGISIKLIK DOSYALARI (BU COMMIT SONRASI)
 
-| Dosya | Durum |
-|-------|-------|
-| `.npmrc` | Yeni olusturuldu |
-| `apps/mobile/android/local.properties` | Yeni olusturuldu |
-| `apps/mobile/android/gradle.properties` | Guncellendi |
-| `apps/mobile/android/build.gradle` | Guncellendi |
+Bu commit sadece memory dosyalarini guncelliyor. Kod degisikligi yok.
+
+## EXPO-LINKING DURUMU
+
+- **ekspo-linking eksik mi:** OLASI - transitive dependency olarak mevcut gorunuyor
+- **Minimal fix gerekecek mi:** Belki - test sonrasi belli olacak
+- **Onay:** apps/mobile/package.json'a `expo-linking` eklemesi gerekirse YALNIZCA oraya ekle
 
 ## CI/CD
 
-- Android build artik basariyla tamamlaniyor
-- APK otomatik olusturulabilir
+- **Durum:** Build BLOKE
+- **APK olusturulamıyor:** Local ortamda
+- **CI'de calisir mi:** BELKI - CI ortaminda Turkce karakter path olmaz
+
+## RECOVERY PLAN
+
+1. **ASCII-only path'te klonlama:** `C:\Projects\okul-akli` gibi
+2. **Temiz install:** `pnpm install`
+3. **expo-linking test:** `pnpm --filter okul-akli-mobile list expo-linking`
+4. **Build test:** `pnpm --filter okul-akli-mobile exec expo prebuild --platform android --clean --non-interactive`
+5. **Gradle test:** `cd apps/mobile/android && gradlew assembleDebug`
 
 ## SON GUNCELLEME
 
-**Tarih:** 2026-04-24
-**Build:** 15:00-15:15
-**Metro Patch:** 16:30-16:40
-**Durum:** BASARILI
+**Tarih:** 2026-04-25
+**Saat:** 09:11
+**Durum:** BLOKE - BUILD YAPILAMADI
+**Recovery:** ASCII path deneyin veya CI kullanin
+**Memory Duzeltme:** Bu commit memory drift'i duzeltiyor
