@@ -28,7 +28,7 @@
 | pnpm install | Green |
 | tsc --noEmit | Green (ASCII path'te test edildi) |
 | expo prebuild --platform android | Green (ASCII path'te test edildi, prompt vermedi) |
-| ./gradlew assembleDebug | **GREEN** - (Local Probe successful with android.kotlinVersion=1.9.24) |
+| ./gradlew assembleDebug | **BAŞARISIZ** - `expo install expo-linking` sonrası `Could not get unknown property 'release'` hatası veriyor |
 | APK Olusturma | **BAŞARILI** (`apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk` ~146MB) |
 | Cihaz Kurulumu | **BAŞARILI** (Fiziksel cihaza yüklendi, ancak açılışta Metro bağlantı hatası RSOD alındı) |
 
@@ -76,7 +76,7 @@ Bu commit sadece memory dosyalarini guncelliyor. Kod degisikligi yok.
 
 ## EXPO-LINKING DURUMU
 
-- **Durum:** Runtime'da (Cihazda) `Cannot find native module 'ExpoLinking'` hatası fırlatarak çöktü. Transitive dependency olarak npm'de çözülmesi native (Java/Kotlin) linking için yeterli olmuyor. `expo-linking`'in `package.json` dosyasına doğrudan (explicit) eklenip yeniden APK alınması KESİNLİKLE GEREKİYOR. (Bu görevde dependency eklemek yasak olduğu için işlem yapılamadı, BLOKER olarak kayıt altına alındı).
+- **Durum:** `expo-linking` projeye eklendi (`expo install expo-linking`). Ancak sonrasında `gradlew assembleDebug` komutu `A problem occurred configuring project ':expo'. Could not get unknown property 'release'` hatası vererek yeni bir native build blocker oluşturdu.
 
 ## CI/CD
 
@@ -93,6 +93,6 @@ Bu commit sadece memory dosyalarini guncelliyor. Kod degisikligi yok.
 ## SON GUNCELLEME
 
 **Tarih:** 2026-04-25
-**Saat:** 18:05
-**Durum:** GREEN BUILD, FAILING SMOKE TEST (RUNTIME NATIVE ERROR)
-**Audit Sonucu:** Metro sunucusu bağlandıktan sonra uygulama yüklenirken `Cannot find native module 'ExpoLinking'` hatası fırlattı. Uygulama crash oldu. Bu hata, `expo-linking` paketinin `package.json` içerisinde doğrudan bulunmamasından ötürü native koda linklenmemesi nedeniyle oluşmaktadır. Bir sonraki görevde dependency eklenip yeni APK build'i alınması şarttır.
+**Saat:** 18:10
+**Durum:** FAILING BUILD (GRADLE CONFIG ERROR)
+**Audit Sonucu:** `expo-linking` projeye eklendikten sonra `expo prebuild` sorunsuz çalıştı, fakat `gradlew assembleDebug` sırasında `A problem occurred configuring project ':expo'. Could not get unknown property 'release' for SoftwareComponent container` hatası alındı. Yeni bir native blocker oluştu.

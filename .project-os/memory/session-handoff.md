@@ -5,10 +5,10 @@
 ## Tarih: 2026-04-25 09:47
 ## Current GitHub PR Head: "Her session basinda git rev-parse HEAD / GitHub ile dogrulanacak"
 ## Last Verified Code Baseline: 6bde645cfb28110df0bec0d33f1aebfd0bb8d07e
-## Android build status: GREEN (Persistent Fix Applied)
+## Android build status: FAILING (Gradle Config Error)
 ## Merge status: NOT READY
 - GitHub mergeable: true
-- Build/smoke: Build başarılı, ancak açılışta Metro bağlantı hatası (RSOD) alındı, smoke test yapılamadı.
+- Build/smoke: expo-linking eklendikten sonra Gradle build patladı (Could not get unknown property 'release').
 - Merge decision: NOT READY
 
 ## Ozet
@@ -49,10 +49,15 @@ Bu session'da Kotlin/Compose Mismatch hatası için "Local Generated Android Pro
 - `app-debug.apk` (~126MB) oluşturuldu.
 - Kalıcı fix tamamlandı.
 
-### 2026-04-25 18:05 Session (BU SESSION)
+### 2026-04-25 18:05 Session
 - Metro sunucusu başlatıldı ve `adb reverse` yapıldı. Cihaz Metro'ya bağlandı.
 - JS bundle başarıyla indirilirken `Cannot find native module 'ExpoLinking'` hatası fırlattı.
 - Smoke test BAŞARISIZ oldu (Crash). Sonraki görevde package.json güncellenip yeni build alınması gerektiği kesinleşti.
+
+### 2026-04-25 18:10 Session (BU SESSION)
+- `expo-linking` eklendi.
+- `gradlew assembleDebug` yeni native module hatası verdi (unknown property 'release').
+- Smoke test aşamasına geçilemedi. Yeni blocker kaydedildi.
 
 ## Bilinen Sorunlar
 
@@ -64,10 +69,13 @@ Bu session'da Kotlin/Compose Mismatch hatası için "Local Generated Android Pro
 ### AŞILAN BLOKER: Windows Gradle + pnpm Symlink + Turkce Karakter
 - **Çözüm:** `C:\Projects\okul-akli` gibi ASCII-only bir dizin kullanılarak hata aşıldı. Geliştirme burada sürmeli.
 
-### AÇIĞA ÇIKAN BLOKER: EXPO-LINKING EKSİKLİĞİ (RUNTIME CRASH)
-- `apps/mobile/package.json` dosyasında `expo-linking` doğrudan (explicit) yer almıyor.
-- Transitive dependency olarak NPM'de çözülse bile, native linking aşamasında Expo tarafından dahil edilmediği için cihazda `Cannot find native module 'ExpoLinking'` hatası vererek çöküyor.
-- Çözüm: `expo-linking` projeye eklenmeli ve yeniden `expo prebuild` + `gradlew assembleDebug` ile yeni APK alınmalıdır. (Bu sessionda package.json değiştirme yasağı olduğundan işlem yapılmadı).
+### YENİ BLOKER: EXPO-LINKING EKLENDİKTEN SONRA GRADLE HATASI
+- Runtime crash çözümü için `expo-linking` package.json'a eklendi (`expo install expo-linking`).
+- `expo prebuild --clean` başarılı oldu.
+- Ancak `gradlew assembleDebug` sırasında şu hata çıktı:
+  `A problem occurred configuring project ':expo'. Could not get unknown property 'release' for SoftwareComponent container of type org.gradle.api.internal.component.DefaultSoftwareComponentContainer.`
+- Dosya: `expo-modules-core\android\ExpoModulesCorePlugin.gradle line: 95`
+- Kurallar gereği başka dependency eklenmedi ve durduruldu.
 
 ### PREBUILD NON-INTERACTIVE SORUNU
 - `expo prebuild --platform android --clean` non-interactive modda "Install updated dependencies?" prompt veriyor
@@ -76,9 +84,8 @@ Bu session'da Kotlin/Compose Mismatch hatası için "Local Generated Android Pro
 
 ## Sırada Ne Var? (Next Exact Task)
 
-1. **Dependency Fix & Re-Build:** `apps/mobile/package.json` dosyasına `expo-linking` eklenmeli, pnpm install yapılmalı, `expo prebuild --clean` ve `gradlew assembleDebug` ile native kod barındıran yeni bir APK üretilmeli.
-2. **Smoke Test Tekrarı:** Yeni APK kurularak login ve rol testleri tekrarlanmalı.
-3. **Merge:** Tüm smoke test aşamaları başarılı olduktan sonra PR merge edilmeli.
+1. **Gradle Hatası Çözümü:** `expo-modules-core` altındaki `Could not get unknown property 'release'` hatası incelenmeli. Gerekirse Expo/React Native sürümleri kontrol edilmeli veya Gradle sürüm fixi uygulanmalı.
+2. **Build & Smoke Test:** Sorun çözüldükten sonra tekrar APK oluşturulup smoke test yapılmalı.
 
 ## Stash Durumu
 ```
