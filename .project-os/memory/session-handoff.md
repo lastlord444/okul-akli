@@ -5,9 +5,11 @@
 ## Tarih: 2026-04-25 09:47
 ## Current GitHub PR Head: "Her session basinda git rev-parse HEAD / GitHub ile dogrulanacak"
 ## Last Verified Code Baseline: 6bde645cfb28110df0bec0d33f1aebfd0bb8d07e
-## Latest docs-only memory sync commit: 7eabb4b
+## Latest docs-only memory sync commit: 32f78c592e3b5a1330a773b4f41abf0d9158d8e2
 ## Android build status: BLOCKED
 ## Merge status: NOT READY
+- GitHub mergeable: false
+- Build/smoke olmadığı için PR merge edilmeyecek.
 
 ## Ozet
 
@@ -35,7 +37,7 @@ Bu session'da KOD DEGISIKLIGI YAPILMADI. Memory hygiene duzeltmesi yapildi:
 - mobile-current-truth.md: "Last Verified PR Head" kaldirildi, yerine 5 alan eklendi:
   - Current GitHub PR Head (session basinda dogrulanacak)
   - Last Verified Code Baseline (6bde645 - sabit)
-  - Latest Docs-Only Memory Sync Commit (af8bfdf)
+  - Latest Docs-Only Memory Sync Commit (previous docs-only memory sync af8bfdf)
   - Android Build Status (BLOCKED)
   - Merge Status (NOT READY)
 - session-handoff.md: Header'a PR Head ve Code Baseline eklendi
@@ -71,7 +73,8 @@ cd okul-akli
 git checkout feat/mobile-minimal-v1
 git rev-parse HEAD
 ```
-Beklenen: `6bde645cfb28110df0bec0d33f1aebfd0bb8d07e`
+Beklenen current branch head: 32f78c592e3b5a1330a773b4f41abf0d9158d8e2
+Last verified code baseline: 6bde645cfb28110df0bec0d33f1aebfd0bb8d07e
 
 ### B) Temiz Install
 ```

@@ -15,9 +15,9 @@
 | Branch | feat/mobile-minimal-v1 |
 | Current GitHub PR Head | Her session basinda git rev-parse HEAD / GitHub ile dogrulanacak |
 | Last Verified Code Baseline | 6bde645cfb28110df0bec0d33f1aebfd0bb8d07e |
-| Latest Docs-Only Memory Sync Commit | af8bfdf9b7ea35ae867cbc7191754b934a8f22ac |
+| Latest Docs-Only Memory Sync Commit | 32f78c592e3b5a1330a773b4f41abf0d9158d8e2 |
 | Android Build Status | BLOCKED |
-| Merge Status | NOT READY |
+| Merge Status | NOT READY (GitHub mergeable: false, Build/smoke yok) |
 | Working Tree | Temiz |
 | Remote | Up to date |
 | Acik PR | #2 DURUM BILINMIYOR - build dogrulanmadi |
