@@ -1,0 +1,8 @@
+{
+  "name": "okul-akli",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "mobile": "pnpm --filter okul-akli-mobile"
+  }
+}

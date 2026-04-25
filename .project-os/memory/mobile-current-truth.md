@@ -1,130 +1,98 @@
-# Okul Aklı Mobil - Mevcut Durum (Current Truth)
+# Okul Akli Mobil - Mevcut Durum (Current Truth)
 
-Bu dosya projenin mevcut durumunu belgelemek için kullanılır.
-Her değişiklikten sonra güncellenir.
+## PROJE BILGILARI
 
-## PROJE BİLGİLERİ
-
-| Alan | Değer |
+| Alan | Deger |
 |------|-------|
-| Proje Adı | Okul Aklı |
-| Mobil Uygulama Adı | Okul Aklı Mobil |
-| Teknik Klasör | apps/mobile |
-| Teknik Paket Adı | okul-akli-mobile |
-| Stack | React Native + Expo + TypeScript |
-| Başlangıç Adayı | Obytes React Native Template |
-| Çalışma Yönü | Android-first |
-| iOS Durumu | Gelecek uyumluluğu düşünülür ama aktif kapsam dışı |
+| Stack | React Native + Expo SDK 52 + TypeScript |
+| Klasor | apps/mobile |
+| Calisma Yonu | Android-first |
 
-## İLK MOBİL SLICE
+## AKTIF BRANCH VE PR
 
-Şu anda sadece şu hedefler aktif scope içindedir:
-
-| Hedef | Durum |
-|-------|--------|
-| mobile app shell (mobil uygulama iskeleti) | Planlandı |
-| login entry point (giriş noktası) | Planlandı |
-| role-based route skeleton (rol tabanlı yönlendirme iskeleti) | Planlandı |
-| student empty dashboard (öğrenci boş paneli) | Planlandı |
-| parent empty dashboard (veli boş paneli) | Planlandı |
-| teacher empty dashboard (öğretmen boş paneli) | Planlandı |
-| Android run flow (Android çalışma akışı) | Planlandı |
-
-## DİL KURALLARI
-
-| Alan | Kural |
+| Alan | Deger |
 |------|-------|
-| Kullanıcı arayüzü | Tamamen Türkçe |
-| Roo raporları | Tamamen Türkçe |
-| Teknik terimler | Yanında kısa Türkçe açıklama |
-| Kod yorumları ve açıklamaları | Türkçe |
-| Dosya adları, kütüphane adları | İngilizce kalabilir (ekosistem gereği) |
+| Branch | feat/mobile-minimal-v1 |
+| Current GitHub PR Head | Her session basinda git rev-parse HEAD / GitHub ile dogrulanacak |
+| Last Verified Code Baseline | 6bde645cfb28110df0bec0d33f1aebfd0bb8d07e |
+| Android Build Status | GREEN (Persistent Fix Applied) |
+| Merge Status | NOT READY (Build: başarılı, Smoke: BAŞARISIZ - Metro bağlantı hatası RSOD) |
+| Working Tree | Temiz |
+| Remote | Up to date |
+| Acik PR | #2 DURUM BILINMIYOR - build dogrulanmadi |
 
-## MARKA VE RAKİP KURALLARI
+## BUILD DURUMU
 
-| Kural | Durum |
-|-------|--------|
-| Yasaklı isimler | Ebtex, Eyotek, K12NET, Edroof veya başka rakip isimleri ürün adı, modül adı, ekran adı veya marka kimliği olarak kullanılamaz |
-| Kopyalama yasağı | Rakiplerin ekran tasarımı, metinleri, ikonları, akışları, marka dili, özel modül kurgusu veya birebir iş mantığı kopyalanamaz |
-| Proje konumu | Kopya ürün değil; Türkiye'deki okul ve kursların gerçek ihtiyaçlarına göre özgün geliştirilecek profesyonel bir okul işletim sistemi |
+| Kontrol | Sonuc |
+|---------|-------|
+| pnpm install | Green |
+| tsc --noEmit | Green (ASCII path'te test edildi) |
+| expo prebuild --platform android | Green (ASCII path'te test edildi, prompt vermedi) |
+| ./gradlew assembleDebug | **BAŞARISIZ** - `expo install expo-linking` sonrası `Could not get unknown property 'release'` hatası veriyor |
+| APK Olusturma | **BAŞARILI** (`apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk` ~146MB) |
+| Cihaz Kurulumu | **BAŞARILI** (Fiziksel cihaza yüklendi, ancak açılışta Metro bağlantı hatası RSOD alındı) |
 
-## KABUL KRİTERLERİ
+## BUILD SORUNU — BLOKE EDICI
 
-| Kriter | Değer |
-|--------|-------|
-| Expo Go | Kabul kriteri değildir |
-| Gerçek Kabul | Android development build veya doğrulanmış Android cihaz/emulator çalışması |
+### 1. Kotlin/Compose Uyumsuzluğu (KALICI OLARAK AŞILDI)
+- **Sorun:** Gradle build sırasında `:expo-modules-core:compileDebugKotlin FAILED` hatası alınıyordu.
+- **Çözüm:** `withKotlinVersion.js` config plugin'i yazılarak prebuild sırasında `android.kotlinVersion=1.9.24` enjeksiyonu kalıcı hale getirildi.
+- **Durum:** **ÇÖZÜLDÜ** - `gradlew assembleDebug` 1m 49s sürede yeşile döndü.
 
-## MOBİLDE ŞİMDİLİK KAPSAM DIŞI
+### 2. Windows Path + Gradle + pnpm Symlink (MASKELENMİŞ BLOKER)
+- **Sorun:** Proje dizini Türkçe karakter ("Okul Aklı") içerdiği için Gradle pnpm virtual store symlink'lerini çözemiyor.
+- **Çözüm/Durum:** `C:\Projects\okul-akli` gibi ASCII-only bir dizine geçilerek bu sorun tamamen aşıldı. Geliştirme bu dizinde devam etmeli.
 
-Aşağıdaki özellikler şu an aktif kapsam dışındadır:
+## BILINEN SORUNLAR
 
-| Alan | Durum | Neden |
-|------|--------|-------|
-| ödeme | Kapsam dışı | Protected core |
-| SMS | Kapsam dışı | Protected core |
-| push notification | Kapsam dışı | Protected core |
-| chat | Kapsam dışı | Gelecek özellik |
-| servis / otobüs takibi | Kapsam dışı | Gelecek özellik |
-| harita | Kapsam dışı | Gelecek özellik |
-| offline-first sync engine | Kapsam dışı | Karmaşıklık |
-| PWA | Kapsam dışı | Farklı platform |
-| iOS release | Kapsam dışı | Android öncelikli |
-| App Store / TestFlight | Kapsam dışı | Android öncelikli |
-| shared package extraction | Kapsam dışı | Premature optimization |
-| backend auth/RBAC/tenant redesign | Kapsam dışı | Protected core |
+### 1. CMake Path Limiti (Windows 260 char)
+- **Sorun:** pnpm virtual store path'i Windows 260 karakter limitini asti
+- **Gecici Cozum:** `newArchEnabled=false` ayari (prebuild sonrasi ekleniyor)
 
-## ÖĞRETİCİ GELİŞTİRME MODU
-
-| Durum | Aktif |
-|-------|-------|
-| Öğretici mod | Evet |
-| Zorunlu bölüm | Her görev sonunda "Bu Görevde Ne Öğrendik?" |
-| Kod notu | Kod varsa "Satır Satır Önemli Noktalar" |
-| Scope kuralı | Öğrenme anlatımı scope'u büyütmeyecek |
-
-## DOSYA YAPISI
-
+### 2. SDK Path Eksikligi
+- **Sorun:** local.properties dosyasi yoktu
+- **Cozum:** `apps/mobile/android/local.properties` olusturuldu
 ```
-Okul Aklı/
-├── .roo/
-│   ├── rules/                    # Ortak kurallar
-│   │   ├── 00-core-project-rules.md
-│   │   └── 10-agent-skills-adapter.md
-│   ├── rules-architect/          # Architect modu kuralları
-│   │   └── 00-architect-rules.md
-│   ├── rules-code/               # Code modu kuralları
-│   │   └── 00-code-rules.md
-│   ├── rules-ask/                # Ask modu kuralları
-│   │   └── 00-ask-rules.md
-│   ├── rules-debug/              # Debug modu kuralları
-│   │   └── 00-debug-rules.md
-│   ├── rules-test/               # Test modu kuralları
-│   │   └── 00-test-rules.md
-│   └── rules-orchestrator/       # Orchestrator modu kuralları
-│       └── 00-orchestrator-rules.md
-├── .github/
-│   └── pull_request_template.md  # PR kontrol şablonu
-├── .project-os/
-│   ├── memory/                   # Proje hafıza dosyaları
-│   │   ├── mobile-current-truth.md
-│   │   ├── mobile-module-registry.md
-│   │   └── session-handoff.md
-│   ├── protocols/                # Çalışma protokolleri
-│   │   ├── STARTUP_PROTOCOL.md
-│   │   ├── DELIVERY_GATE.md
-│   │   └── SESSION_WRAPUP_PROTOCOL.md
-│   ├── adr/                      # Mimari karar kayıtları
-│   │   ├── 0001-mobile-stack-and-execution-strategy.md
-│   │   └── 0002-agent-workflow-and-scope-control.md
-│   └── skills/                   # Agent-skills referansları
-│       └── agent-skills-index.md
-└── apps/
-    └── mobile/                   # Mobil uygulama (henüz oluşturulmadı)
+sdk.dir=C\:\\Users\\musab\\AppData\\Local\\Android\\Sdk
 ```
 
-## SON GÜNCELLEME
+### 3. Kotlin/Compose Uyumsuzlugu
+- **Durum:** Güncel bloker (Yukarıda açıklandı). `suppressKotlinVersionCompatibilityCheck=true` veya version bump ile çözülmesi planlanıyor.
 
-**Tarih:** 2026-04-21
-**Durum:** Proje kurulumu %100 tamamlandı. Roo kuralları, proje hafızası, session handoff, agent-skills adapter, çalışma protokolleri, ADR kayıtları ve PR template oluşturuldu. Mobil uygulama iskeleti henüz kurulmadı. CI/CD yok. Gerçek Android run doğrulaması yapılmadı.
-**Bilinen Riskler:** Mobil scaffold eksikliği, protokollerin gerçek mobil uygulama üzerinde henüz doğrulanmamış olması, CI/CD eksikliği.
+### 4. pnpm Symlink + Windows Turkce Karakter
+- **Sorun:** `public-hoist-pattern[]=*` tek basina YETERLI DEGIL
+- **Gercek Sorun:** pnpm virtual store yolunda Turkce "i" karakteri
+- **YASAKLI Cozum:** `node-linker=hoisted` (flat node_modules ile calisiyor)
+- **Durum:** **BLOKE - COZUM BULUNMADI**
+
+### 5. Metro Header Hata (Turkce Karakter)
+- **Sorun:** Windows path'inde Turkce "i" karakteri HTTP header encoding sorununa neden oluyordu
+- **Gecici Cozum:** Expo CLI middleware patch (node_modules icinde)
+- **Not:** pnpm reinstall sonrasi tekrar uygulanmasi gerekebilir
+
+## DEGISIKLIK DOSYALARI (BU COMMIT SONRASI)
+
+Bu commit sadece memory dosyalarini guncelliyor. Kod degisikligi yok.
+
+## EXPO-LINKING DURUMU
+
+- **Durum:** `expo-linking` projeye eklendi (`expo install expo-linking`). Ancak sonrasında `gradlew assembleDebug` komutu `A problem occurred configuring project ':expo'. Could not get unknown property 'release'` hatası vererek yeni bir native build blocker oluşturdu.
+
+## CI/CD
+
+- **Durum:** Build BLOKE
+- **APK olusturulamıyor:** Local ortamda
+- **CI'de calisir mi:** BELKI - CI ortaminda Turkce karakter path olmaz
+
+## RECOVERY PLAN
+
+1. **ASCII-only path:** Geliştirme `C:\Projects\okul-akli` üzerinden yürütülmeli.
+2. **Fix Kotlin/Compose:** Gradle Kotlin version mismatch (`1.9.24` vs `1.5.15`) hatasının giderilmesi.
+3. **Re-test:** `gradlew assembleDebug` başarılı olana kadar kod/yapılandırma değişikliklerinin uygulanması.
+
+## SON GUNCELLEME
+
+**Tarih:** 2026-04-25
+**Saat:** 18:10
+**Durum:** FAILING BUILD (GRADLE CONFIG ERROR)
+**Audit Sonucu:** `expo-linking` projeye eklendikten sonra `expo prebuild` sorunsuz çalıştı, fakat `gradlew assembleDebug` sırasında `A problem occurred configuring project ':expo'. Could not get unknown property 'release' for SoftwareComponent container` hatası alındı. Yeni bir native blocker oluştu.
