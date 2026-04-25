@@ -16,7 +16,7 @@
 | Current GitHub PR Head | Her session basinda git rev-parse HEAD / GitHub ile dogrulanacak |
 | Last Verified Code Baseline | 6bde645cfb28110df0bec0d33f1aebfd0bb8d07e |
 | Android Build Status | GREEN (Persistent Fix Applied) |
-| Merge Status | NOT READY (Build: başarılı, Smoke: yok) |
+| Merge Status | NOT READY (Build: başarılı, Smoke: BAŞARISIZ - Metro bağlantı hatası RSOD) |
 | Working Tree | Temiz |
 | Remote | Up to date |
 | Acik PR | #2 DURUM BILINMIYOR - build dogrulanmadi |
@@ -30,7 +30,7 @@
 | expo prebuild --platform android | Green (ASCII path'te test edildi, prompt vermedi) |
 | ./gradlew assembleDebug | **GREEN** - (Local Probe successful with android.kotlinVersion=1.9.24) |
 | APK Olusturma | **BAŞARILI** (`apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk` ~146MB) |
-| Cihaz Kurulumu | **YOK** |
+| Cihaz Kurulumu | **BAŞARILI** (Fiziksel cihaza yüklendi, ancak açılışta Metro bağlantı hatası RSOD alındı) |
 
 ## BUILD SORUNU — BLOKE EDICI
 
@@ -93,6 +93,6 @@ Bu commit sadece memory dosyalarini guncelliyor. Kod degisikligi yok.
 ## SON GUNCELLEME
 
 **Tarih:** 2026-04-25
-**Saat:** 17:42
-**Durum:** GREEN (Persistent Fix Applied)
-**Audit Sonucu:** `withKotlinVersion.js` config plugin eklendi, `app.json`'da `newArchEnabled: false` ayarlandı. `expo prebuild --clean` sonrası `gradlew assembleDebug` hatasız tamamlandı. `app-debug.apk` (~126MB) başarıyla üretildi. Sırada Smoke Test var.
+**Saat:** 18:00
+**Durum:** GREEN BUILD, FAILING SMOKE TEST
+**Audit Sonucu:** APK fiziksel cihaza başarıyla yüklendi ancak uygulama açılışında Metro bundler çalışmadığı/bağlanılamadığı için Red Screen of Death (RSOD - Unable to load script) hatası verdi. Login ve rol yönlendirme testi yapılamadı. Çözüm için Metro server başlatılıp (`npx expo start` veya `npx react-native start`) port yönlendirme yapılması gerekiyor.

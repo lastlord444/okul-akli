@@ -8,7 +8,7 @@
 ## Android build status: GREEN (Persistent Fix Applied)
 ## Merge status: NOT READY
 - GitHub mergeable: true
-- Build/smoke: Build başarılı, login/role smoke test yok
+- Build/smoke: Build başarılı, ancak açılışta Metro bağlantı hatası (RSOD) alındı, smoke test yapılamadı.
 - Merge decision: NOT READY
 
 ## Ozet
@@ -42,12 +42,17 @@ Bu session'da Kotlin/Compose Mismatch hatası için "Local Generated Android Pro
 - `tsc --noEmit` ve `expo prebuild` başarılı oldu.
 - `gradlew assembleDebug` yeni bir hatayla (Kotlin/Compose uyumsuzluğu) patladı, böylece root cause teşhis edildi.
 
-### 2026-04-25 17:35 Session (BU SESSION)
+### 2026-04-25 17:35 Session
 - Kotlin/Compose Mismatch sorununu kalıcı çözmek için `withKotlinVersion.js` Expo config plugin yazıldı.
 - CMake path limit sorununu çözmek için `app.json` içinde `newArchEnabled: false` yapıldı.
 - `expo prebuild --clean` sonrası `gradlew assembleDebug` başarılı oldu.
 - `app-debug.apk` (~126MB) oluşturuldu.
 - Kalıcı fix tamamlandı.
+
+### 2026-04-25 18:00 Session (BU SESSION)
+- Oluşturulan APK `adb install` ile fiziksel cihaza yüklendi ve `adb shell monkey` ile başlatıldı.
+- Uygulama açılışında Metro sunucusu çalışmadığı için "Unable to load script" (RSOD) hatası alındı.
+- Login ve rol yönlendirme testi tamamlanamadı. PR merge için henüz hazır değil.
 
 ## Bilinen Sorunlar
 
@@ -71,8 +76,8 @@ Bu session'da Kotlin/Compose Mismatch hatası için "Local Generated Android Pro
 
 ## Sırada Ne Var? (Next Exact Task)
 
-1. **Smoke Test:** Emülatörde veya fiziksel cihazda APK kurularak login + 3 rol testi (smoke test) yapılacak. Henüz yapılmadı.
-2. **Merge:** Smoke test başarılı olduktan sonra feat/mobile-minimal-v1 master'a merge edilecek.
+1. **Metro Başlatma ve Smoke Test Devamı:** Metro server başlatılmalı (`npx expo start` veya `npx react-native start`), cihazla USB/ADB port yönlendirmesi yapılmalı, uygulama RSOD aşılıp login ekranı ve rol yönlendirmeleri görsel olarak doğrulanmalı.
+2. **Merge:** Smoke test tüm metinler (Türkçe) ve butonlarla başarılı olduktan sonra feat/mobile-minimal-v1 master'a merge edilecek.
 
 ## Stash Durumu
 ```
