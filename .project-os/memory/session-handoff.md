@@ -2,32 +2,41 @@
 
 ## Branch: feat/mobile-minimal-v1
 ## PR: #2
-## Tarih: 2026-04-25 09:11
+## Tarih: 2026-04-25 09:47
+## Current GitHub PR Head: af8bfdf9b7ea35ae867cbc7191754b934a8f22ac (docs-only)
+## Last Verified Code Baseline: 6bde645cfb28110df0bec0d33f1aebfd0bb8d07e
 
 ## Ozet
 
-Bu session'da KOD DEGISIKLIGI YAPILMADI. Sadece memory drift duzeltildi.
+Bu session'da KOD DEGISIKLIGI YAPILMADI. Memory hygiene duzeltmesi yapildi:
+- Self-invalidating "Last Verified PR Head" alani kaldirildi
+- Yerine "Current GitHub PR Head" (session basinda dogrulanacak) + "Last Verified Code Baseline" (sabit) eklendi
+- session-handoff.md'de PR head ve code baseline ayrimi netlestirildi
+- ASCII-only path recovery audit'i hazirlandi (bu session'da veya sonraki session'da uygulanabilir)
 
-## Yapilan Is
+## Onceki Session Gecmisi
 
-### 1. Onceki Basarisiz Deneme Geri Alindi
-- 2026-04-25 erken saatlerde expo-linking eklemeye calisildi
-- Build basarisiz oldu (Windows path sorunu)
+### 2026-04-25 Erken Saatler
+- expo-linking eklemeye calisildi → Build basarisiz (Windows path sorunu)
 - Commit+push yapildi ama "SADECE BASARILIYSA COMMIT" kuralini ihlal ettigi icin revert edildi
 - `git reset --hard 6bde645` + `git push --force-with-lease` ile temizlendi
 - Stash `wip/android-debug-dirty-state-do-not-apply` olusturuldu ama sonradan drop edildi
 - Kalan stash: `wip/android-debug-dirty-state-before-controlled-recovery`
 
-### 2. Memory Drift Tespit Edildi ve Duzeltildi
-- mobile-current-truth.md'de "GREEN - BUILD SUCCESSFUL" yaziyordu → **YANLIS**
-- PR head `443484fb` olarak yaziliydi → gercek: `6bde645` → **Düzeltildi**
-- "MERGEABLE" iddia ediliyordu → gercek: bilinmiyor → **Duzeltildi**
-- Build durumu "BASARILI" → gercek: BLOKE → **Duzeltildi**
+### 2026-04-25 09:11 Session
+- Memory drift duzeltildi: "GREEN - BUILD SUCCESSFUL" → YANLIS, BLOKE
+- PR head `443484fb` → `6bde645` duzeltildi
+- Build durumu "BASARILI" → BLOKE duzeltildi
 
-### 3. Bu Commit
-- Sadece memory dosyalari guncellendi
-- Kod degisikligi YOK
-- Dependency degisikligi YOK
+### 2026-04-25 09:47 Session (BU SESSION)
+- mobile-current-truth.md: "Last Verified PR Head" kaldirildi, yerine 5 alan eklendi:
+  - Current GitHub PR Head (session basinda dogrulanacak)
+  - Last Verified Code Baseline (6bde645 - sabit)
+  - Latest Docs-Only Memory Sync Commit (af8bfdf)
+  - Android Build Status (BLOCKED)
+  - Merge Status (NOT READY)
+- session-handoff.md: Header'a PR Head ve Code Baseline eklendi
+- Kod degisikligi YOK, Dependency degisikligi YOK
 
 ## Bilinen Sorunlar
 

@@ -13,7 +13,11 @@
 | Alan | Deger |
 |------|-------|
 | Branch | feat/mobile-minimal-v1 |
-| Last Verified PR Head | 6bde645cfb28110df0bec0d33f1aebfd0bb8d07e |
+| Current GitHub PR Head | Her session basinda git rev-parse HEAD / GitHub ile dogrulanacak |
+| Last Verified Code Baseline | 6bde645cfb28110df0bec0d33f1aebfd0bb8d07e |
+| Latest Docs-Only Memory Sync Commit | af8bfdf9b7ea35ae867cbc7191754b934a8f22ac |
+| Android Build Status | BLOCKED |
+| Merge Status | NOT READY |
 | Working Tree | Temiz |
 | Remote | Up to date |
 | Acik PR | #2 DURUM BILINMIYOR - build dogrulanmadi |
@@ -99,7 +103,7 @@ Bu commit sadece memory dosyalarini guncelliyor. Kod degisikligi yok.
 ## SON GUNCELLEME
 
 **Tarih:** 2026-04-25
-**Saat:** 09:11
+**Saat:** 09:47
 **Durum:** BLOKE - BUILD YAPILAMADI
 **Recovery:** ASCII path deneyin veya CI kullanin
-**Memory Duzeltme:** Bu commit memory drift'i duzeltiyor
+**Memory Duzeltme:** Self-invalidating "PR Head" alani duzeltildi — artık "Current GitHub PR Head" (session basinda dogrulanacak) ve "Last Verified Code Baseline" (sabit commit) olarak ayrildi
