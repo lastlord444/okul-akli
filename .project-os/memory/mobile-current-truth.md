@@ -15,8 +15,8 @@
 | Branch | feat/mobile-minimal-v1 |
 | Current GitHub PR Head | Her session basinda git rev-parse HEAD / GitHub ile dogrulanacak |
 | Last Verified Code Baseline | 6bde645cfb28110df0bec0d33f1aebfd0bb8d07e |
-| Android Build Status | BLOCKED |
-| Merge Status | NOT READY (GitHub mergeable: true, Build/smoke: yok) |
+| Android Build Status | GREEN (Local Probe) |
+| Merge Status | NOT READY (Kalıcı fix gerekli, Build: başarılı, Smoke: yok) |
 | Working Tree | Temiz |
 | Remote | Up to date |
 | Acik PR | #2 DURUM BILINMIYOR - build dogrulanmadi |
@@ -28,16 +28,16 @@
 | pnpm install | Green |
 | tsc --noEmit | Green (ASCII path'te test edildi) |
 | expo prebuild --platform android | Green (ASCII path'te test edildi, prompt vermedi) |
-| ./gradlew assembleDebug | **BLOKE EDİLDİ** - Kotlin/Compose mismatch (ASCII path'te) |
-| APK Olusturma | **YOK** |
+| ./gradlew assembleDebug | **GREEN** - (Local Probe successful with android.kotlinVersion=1.9.24) |
+| APK Olusturma | **BAŞARILI** (`apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk` ~146MB) |
 | Cihaz Kurulumu | **YOK** |
 
 ## BUILD SORUNU — BLOKE EDICI
 
-### 1. Kotlin/Compose Uyumsuzluğu (GERÇEK BLOKER)
-- **Sorun:** Gradle build sırasında `:expo-modules-core:compileDebugKotlin FAILED` hatası alınıyor.
-- **Hata:** `e: This version (1.5.15) of the Compose Compiler requires Kotlin version 1.9.25 but you appear to be using Kotlin version 1.9.24`
-- **Durum:** **BLOKE EDİLDİ - ÇÖZÜM GEREKLİ**
+### 1. Kotlin/Compose Uyumsuzluğu (LOCAL PROBE İLE AŞILDI)
+- **Sorun:** Gradle build sırasında `:expo-modules-core:compileDebugKotlin FAILED` hatası alınıyordu.
+- **Kanıtlanmış Hipotez:** `gradle.properties` dosyasına `android.kotlinVersion=1.9.24` eklenerek mismatch çözüldü ve build `5m 42s` sürede yeşile döndü.
+- **Durum:** **GEREKSİNİM** - Bu geçici bir fix olduğu için kalıcı Expo config plugin çözümüne ihtiyaç var.
 
 ### 2. Windows Path + Gradle + pnpm Symlink (MASKELENMİŞ BLOKER)
 - **Sorun:** Proje dizini Türkçe karakter ("Okul Aklı") içerdiği için Gradle pnpm virtual store symlink'lerini çözemiyor.
@@ -93,6 +93,6 @@ Bu commit sadece memory dosyalarini guncelliyor. Kod degisikligi yok.
 ## SON GUNCELLEME
 
 **Tarih:** 2026-04-25
-**Saat:** 13:05
-**Durum:** BLOKE (Kotlin/Compose Mismatch)
-**Audit Sonucu:** ASCII-only path kullanılarak pnpm symlink hatası aşıldı. Asıl hatanın Kotlin/Compose sürüm uyuşmazlığı olduğu kanıtlandı.
+**Saat:** 17:28
+**Durum:** GREEN (Local Probe) - Kalıcı fix bekliyor
+**Audit Sonucu:** `android.kotlinVersion=1.9.24` hipotezi test edildi. `gradlew assembleDebug` komutu 5m 42s sürede başarıyla tamamlandı ve `app-debug.apk` oluşturuldu. Kalıcı bir Expo config plugin çözümü yazılması planlanıyor.
