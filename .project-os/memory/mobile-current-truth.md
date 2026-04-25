@@ -76,7 +76,7 @@ Bu commit sadece memory dosyalarini guncelliyor. Kod degisikligi yok.
 
 ## EXPO-LINKING DURUMU
 
-- **Durum:** ASCII-only path audit sırasında `expo prebuild` sorunsuz tamamlandığı için şu an doğrudan bir `package.json` dependency'si olarak eklenmesine gerek kalmadı. Transitive olarak başarıyla çözülüyor.
+- **Durum:** Runtime'da (Cihazda) `Cannot find native module 'ExpoLinking'` hatası fırlatarak çöktü. Transitive dependency olarak npm'de çözülmesi native (Java/Kotlin) linking için yeterli olmuyor. `expo-linking`'in `package.json` dosyasına doğrudan (explicit) eklenip yeniden APK alınması KESİNLİKLE GEREKİYOR. (Bu görevde dependency eklemek yasak olduğu için işlem yapılamadı, BLOKER olarak kayıt altına alındı).
 
 ## CI/CD
 
@@ -93,6 +93,6 @@ Bu commit sadece memory dosyalarini guncelliyor. Kod degisikligi yok.
 ## SON GUNCELLEME
 
 **Tarih:** 2026-04-25
-**Saat:** 18:00
-**Durum:** GREEN BUILD, FAILING SMOKE TEST
-**Audit Sonucu:** APK fiziksel cihaza başarıyla yüklendi ancak uygulama açılışında Metro bundler çalışmadığı/bağlanılamadığı için Red Screen of Death (RSOD - Unable to load script) hatası verdi. Login ve rol yönlendirme testi yapılamadı. Çözüm için Metro server başlatılıp (`npx expo start` veya `npx react-native start`) port yönlendirme yapılması gerekiyor.
+**Saat:** 18:05
+**Durum:** GREEN BUILD, FAILING SMOKE TEST (RUNTIME NATIVE ERROR)
+**Audit Sonucu:** Metro sunucusu bağlandıktan sonra uygulama yüklenirken `Cannot find native module 'ExpoLinking'` hatası fırlattı. Uygulama crash oldu. Bu hata, `expo-linking` paketinin `package.json` içerisinde doğrudan bulunmamasından ötürü native koda linklenmemesi nedeniyle oluşmaktadır. Bir sonraki görevde dependency eklenip yeni APK build'i alınması şarttır.

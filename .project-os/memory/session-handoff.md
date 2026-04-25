@@ -49,10 +49,10 @@ Bu session'da Kotlin/Compose Mismatch hatası için "Local Generated Android Pro
 - `app-debug.apk` (~126MB) oluşturuldu.
 - Kalıcı fix tamamlandı.
 
-### 2026-04-25 18:00 Session (BU SESSION)
-- Oluşturulan APK `adb install` ile fiziksel cihaza yüklendi ve `adb shell monkey` ile başlatıldı.
-- Uygulama açılışında Metro sunucusu çalışmadığı için "Unable to load script" (RSOD) hatası alındı.
-- Login ve rol yönlendirme testi tamamlanamadı. PR merge için henüz hazır değil.
+### 2026-04-25 18:05 Session (BU SESSION)
+- Metro sunucusu başlatıldı ve `adb reverse` yapıldı. Cihaz Metro'ya bağlandı.
+- JS bundle başarıyla indirilirken `Cannot find native module 'ExpoLinking'` hatası fırlattı.
+- Smoke test BAŞARISIZ oldu (Crash). Sonraki görevde package.json güncellenip yeni build alınması gerektiği kesinleşti.
 
 ## Bilinen Sorunlar
 
@@ -64,10 +64,10 @@ Bu session'da Kotlin/Compose Mismatch hatası için "Local Generated Android Pro
 ### AŞILAN BLOKER: Windows Gradle + pnpm Symlink + Turkce Karakter
 - **Çözüm:** `C:\Projects\okul-akli` gibi ASCII-only bir dizin kullanılarak hata aşıldı. Geliştirme burada sürmeli.
 
-### EXPO-LINKING DURUMU
-- apps/mobile/package.json'da expo-linking eksik gorunuyor
-- Transitive dependency olarak mevcut olabilir
-- Test edilmedi — build calismadan dogrulanamaz
+### AÇIĞA ÇIKAN BLOKER: EXPO-LINKING EKSİKLİĞİ (RUNTIME CRASH)
+- `apps/mobile/package.json` dosyasında `expo-linking` doğrudan (explicit) yer almıyor.
+- Transitive dependency olarak NPM'de çözülse bile, native linking aşamasında Expo tarafından dahil edilmediği için cihazda `Cannot find native module 'ExpoLinking'` hatası vererek çöküyor.
+- Çözüm: `expo-linking` projeye eklenmeli ve yeniden `expo prebuild` + `gradlew assembleDebug` ile yeni APK alınmalıdır. (Bu sessionda package.json değiştirme yasağı olduğundan işlem yapılmadı).
 
 ### PREBUILD NON-INTERACTIVE SORUNU
 - `expo prebuild --platform android --clean` non-interactive modda "Install updated dependencies?" prompt veriyor
@@ -76,8 +76,9 @@ Bu session'da Kotlin/Compose Mismatch hatası için "Local Generated Android Pro
 
 ## Sırada Ne Var? (Next Exact Task)
 
-1. **Metro Başlatma ve Smoke Test Devamı:** Metro server başlatılmalı (`npx expo start` veya `npx react-native start`), cihazla USB/ADB port yönlendirmesi yapılmalı, uygulama RSOD aşılıp login ekranı ve rol yönlendirmeleri görsel olarak doğrulanmalı.
-2. **Merge:** Smoke test tüm metinler (Türkçe) ve butonlarla başarılı olduktan sonra feat/mobile-minimal-v1 master'a merge edilecek.
+1. **Dependency Fix & Re-Build:** `apps/mobile/package.json` dosyasına `expo-linking` eklenmeli, pnpm install yapılmalı, `expo prebuild --clean` ve `gradlew assembleDebug` ile native kod barındıran yeni bir APK üretilmeli.
+2. **Smoke Test Tekrarı:** Yeni APK kurularak login ve rol testleri tekrarlanmalı.
+3. **Merge:** Tüm smoke test aşamaları başarılı olduktan sonra PR merge edilmeli.
 
 ## Stash Durumu
 ```
