@@ -15,9 +15,10 @@ export default function RootLayout() {
         }}
       >
         <Stack.Screen name="login" options={{ headerShown: false }} />
-        <Stack.Screen name="(student)" options={{ title: 'Öğrenci Paneli' }} />
-        <Stack.Screen name="(parent)" options={{ title: 'Veli Paneli' }} />
-        <Stack.Screen name="(teacher)" options={{ title: 'Öğretmen Paneli' }} />
+        <Stack.Screen name="index" options={{ title: 'Okul Akh' }} />
+        <Stack.Screen name="(student)/index" options={{ title: 'Öğrenci Paneli' }} />
+        <Stack.Screen name="(parent)/index" options={{ title: 'Veli Paneli' }} />
+        <Stack.Screen name="(teacher)/index" options={{ title: 'Öğretmen Paneli' }} />
       </Stack>
     </>
   );

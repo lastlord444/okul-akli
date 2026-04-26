@@ -1,7 +1,6 @@
 // Okul Aklı - Root Index
 // Uygulama açıldığında login ekranına yönlendirir
-import { useEffect } from 'react';
-import { useRouter } from 'expo-router';
+import { Redirect } from 'expo-router';
 
 /**
  * Root index - uygulama başlatıldığında otomatik olarak login sayfasına yönlendirir.
@@ -9,13 +8,5 @@ import { useRouter } from 'expo-router';
  * Şu an için basit redirect implementasyonu.
  */
 export default function Index() {
-  const router = useRouter();
-
-  useEffect(() => {
-    // Uygulama açıldığında login sayfasına yönlendir
-    router.replace('/login');
-  }, [router]);
-
-  // Yönlendirme gerçekleşene kadar boş ekran göster
-  return null;
+  return <Redirect href="/login" />;
 }

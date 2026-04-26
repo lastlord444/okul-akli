@@ -1,7 +1,7 @@
 // Okul Aklı - Giriş Ekranı
 // Kullanıcı rol seçerek ilgili dashboard'a yönlendirilir
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter, type Href } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 type Role = 'student' | 'parent' | 'teacher';
@@ -15,8 +15,14 @@ const roles: { key: Role; label: string; description: string }[] = [
 export default function LoginScreen() {
   const router = useRouter();
 
+  const roleRoutes: Record<Role, Href> = {
+    student: '/(student)/',
+    parent: '/(parent)/',
+    teacher: '/(teacher)/',
+  };
+
   const handleRoleSelect = (role: Role) => {
-    router.replace(`/${role}`);
+    router.replace(roleRoutes[role]);
   };
 
   return (

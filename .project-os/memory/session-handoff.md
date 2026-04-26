@@ -2,23 +2,23 @@
 
 ## Branch: feat/mobile-minimal-v1
 ## PR: #2
-## Tarih: 2026-04-25 09:47
-## Current GitHub PR Head: "Her session basinda git rev-parse HEAD / GitHub ile dogrulanacak"
+## Tarih: 2026-04-25 19:05
+## Current GitHub PR Head: e015a7bde96f99462c7d4e5f3938e34ee55749e5
 ## Last Verified Code Baseline: 6bde645cfb28110df0bec0d33f1aebfd0bb8d07e
-## Android build status: FAILING (Gradle Config Error)
+## Android build status: GREEN (Shortest Path Probe `C:\oa` successful)
 ## Merge status: NOT READY
 - GitHub mergeable: true
-- Build/smoke: expo-linking eklendikten sonra Gradle build patladı (Could not get unknown property 'release').
+- Build/smoke: Build başarılı, CMake 260 limit aşıldı. Smoke test bekleniyor.
 - Merge decision: NOT READY
 
 ## Ozet
 
-Bu session'da Kotlin/Compose Mismatch hatası için "Local Generated Android Probe" yapıldı. KOD DEGISIKLIGI SADECE GITIGNORED DOSYADA YAPILDI:
-- `C:\Projects\okul-akli\apps\mobile\android\gradle.properties` dosyasına geçici olarak `android.kotlinVersion=1.9.24` eklendi.
-- `gradlew assembleDebug` çalıştırıldı.
-- **BUILD SUCCESSFUL** (5m 42s). APK başarıyla oluşturuldu (~146MB).
-- Kotlin sürümü hipotezimiz %100 kanıtlandı.
-- Sırada bu geçici fix'i kalıcı hale getirecek Expo config plugin var.
+Bu session'da CMake Ninja `Filename longer than 260 characters` hatasını izole etmek için "Shortest Path Probe" yapıldı.
+- Yeni kısa klasör oluşturuldu (`C:\oa`), repo klonlandı ve güncel `e015a7b` commit'i checkout edildi.
+- `apps/mobile/android/local.properties` doğru encoding ile oluşturuldu.
+- `gradlew clean` ve `gradlew assembleDebug` çalıştırıldı.
+- **SONUÇ**: `gradlew assembleDebug` 3m 33s sürede BAŞARIYLA tamamlandı! APK dosyası (~120MB) başarıyla üretildi.
+- **GERÇEK**: Hem CMake 260 character limiti hem de `release` blocker yanılsaması, root klasörün (`C:\oa`) kısaltılması ve SDK yolunun doğru konfigüre edilmesiyle tamamen çözülmüş oldu. Test cihazı kurulumuna hazırız.
 
 ## Onceki Session Gecmisi
 

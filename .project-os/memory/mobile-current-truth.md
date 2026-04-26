@@ -13,13 +13,13 @@
 | Alan | Deger |
 |------|-------|
 | Branch | feat/mobile-minimal-v1 |
-| Current GitHub PR Head | Her session basinda git rev-parse HEAD / GitHub ile dogrulanacak |
+| Current GitHub PR Head | e015a7bde96f99462c7d4e5f3938e34ee55749e5 |
 | Last Verified Code Baseline | 6bde645cfb28110df0bec0d33f1aebfd0bb8d07e |
-| Android Build Status | GREEN (Persistent Fix Applied) |
-| Merge Status | NOT READY (Build: başarılı, Smoke: BAŞARISIZ - Metro bağlantı hatası RSOD) |
+| Android Build Status | GREEN (Shortest Path Probe `C:\oa` successful) |
+| Merge Status | NOT READY (Smoke test bekleniyor) |
 | Working Tree | Temiz |
-| Remote | Up to date |
-| Acik PR | #2 DURUM BILINMIYOR - build dogrulanmadi |
+| Remote | Up to date ile origin/feat/mobile-minimal-v1 |
+| Acik PR | #2 DURUM BILINMIYOR |
 
 ## BUILD DURUMU
 
@@ -28,9 +28,9 @@
 | pnpm install | Green |
 | tsc --noEmit | Green (ASCII path'te test edildi) |
 | expo prebuild --platform android | Green (ASCII path'te test edildi, prompt vermedi) |
-| ./gradlew assembleDebug | **BAŞARISIZ** - `expo install expo-linking` sonrası `Could not get unknown property 'release'` hatası veriyor |
-| APK Olusturma | **BAŞARILI** (`apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk` ~146MB) |
-| Cihaz Kurulumu | **BAŞARILI** (Fiziksel cihaza yüklendi, ancak açılışta Metro bağlantı hatası RSOD alındı) |
+| ./gradlew assembleDebug | **GREEN** - (CMake 260 character limit aşıldı, `C:\oa` dizininde 3m 33s sürdü) |
+| APK Olusturma | **BAŞARILI** (`C:\oa\apps\mobile\android\app\build\outputs\apk\debug\app-debug.apk` ~120MB) |
+| Cihaz Kurulumu | **YOK** (Sonraki adım) |
 
 ## BUILD SORUNU — BLOKE EDICI
 
@@ -93,6 +93,6 @@ Bu commit sadece memory dosyalarini guncelliyor. Kod degisikligi yok.
 ## SON GUNCELLEME
 
 **Tarih:** 2026-04-25
-**Saat:** 18:10
-**Durum:** FAILING BUILD (GRADLE CONFIG ERROR)
-**Audit Sonucu:** `expo-linking` projeye eklendikten sonra `expo prebuild` sorunsuz çalıştı, fakat `gradlew assembleDebug` sırasında `A problem occurred configuring project ':expo'. Could not get unknown property 'release' for SoftwareComponent container` hatası alındı. Yeni bir native blocker oluştu.
+**Saat:** 19:05
+**Durum:** GREEN (Shortest Path Probe Successful)
+**Audit Sonucu:** `C:\oa` dizininde en kısa yol testi (shortest-path probe) yapıldı. `gradlew assembleDebug` 3m 33s'te başarıyla tamamlandı. CMake 260 karakter sınırı pnpm symlink yapısından kaynaklandığı kesinleşti; daha kısa bir root dizin kullanılarak hata aşıldı. `release` hatası tekrarlanmadı (SDK path doğru verildiği için). Cihaz/smoke test adımına geçilebilir.
