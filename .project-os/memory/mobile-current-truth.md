@@ -1,15 +1,21 @@
 # Mobile Current Truth - 2026-04-27
 
 ## Proje Durumu
-- **Branch**: main
-- **Commit**: 8907550c3bf5632046615ac83c7cab815e84ef4b
-- **PR**: #2 (MERGED)
+- **Branch**: feat/mobile-visual-polish
+- **Commit**: (yeni branch, main'den: d03a70a)
+- **PR**: PR #3 (yapılacak)
 - **Metro**: ÇALIŞIYOR (http://localhost:8081)
 - **Typecheck**: GREEN
 
+## PR #3 Bilgileri
+- **Base**: main (d03a70a841286be38e1189bab8913eef9d6e8bd8)
+- **Branch**: feat/mobile-visual-polish
+- **Amaç**: Statik UI iyileştirme (visual polish)
+- **Scope**: Login + 3 dashboard (statik kartlar)
+
 ## GitHub Merge Durumu
-- **GitHub reported mergeable**: N/A (MERGED)
-- **Durum**: PR #2 başarıyla main branch'e merge edildi. Repo truth güncel ve senkronize.
+- **PR #2**: 8907550c3bf5632046615ac83c7cab815e84ef4b (merged)
+- **PR #3**: feat/mobile-visual-polish (hazırlanıyor)
 
 ## Metro Başlatma Komutu
 ```cmd
@@ -19,37 +25,30 @@ cmd /c "cd /d c:\Projects\okul-akli\apps\mobile && c:\Projects\okul-akli\node_mo
 ## Önemli Düzeltmeler
 
 ### 1. Metro `c:\C:\` Path Bug (KRITIK - ÇÖZÜLDÜ)
-**Sorun**: pnpm symlink'leri Metro'nun `fileSystem.lookup()` fonksiyonunda Windows sürücü harfi case-insensitivity bug'ına neden oluyordu.
-
 **Çözüm**: `.npmrc` dosyasına `node-linker=hoisted` eklendi.
 
-### 2. Layout Route Uyarıları
-**Çözüm**: `_layout.tsx` dosyasında route isimleri güncellendi:
-```tsx
-<Stack.Screen name="(student)/index" options={{ title: 'Öğrenci Paneli' }} />
-<Stack.Screen name="(parent)/index" options={{ title: 'Veli Paneli' }} />
-<Stack.Screen name="(teacher)/index" options={{ title: 'Öğretmen Paneli' }} />
-```
+### 2. Login Visual Polish (PR #3)
+**Yapılanlar**:
+- Daha profesyonel header (accent underline, daha büyük başlık)
+- Role button'lara shadow/elevation + activeOpacity
+- Footer versiyon bilgisi eklendi
+- Spacing ve typography iyileştirmeleri
 
-### 3. Login Routing
-**Çözüm**: `router.replace('/(student)')` → `router.replace('/(student)/index')`
+### 3. Dashboard Statik Kartlar (PR #3)
+**Yapılanlar**:
+- Her dashboard'a ScrollView eklendi
+- 3'er statik kart eklendi (badge ile "Yakında")
+- Greeting mesajı eklendi
+- Kartlara elevation + shadow eklendi
+- "Ödemeler" kartı EKLENMEDI (scope dışı)
 
-### 4. Typo Fix
-**Sorun**: `_layout.tsx` içinde `Okul Akh` yazıyordu.
-**Çözüm**: `Okul Aklı` olarak düzeltildi.
-
-### 5. Dashboard Dönüş Butonu
-**Sorun**: Üç empty dashboard ekranında "Rol seçimine dön" butonu yoktu.
-**Çözüm**: Öğrenci, Veli, Öğretmen panellerine `TouchableOpacity` + `router.replace('/login')` ile dönüş butonu eklendi.
-
-### 6. Encoding Fix
-**Sorun**: `(teacher)/index.tsx` satır 2'de `dönü��` bozuk karakteri.
-**Çözüm**: `dönüş` olarak düzeltildi.
+**Öğrenci Kartları**: Ders Programı, Ödevler, Duyurular
+**Veli Kartları**: Devamsızlık Özeti, Öğrenci Duyuruları, Görüşme Notları
+**Öğretmen Kartları**: Yoklama, Ders Programı, Sınıf Duyuruları
 
 ## Fiziksel Cihaz Test
 - **Cihaz**: Samsung (e3484f25)
 - **APK**: com.okulakli.development
-- **Activity**: .MainActivity
 - **Metro Bundle**: 1040 modül, ~7s
 
 ## ADB Komutları
@@ -74,11 +73,11 @@ node "c:\Projects\okul-akli\node_modules\typescript\bin\tsc" -p "c:\Projects\oku
 ```
 
 ## Ekran Yapısı
-- **Login**: Rol seçimi (Öğrenci / Veli / Öğretmen)
-- **Öğrenci Paneli**: Empty placeholder + "Rol seçimine dön" butonu
-- **Veli Paneli**: Empty placeholder + "Rol seçimine dön" butonu
-- **Öğretmen Paneli**: Empty placeholder + "Rol seçimine dön" butonu
+- **Login**: Profesyonel header + shadow button'lar + footer
+- **Öğrenci Paneli**: ScrollView + 3 statik kart + dönüş butonu
+- **Veli Paneli**: ScrollView + 3 statik kart + dönüş butonu
+- **Öğretmen Paneli**: ScrollView + 3 statik kart + dönüş butonu
 
 ## Notlar
 - Emulator DLL issue: environment problemi, repo blocker değil
-- PR #2 merge sonrası post-merge audit tamamlandı, repository senkronize durumda.
+- ScrollView klavye davranışı: Dashboard'larda input yok, sorun değil
