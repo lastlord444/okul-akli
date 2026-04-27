@@ -1,8 +1,10 @@
-# Mobile Current Truth - 2026-04-26
+# Mobile Current Truth - 2026-04-27
 
 ## Proje Durumu
 - **Branch**: feat/mobile-minimal-v1
-- **Commit**: 2f8bdab (fix: Metro path bug, layout routes, login routing)
+- **Commit**: (güncellenecek - commit sonrası hash belli olur)
+- **PR**: #2 (OPEN, Mergeable)
+- **PR Head (önceki)**: 2de55e74720dd96d8c460ff9357fdf5a06ca584b
 - **Metro**: ÇALIŞIYOR (http://localhost:8081)
 - **Typecheck**: GREEN
 
@@ -49,6 +51,14 @@ module.exports = config;
 
 **Çözüm**: `router.replace('/(student)')` → `router.replace('/(student)/index')`
 
+### 5. Typo Fix (2026-04-27)
+**Sorun**: `_layout.tsx` içinde `Okul Akh` yazıyordu.
+**Çözüm**: `Okul Aklı` olarak düzeltildi.
+
+### 6. Dashboard Dönüş Butonu (2026-04-27)
+**Sorun**: Üç empty dashboard ekranında "Rol seçimine dön" butonu yoktu.
+**Çözüm**: Öğrenci, Veli, Öğretmen panellerine `TouchableOpacity` + `router.replace('/login')` ile dönüş butonu eklendi.
+
 ## Fiziksel Cihaz Test
 - **Cihaz**: Samsung (e3484f25)
 - **APK**: com.okulakli.development
@@ -76,7 +86,14 @@ module.exports = config;
 node "c:\Projects\okul-akli\node_modules\typescript\bin\tsc" -p "c:\Projects\okul-akli\apps\mobile\tsconfig.json" --noEmit
 ```
 
+## Ekran Yapısı
+- **Login**: Rol seçimi (Öğrenci / Veli / Öğretmen)
+- **Öğrenci Paneli**: Empty placeholder + "Rol seçimine dön" butonu
+- **Veli Paneli**: Empty placeholder + "Rol seçimine dön" butonu
+- **Öğretmen Paneli**: Empty placeholder + "Rol seçimine dön" butonu
+
 ## Notlar
 - `public-hoist-pattern[]=*` tüm bağımlılıkları root `node_modules`'a hoist eder
 - Bu yapılandırma ile Metro artık düzgün çalışıyor
 - Logcat'te uygulamadan kaynaklanan hata YOK
+- Emulator DLL issue: environment problemi, repo blocker değil
