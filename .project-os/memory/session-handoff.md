@@ -1,42 +1,36 @@
-# Session Handoff - 2026-04-27 21:22
+# Session Handoff - 2026-04-27 21:28
 
 ## Son Session'da Yapılanlar
 
-### Mobile UX Hygiene (PR #2 Final)
-**Hedef**: PR #2 için son UX hijyen - typo düzeltme + dönüş butonları
+### PR #2 Merge Readiness Kontrolü
+**Hedef**: GitHub mergeability teşhisi + encoding fix
 
 **Yapılanlar**:
-1. `_layout.tsx` satır 18: `Okul Akh` → `Okul Aklı` typo düzeltmesi
-2. `(student)/index.tsx`: `useRouter` + `TouchableOpacity` ile "Rol seçimine dön" butonu eklendi
-3. `(parent)/index.tsx`: `useRouter` + `TouchableOpacity` ile "Rol seçimine dön" butonu eklendi
-4. `(teacher)/index.tsx`: `useRouter` + `TouchableOpacity` ile "Rol seçimine dön" butonu eklendi
-5. Memory dosyaları güncellendi (commit hash drift düzeltildi)
+1. `git merge-base HEAD origin/main` → `23d515ec` (merge base)
+2. `git diff --name-only origin/main...HEAD` → 19 dosya değişmiş
+3. `git merge-tree <base> HEAD origin/main` → **BOŞ çıktı, exit 0** → CONFLICT YOK
+4. GitHub'ın `mergeable=false` raporu muhtemelen stale / recalculate bekliyor
+5. `(teacher)/index.tsx` satır 2 encoding fix: `dönü��` → `dönüş`
+6. Memory dosyaları güncellendi
 
 **Typecheck**: GREEN (tsc --noEmit, sıfır hata)
 
-### Tasarım Kararları
-- Her dashboard'a `router.replace('/login')` ile tam navigasyon reset yapılıyor (geri stack kalmıyor)
-- Buton stili login ekranındaki `#2E3C4B` rengiyle tutarlı
-- Ortak component çıkarma YAPILMADI - her dosya kendi inline StyleSheet'ini kullanıyor
-- "Yakında aktif olacak" placeholder metni KORUNDU
+### Geçmiş Session Referansları
+- **2026-04-27 21:22**: Mobile UX Hygiene - typo fix, dönüş butonları, memory sync (commit: 66b8e82)
+- **2026-04-26**: Metro `c:\C:\` path bug çözümü, layout route düzeltmeleri (commit: 2f8bdab)
 
 ## Mevcut Durum
 - **Branch**: feat/mobile-minimal-v1
-- **PR**: #2 (OPEN, Mergeable)
-- **PR Head (önceki commit)**: 2de55e74720dd96d8c460ff9357fdf5a06ca584b
+- **Commit**: 66b8e8267f97d6f06f821abd45bb73178ee1c006
+- **PR**: #2 (OPEN)
+- **GitHub mergeable**: false (stale olabilir, recalculate gerekebilir)
+- **Local conflict check**: CONFLICT YOK
 - Metro çalışıyor (localhost:8081)
 - Typecheck GREEN
-- Fiziksel cihaz bağlı (e3484f25)
 
 ## Bilinen Uyarılar
 - Emulator DLL issue: Windows environment problemi, repo blocker değil
-- Metro terminal'de Expo Router group route uyarıları olabilir ama bu runtime hatası değil
-
-## Geçmiş Session Referansleri
-- **2026-04-26**: Metro `c:\C:\` path bug çözümü (`node-linker=hoisted`), layout route düzeltmeleri, login routing düzeltmeleri (commit: 2f8bdab, sonraki docs commit: 2de55e7)
+- GitHub PR mergeability'nin yeniden hesaplanması gerekebilir
 
 ## Sonraki Adımlar
-- **Next Exact Task**: PR #2 review / merge decision
-- Fiziksel cihaz smoke test (login → dashboard → rol seçimine dön akışı)
-- Dashboard içerik geliştirme (ayrı görev/PR)
-- Android release build (ayrı görev)
+- **Next Exact Task**: PR #2 GitHub'da merge butonuna tıklayarak recalculate tetikle veya merge et

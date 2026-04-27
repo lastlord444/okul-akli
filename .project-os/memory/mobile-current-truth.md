@@ -2,11 +2,16 @@
 
 ## Proje Durumu
 - **Branch**: feat/mobile-minimal-v1
-- **Commit**: (güncellenecek - commit sonrası hash belli olur)
-- **PR**: #2 (OPEN, Mergeable)
-- **PR Head (önceki)**: 2de55e74720dd96d8c460ff9357fdf5a06ca584b
+- **Commit**: 66b8e8267f97d6f06f821abd45bb73178ee1c006
+- **PR**: #2 (OPEN, Mergeable: GITHUB RECALCULATE GEREKİR)
 - **Metro**: ÇALIŞIYOR (http://localhost:8081)
 - **Typecheck**: GREEN
+
+## GitHub Merge Durumu
+- **GitHub reported mergeable**: false (muhtemelen stale)
+- **Local merge-tree sonucu**: CONFLICT YOK (boş çıktı, exit code 0)
+- **Merge base**: 23d515ec17be0c88d85ecbf087c53e8dfa30f5b5 (origin/main)
+- **Durum**: GitHub'ın merge durumunu yeniden hesaplaması gerekiyor. Local kontrol conflict olmadığını doğruladı.
 
 ## Metro Başlatma Komutu
 ```cmd
@@ -16,29 +21,11 @@ cmd /c "cd /d c:\Projects\okul-akli\apps\mobile && c:\Projects\okul-akli\node_mo
 ## Önemli Düzeltmeler
 
 ### 1. Metro `c:\C:\` Path Bug (KRITIK - ÇÖZÜLDÜ)
-**Sorun**: pnpm symlink'leri Metro'nun `fileSystem.lookup()` fonksiyonunda Windows sürücü harfi case-insensitivity bug'ına neden oluyordu. Metro `C:\` (büyük harf) döndürürken proje root `c:\` (küçük harf) kullanıyordu, bu da `c:\C:\` gibi geçersiz yollara yol açıyordu.
+**Sorun**: pnpm symlink'leri Metro'nun `fileSystem.lookup()` fonksiyonunda Windows sürücü harfi case-insensitivity bug'ına neden oluyordu.
 
-**Çözüm**: `.npmrc` dosyasına `node-linker=hoisted` eklendi. Bu ayar pnpm'yi symlink yerine gerçek kopyalar kullanmaya zorlar.
+**Çözüm**: `.npmrc` dosyasına `node-linker=hoisted` eklendi.
 
-```ini
-# .npmrc
-node-linker=hoisted
-public-hoist-pattern[]=*
-```
-
-**Etki**: `node_modules/.pnpm` dizini artık sadece `lock.yaml` içeriyor, symlink yapısı kaldırıldı.
-
-### 2. metro.config.js
-pnpm hoisted modda artık özel metro.config.js gerekmiyor:
-```js
-const { getDefaultConfig } = require('expo/metro-config');
-const config = getDefaultConfig(__dirname);
-module.exports = config;
-```
-
-### 3. Layout Route Uyarıları
-**Sorun**: Expo Router group route'lar için `(student)`, `(parent)`, `(teacher)` gibi isimler kullanılıyordu ama layout'ta yanlış format kullanılıyordu.
-
+### 2. Layout Route Uyarıları
 **Çözüm**: `_layout.tsx` dosyasında route isimleri güncellendi:
 ```tsx
 <Stack.Screen name="(student)/index" options={{ title: 'Öğrenci Paneli' }} />
@@ -46,18 +33,20 @@ module.exports = config;
 <Stack.Screen name="(teacher)/index" options={{ title: 'Öğretmen Paneli' }} />
 ```
 
-### 4. Login Routing
-**Sorun**: `login.tsx` role bazlı yönlendirmede `(student)` yerine `student` kullanılıyordu.
-
+### 3. Login Routing
 **Çözüm**: `router.replace('/(student)')` → `router.replace('/(student)/index')`
 
-### 5. Typo Fix (2026-04-27)
+### 4. Typo Fix
 **Sorun**: `_layout.tsx` içinde `Okul Akh` yazıyordu.
 **Çözüm**: `Okul Aklı` olarak düzeltildi.
 
-### 6. Dashboard Dönüş Butonu (2026-04-27)
+### 5. Dashboard Dönüş Butonu
 **Sorun**: Üç empty dashboard ekranında "Rol seçimine dön" butonu yoktu.
 **Çözüm**: Öğrenci, Veli, Öğretmen panellerine `TouchableOpacity` + `router.replace('/login')` ile dönüş butonu eklendi.
+
+### 6. Encoding Fix
+**Sorun**: `(teacher)/index.tsx` satır 2'de `dönü��` bozuk karakteri.
+**Çözüm**: `dönüş` olarak düzeltildi.
 
 ## Fiziksel Cihaz Test
 - **Cihaz**: Samsung (e3484f25)
@@ -93,7 +82,5 @@ node "c:\Projects\okul-akli\node_modules\typescript\bin\tsc" -p "c:\Projects\oku
 - **Öğretmen Paneli**: Empty placeholder + "Rol seçimine dön" butonu
 
 ## Notlar
-- `public-hoist-pattern[]=*` tüm bağımlılıkları root `node_modules`'a hoist eder
-- Bu yapılandırma ile Metro artık düzgün çalışıyor
-- Logcat'te uygulamadan kaynaklanan hata YOK
 - Emulator DLL issue: environment problemi, repo blocker değil
+- GitHub mergeability false görünüyor ama local merge-tree conflict göstermiyor

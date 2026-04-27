@@ -1,5 +1,5 @@
 // Okul Aklı - Öğretmen Dashboard
-// Empty placeholder + rol seçimine dönü�� butonu
+// Empty placeholder + rol seçimine dönüş butonu
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 
