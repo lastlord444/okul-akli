@@ -1,130 +1,86 @@
-# Okul Aklı Mobil - Mevcut Durum (Current Truth)
+# Mobile Current Truth - 2026-04-27
 
-Bu dosya projenin mevcut durumunu belgelemek için kullanılır.
-Her değişiklikten sonra güncellenir.
+## Proje Durumu
+- **Branch**: feat/mobile-minimal-v1
+- **Commit**: 66b8e8267f97d6f06f821abd45bb73178ee1c006
+- **PR**: #2 (OPEN, Mergeable: GITHUB RECALCULATE GEREKİR)
+- **Metro**: ÇALIŞIYOR (http://localhost:8081)
+- **Typecheck**: GREEN
 
-## PROJE BİLGİLERİ
+## GitHub Merge Durumu
+- **GitHub reported mergeable**: false (muhtemelen stale)
+- **Local merge-tree sonucu**: CONFLICT YOK (boş çıktı, exit code 0)
+- **Merge base**: 23d515ec17be0c88d85ecbf087c53e8dfa30f5b5 (origin/main)
+- **Durum**: GitHub'ın merge durumunu yeniden hesaplaması gerekiyor. Local kontrol conflict olmadığını doğruladı.
 
-| Alan | Değer |
-|------|-------|
-| Proje Adı | Okul Aklı |
-| Mobil Uygulama Adı | Okul Aklı Mobil |
-| Teknik Klasör | apps/mobile |
-| Teknik Paket Adı | okul-akli-mobile |
-| Stack | React Native + Expo + TypeScript |
-| Başlangıç Adayı | Obytes React Native Template |
-| Çalışma Yönü | Android-first |
-| iOS Durumu | Gelecek uyumluluğu düşünülür ama aktif kapsam dışı |
-
-## İLK MOBİL SLICE
-
-Şu anda sadece şu hedefler aktif scope içindedir:
-
-| Hedef | Durum |
-|-------|--------|
-| mobile app shell (mobil uygulama iskeleti) | Planlandı |
-| login entry point (giriş noktası) | Planlandı |
-| role-based route skeleton (rol tabanlı yönlendirme iskeleti) | Planlandı |
-| student empty dashboard (öğrenci boş paneli) | Planlandı |
-| parent empty dashboard (veli boş paneli) | Planlandı |
-| teacher empty dashboard (öğretmen boş paneli) | Planlandı |
-| Android run flow (Android çalışma akışı) | Planlandı |
-
-## DİL KURALLARI
-
-| Alan | Kural |
-|------|-------|
-| Kullanıcı arayüzü | Tamamen Türkçe |
-| Roo raporları | Tamamen Türkçe |
-| Teknik terimler | Yanında kısa Türkçe açıklama |
-| Kod yorumları ve açıklamaları | Türkçe |
-| Dosya adları, kütüphane adları | İngilizce kalabilir (ekosistem gereği) |
-
-## MARKA VE RAKİP KURALLARI
-
-| Kural | Durum |
-|-------|--------|
-| Yasaklı isimler | Ebtex, Eyotek, K12NET, Edroof veya başka rakip isimleri ürün adı, modül adı, ekran adı veya marka kimliği olarak kullanılamaz |
-| Kopyalama yasağı | Rakiplerin ekran tasarımı, metinleri, ikonları, akışları, marka dili, özel modül kurgusu veya birebir iş mantığı kopyalanamaz |
-| Proje konumu | Kopya ürün değil; Türkiye'deki okul ve kursların gerçek ihtiyaçlarına göre özgün geliştirilecek profesyonel bir okul işletim sistemi |
-
-## KABUL KRİTERLERİ
-
-| Kriter | Değer |
-|--------|-------|
-| Expo Go | Kabul kriteri değildir |
-| Gerçek Kabul | Android development build veya doğrulanmış Android cihaz/emulator çalışması |
-
-## MOBİLDE ŞİMDİLİK KAPSAM DIŞI
-
-Aşağıdaki özellikler şu an aktif kapsam dışındadır:
-
-| Alan | Durum | Neden |
-|------|--------|-------|
-| ödeme | Kapsam dışı | Protected core |
-| SMS | Kapsam dışı | Protected core |
-| push notification | Kapsam dışı | Protected core |
-| chat | Kapsam dışı | Gelecek özellik |
-| servis / otobüs takibi | Kapsam dışı | Gelecek özellik |
-| harita | Kapsam dışı | Gelecek özellik |
-| offline-first sync engine | Kapsam dışı | Karmaşıklık |
-| PWA | Kapsam dışı | Farklı platform |
-| iOS release | Kapsam dışı | Android öncelikli |
-| App Store / TestFlight | Kapsam dışı | Android öncelikli |
-| shared package extraction | Kapsam dışı | Premature optimization |
-| backend auth/RBAC/tenant redesign | Kapsam dışı | Protected core |
-
-## ÖĞRETİCİ GELİŞTİRME MODU
-
-| Durum | Aktif |
-|-------|-------|
-| Öğretici mod | Evet |
-| Zorunlu bölüm | Her görev sonunda "Bu Görevde Ne Öğrendik?" |
-| Kod notu | Kod varsa "Satır Satır Önemli Noktalar" |
-| Scope kuralı | Öğrenme anlatımı scope'u büyütmeyecek |
-
-## DOSYA YAPISI
-
-```
-Okul Aklı/
-├── .roo/
-│   ├── rules/                    # Ortak kurallar
-│   │   ├── 00-core-project-rules.md
-│   │   └── 10-agent-skills-adapter.md
-│   ├── rules-architect/          # Architect modu kuralları
-│   │   └── 00-architect-rules.md
-│   ├── rules-code/               # Code modu kuralları
-│   │   └── 00-code-rules.md
-│   ├── rules-ask/                # Ask modu kuralları
-│   │   └── 00-ask-rules.md
-│   ├── rules-debug/              # Debug modu kuralları
-│   │   └── 00-debug-rules.md
-│   ├── rules-test/               # Test modu kuralları
-│   │   └── 00-test-rules.md
-│   └── rules-orchestrator/       # Orchestrator modu kuralları
-│       └── 00-orchestrator-rules.md
-├── .github/
-│   └── pull_request_template.md  # PR kontrol şablonu
-├── .project-os/
-│   ├── memory/                   # Proje hafıza dosyaları
-│   │   ├── mobile-current-truth.md
-│   │   ├── mobile-module-registry.md
-│   │   └── session-handoff.md
-│   ├── protocols/                # Çalışma protokolleri
-│   │   ├── STARTUP_PROTOCOL.md
-│   │   ├── DELIVERY_GATE.md
-│   │   └── SESSION_WRAPUP_PROTOCOL.md
-│   ├── adr/                      # Mimari karar kayıtları
-│   │   ├── 0001-mobile-stack-and-execution-strategy.md
-│   │   └── 0002-agent-workflow-and-scope-control.md
-│   └── skills/                   # Agent-skills referansları
-│       └── agent-skills-index.md
-└── apps/
-    └── mobile/                   # Mobil uygulama (henüz oluşturulmadı)
+## Metro Başlatma Komutu
+```cmd
+cmd /c "cd /d c:\Projects\okul-akli\apps\mobile && c:\Projects\okul-akli\node_modules\.bin\expo.cmd start --dev-client --host localhost --clear"
 ```
 
-## SON GÜNCELLEME
+## Önemli Düzeltmeler
 
-**Tarih:** 2026-04-21
-**Durum:** Proje kurulumu %100 tamamlandı. Roo kuralları, proje hafızası, session handoff, agent-skills adapter, çalışma protokolleri, ADR kayıtları ve PR template oluşturuldu. Mobil uygulama iskeleti henüz kurulmadı. CI/CD yok. Gerçek Android run doğrulaması yapılmadı.
-**Bilinen Riskler:** Mobil scaffold eksikliği, protokollerin gerçek mobil uygulama üzerinde henüz doğrulanmamış olması, CI/CD eksikliği.
+### 1. Metro `c:\C:\` Path Bug (KRITIK - ÇÖZÜLDÜ)
+**Sorun**: pnpm symlink'leri Metro'nun `fileSystem.lookup()` fonksiyonunda Windows sürücü harfi case-insensitivity bug'ına neden oluyordu.
+
+**Çözüm**: `.npmrc` dosyasına `node-linker=hoisted` eklendi.
+
+### 2. Layout Route Uyarıları
+**Çözüm**: `_layout.tsx` dosyasında route isimleri güncellendi:
+```tsx
+<Stack.Screen name="(student)/index" options={{ title: 'Öğrenci Paneli' }} />
+<Stack.Screen name="(parent)/index" options={{ title: 'Veli Paneli' }} />
+<Stack.Screen name="(teacher)/index" options={{ title: 'Öğretmen Paneli' }} />
+```
+
+### 3. Login Routing
+**Çözüm**: `router.replace('/(student)')` → `router.replace('/(student)/index')`
+
+### 4. Typo Fix
+**Sorun**: `_layout.tsx` içinde `Okul Akh` yazıyordu.
+**Çözüm**: `Okul Aklı` olarak düzeltildi.
+
+### 5. Dashboard Dönüş Butonu
+**Sorun**: Üç empty dashboard ekranında "Rol seçimine dön" butonu yoktu.
+**Çözüm**: Öğrenci, Veli, Öğretmen panellerine `TouchableOpacity` + `router.replace('/login')` ile dönüş butonu eklendi.
+
+### 6. Encoding Fix
+**Sorun**: `(teacher)/index.tsx` satır 2'de `dönü��` bozuk karakteri.
+**Çözüm**: `dönüş` olarak düzeltildi.
+
+## Fiziksel Cihaz Test
+- **Cihaz**: Samsung (e3484f25)
+- **APK**: com.okulakli.development
+- **Activity**: .MainActivity
+- **Metro Bundle**: 1040 modül, ~7s
+
+## ADB Komutları
+```cmd
+# Cihaz bağlantısı
+"C:\Users\musab\AppData\Local\Android\Sdk\platform-tools\adb.exe" devices
+
+# Uygulama başlatma
+"C:\Users\musab\AppData\Local\Android\Sdk\platform-tools\adb.exe" -s e3484f25 shell am start -n com.okulakli.development/.MainActivity
+
+# Screenshot
+"C:\Users\musab\AppData\Local\Android\Sdk\platform-tools\adb.exe" -s e3484f25 shell screencap -p /sdcard/screenshot.png
+"C:\Users\musab\AppData\Local\Android\Sdk\platform-tools\adb.exe" -s e3484f25 pull /sdcard/screenshot.png c:\Projects\okul-akli\screenshot.png
+
+# Logcat
+"C:\Users\musab\AppData\Local\Android\Sdk\platform-tools\adb.exe" -s e3484f25 logcat -d | findstr /i "error exception"
+```
+
+## Typecheck Komutu
+```cmd
+node "c:\Projects\okul-akli\node_modules\typescript\bin\tsc" -p "c:\Projects\okul-akli\apps\mobile\tsconfig.json" --noEmit
+```
+
+## Ekran Yapısı
+- **Login**: Rol seçimi (Öğrenci / Veli / Öğretmen)
+- **Öğrenci Paneli**: Empty placeholder + "Rol seçimine dön" butonu
+- **Veli Paneli**: Empty placeholder + "Rol seçimine dön" butonu
+- **Öğretmen Paneli**: Empty placeholder + "Rol seçimine dön" butonu
+
+## Notlar
+- Emulator DLL issue: environment problemi, repo blocker değil
+- GitHub mergeability false görünüyor ama local merge-tree conflict göstermiyor
