@@ -20,17 +20,14 @@
 - **2026-04-26**: Metro `c:\C:\` path bug çözümü, layout route düzeltmeleri (commit: 2f8bdab)
 
 ## Mevcut Durum
-- **Branch**: feat/mobile-minimal-v1
-- **Commit**: 66b8e8267f97d6f06f821abd45bb73178ee1c006
-- **PR**: #2 (OPEN)
-- **GitHub mergeable**: false (stale olabilir, recalculate gerekebilir)
-- **Local conflict check**: CONFLICT YOK
+- **Branch**: main
+- **Commit**: 8907550c3bf5632046615ac83c7cab815e84ef4b
+- **PR**: #2 (MERGED)
 - Metro çalışıyor (localhost:8081)
 - Typecheck GREEN
 
 ## Bilinen Uyarılar
 - Emulator DLL issue: Windows environment problemi, repo blocker değil
-- GitHub PR mergeability'nin yeniden hesaplanması gerekebilir
 
 ## Sonraki Adımlar
-- **Next Exact Task**: PR #2 GitHub'da merge butonuna tıklayarak recalculate tetikle veya merge et
+- **Next Exact Task**: decide next mobile slice, not auth by default
