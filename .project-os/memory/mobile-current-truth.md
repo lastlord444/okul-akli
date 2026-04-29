@@ -1,11 +1,10 @@
 # Mobile Current Truth - 2026-04-29
 
 ## Proje Durumu
-- **Branch**: feat/mobile-visual-polish
-- **Base Commit (main)**: d03a70a841286be38e1189bab8913eef9d6e8bd8
-- **Last Code Commit**: 09ff771b6df5255b94e3ebfb1e470932d09d0b10
-- **Latest PR Head**: GitHub PR #3 üzerinden merge öncesi doğrulanacak
-- **PR**: #3 (AÇIK - review bekliyor)
+- **Branch**: main
+- **Base Commit (main)**: 987529d555dd221293f42ae8c0fa9530fe5f781a
+- **Last Code Commit**: 987529d555dd221293f42ae8c0fa9530fe5f781a
+- **PR**: #3 (MERGED)
 
 ## Typecheck
 - **Durum**: GREEN
@@ -48,7 +47,7 @@
 
 ## GitHub Durumu
 - **PR #2**: MERGED (commit: 8907550c3bf5632046615ac83c7cab815e84ef4b)
-- **PR #3**: AÇIK, main'den d03a70a üzerine açıldı
+- **PR #3**: MERGED (commit: 987529d555dd221293f42ae8c0fa9530fe5f781a)
 
 ## Metro Başlatma Komutu
 ```cmd
