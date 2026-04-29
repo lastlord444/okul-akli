@@ -1,48 +1,41 @@
-# Session Handoff - 2026-04-27 21:58
+# Session Handoff - 2026-04-29
 
 ## Son Session'da Yapılanlar
 
-### PR #3: Mobile Visual Polish
-**Hedef**: Statik UI iyileştirme (feature değil, polish işi)
+### PR #3 — Memory Hygiene
+**Hedef**: Memory dosyalarını gerçek kodla uyumlu hale getirme + PR açma
 
 **Yapılanlar**:
-1. Main branch'ten yeni branch açıldı: `feat/mobile-visual-polish`
-2. Login ekranı visual polish:
-   - Accent underline (mavi çizgi)
-   - Daha büyük başlık (36px)
-   - Button shadow/elevation
-   - Footer versiyon bilgisi
-   - activeOpacity eklendi
-3. Dashboard'lara statik kartlar:
-   - ScrollView eklendi
-   - 3'er kart (badge "Yakında" ile)
-   - Greeting mesajı
-   - Elevation + shadow
-4. Veli açıklaması "ödemeler" -> "iletişim" olarak değiştirildi (ödeme scope dışı)
+1. Remote HEAD doğrulandı: `09ff771b6df5255b94e3ebfb1e470932d09d0b10`
+2. Local, remote'a resetlendi (önceki oturumda yapılan push ulaşmamıştı)
+3. 4 UI dosyası okunarak memory drift tespit edildi
+4. mobile-current-truth.md düzeltildi
+5. session-handoff.md düzeltildi
 
-**Typecheck**: GREEN (tsc --noEmit, sıfır hata)
+**Tespit Edilen Memory Drift'ler**:
+- "Logo container (yuvarlak, gölgeli) + emoji ikon" → KODDA YOK, sadece mavi altı çizgi var
+- "İkon + ok işareti" → KODDA YOK, sadece başlık + açıklama var
+- "SafeAreaView eklendi" dashboard'larda → KODDA YOK, sadece ScrollView var
+- "Sarı Yakında badge" → YANLIŞ, gerçek renk gri (`#E8EDF2`)
+- "Eski ADB/APK bilgileri" → PR #2'den kalma, kaldırıldı
 
-**Test/Smoke Durumu**:
-- TypeScript: GREEN ✅
-- Metro: Çalışıyor (environment sorunu yok)
-- Fiziksel cihaz smoke: Environment nedeniyle yapılamadı (Metro terminal hatası)
-
-## Geçmiş Session Referansleri
-- **2026-04-27 21:55**: PR #2 merge readiness + encoding fix (commit: 85b12f0)
-- **2026-04-27 21:22**: PR #2 mobile UX hygiene (commit: 66b8e82)
-- **2026-04-26**: Metro path bug, layout routes, login routing (commit: 2f8bdab)
+### Geçmiş Session Referansları
+- **2026-04-29 (önceki)**: Login + dashboard visual polish (commit: 09ff771)
+- **2026-04-27 21:28**: PR #2 merge readiness kontrolü, encoding fix
+- **2026-04-27 21:22**: Mobile UX Hygiene - typo fix, dönüş butonları
+- **2026-04-26**: Metro `c:\C:\` path bug çözümü, layout route düzeltmeleri
 
 ## Mevcut Durum
 - **Branch**: feat/mobile-visual-polish
-- **Base HEAD**: d03a70a841286be38e1189bab8913eef9d6e8bd8 (main)
-- **PR #2 merged**: 8907550c3bf5632046615ac83c7cab815e84ef4b
-- Metro çalışıyor (localhost:8081)
-- Typecheck GREEN
-- Commit edilecek ve PR açılacak
+- **Commit**: 09ff771b6df5255b94e3ebfb1e470932d09d0b10
+- **Base Commit**: d03a70a841286be38e1189bab8913eef9d6e8bd8 (main HEAD)
+- **PR**: #3 (AÇIK, review bekliyor)
+- **Typecheck**: GREEN
+- **Smoke test**: YAPILMADI
 
 ## Bilinen Uyarılar
-- Emulator DLL issue: Windows environment problemi, repo blocker değil
-- Metro terminal'de Config hatası olabilir ama Metro bundle devam ediyor
+- Fiziksel cihaz smoke test yapılamadı
+- Kartlar statik veri, gerçek bağlantı yok
 
 ## Sonraki Adımlar
-- **Next Exact Task**: PR #3 commit/push + GitHub'da PR aç
+- **Next Exact Task**: PR #3 memory commit push + PR body güncelleme
