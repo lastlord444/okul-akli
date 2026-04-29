@@ -7,10 +7,11 @@
 
 **Yapılanlar**:
 1. Remote HEAD doğrulandı: `09ff771b6df5255b94e3ebfb1e470932d09d0b10`
-2. Local, remote'a resetlendi (önceki oturumda yapılan push ulaşmamıştı)
+2. Local, remote'a resetlendi
 3. 4 UI dosyası okunarak memory drift tespit edildi
 4. mobile-current-truth.md düzeltildi
 5. session-handoff.md düzeltildi
+6. Recursive SHA drift sorunu çözüldü: "Commit" alanı kaldırıldı
 
 **Tespit Edilen Memory Drift'ler**:
 - "Logo container (yuvarlak, gölgeli) + emoji ikon" → KODDA YOK, sadece mavi altı çizgi var
@@ -18,6 +19,7 @@
 - "SafeAreaView eklendi" dashboard'larda → KODDA YOK, sadece ScrollView var
 - "Sarı Yakında badge" → YANLIŞ, gerçek renk gri (`#E8EDF2`)
 - "Eski ADB/APK bilgileri" → PR #2'den kalma, kaldırıldı
+- Recursive SHA drift → "Commit" alanı kaldırıldı
 
 ### Geçmiş Session Referansları
 - **2026-04-29 (önceki)**: Login + dashboard visual polish (commit: 09ff771)
@@ -27,8 +29,9 @@
 
 ## Mevcut Durum
 - **Branch**: feat/mobile-visual-polish
-- **Commit**: e93e5c9aa321daba92481639458e23c15f30f1ce
-- **Base Commit**: d03a70a841286be38e1189bab8913eef9d6e8bd8 (main HEAD)
+- **Base Commit (main)**: d03a70a841286be38e1189bab8913eef9d6e8bd8
+- **Last Code Commit**: 09ff771b6df5255b94e3ebfb1e470932d09d0b10
+- **Latest PR Head**: GitHub PR #3 üzerinden merge öncesi doğrulanacak
 - **PR**: #3 (AÇIK, review bekliyor)
 - **Typecheck**: GREEN
 - **Smoke test**: YAPILMADI
