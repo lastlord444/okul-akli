@@ -2,7 +2,7 @@
 
 ## Proje Durumu
 - **Branch**: main
-- **Base Commit (main)**: 987529d555dd221293f42ae8c0fa9530fe5f781a
+- **Base Commit (main)**: 6d93d940cf8d842fd14db86e50876d65735bcc09
 - **Last Code Commit**: 987529d555dd221293f42ae8c0fa9530fe5f781a
 - **PR**: #3 (MERGED)
 
@@ -41,7 +41,7 @@
 - Payment/ödeme kartı eklenmedi
 
 ## Smoke Test Durumu
-- **Fiziksel cihaz testi**: YAPILMADI (cihaz bağlantısı yok)
+- **Fiziksel cihaz testi**: YAPILDI (Android USB cihaz) - BAŞARILI (Login ve rol bazlı ekran geçişleri stabil)
 - **Typecheck**: GREEN
 - **git diff --check**: TEMIZ
 
@@ -55,7 +55,6 @@ cmd /c "cd /d c:\Projects\okul-akli\apps\mobile && c:\Projects\okul-akli\node_mo
 ```
 
 ## Bilinen Riskler
-- Smoke test fiziksel cihazda yapılamadı
 - Kartlar statik veri kullanıyor, gerçek veri bağlantısı yok
 
 ## Önemli Düzeltmeler (PR #2'den devralınan)
