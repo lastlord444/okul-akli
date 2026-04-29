@@ -1,84 +1,65 @@
-# Mobile Current Truth - 2026-04-27
+# Mobile Current Truth - 2026-04-29
 
 ## Proje Durumu
-- **Branch**: main
-- **Commit**: 8907550c3bf5632046615ac83c7cab815e84ef4b
-- **PR**: #2 (MERGED)
-- **Metro**: ÇALIŞIYOR (http://localhost:8081)
-- **Typecheck**: GREEN
+- **Branch**: feat/mobile-visual-polish
+- **Base Commit (main)**: d03a70a841286be38e1189bab8913eef9d6e8bd8
+- **Last Code Commit**: 09ff771b6df5255b94e3ebfb1e470932d09d0b10
+- **Latest PR Head**: GitHub PR #3 üzerinden merge öncesi doğrulanacak
+- **PR**: #3 (AÇIK - review bekliyor)
 
-## GitHub Merge Durumu
-- **GitHub reported mergeable**: N/A (MERGED)
-- **Durum**: PR #2 başarıyla main branch'e merge edildi. Repo truth güncel ve senkronize.
+## Typecheck
+- **Durum**: GREEN
+- **Komut**: `npx tsc -p apps/mobile/tsconfig.json --noEmit`
+- **git diff --check**: TEMIZ (LF/CRLF uyarıları Windows autocrlf normalitesi)
+
+## PR #3 — Değişen Dosyalar (6)
+| Dosya | Değişiklik |
+|-------|-----------|
+| `apps/mobile/src/app/login.tsx` | Başlık, altı çizgi, footer |
+| `apps/mobile/src/app/(student)/index.tsx` | 3 statik kart + ScrollView |
+| `apps/mobile/src/app/(parent)/index.tsx` | 3 statik kart + ScrollView |
+| `apps/mobile/src/app/(teacher)/index.tsx` | 3 statik kart + ScrollView |
+| `.project-os/memory/mobile-current-truth.md` | Drift düzeltme |
+| `.project-os/memory/session-handoff.md` | Drift düzeltme |
+
+## Login Ekranı Değişiklikleri (login.tsx)
+- SafeAreaView kullanıldı
+- Başlık: `Okul Aklı` (36px, bold)
+- Altı çizgi: mavi çizgi (`titleUnderline`, `#4A90D9`)
+- Alt başlık: `Okul İşletim Sistemi`
+- 3 düğme: her birinde başlık + açıklama (emoji/ok işareti yok)
+- Düğme gölgeleri: Android elevation + iOS shadow
+- Footer: `v1.0 — Erken Erişim`
+
+## Dashboard Değişiklikleri
+- **Öğrenci**: Ders Programı, Ödevler, Duyurular kartları
+- **Veli**: Devamsızlık Özeti, Öğrenci Duyuruları, Görüşme Notları kartları
+- **Öğretmen**: Yoklama, Ders Programı, Sınıf Duyuruları kartları
+- Her kart: başlık + açıklama + gri badge (`#E8EDF2`)
+- ScrollView ile küçük ekran desteği
+- SafeAreaView dashboard'larda kullanılmadı (sadece ScrollView)
+- "Rol seçimine dön" butonu korundu
+- Payment/ödeme kartı eklenmedi
+
+## Smoke Test Durumu
+- **Fiziksel cihaz testi**: YAPILMADI (cihaz bağlantısı yok)
+- **Typecheck**: GREEN
+- **git diff --check**: TEMIZ
+
+## GitHub Durumu
+- **PR #2**: MERGED (commit: 8907550c3bf5632046615ac83c7cab815e84ef4b)
+- **PR #3**: AÇIK, main'den d03a70a üzerine açıldı
 
 ## Metro Başlatma Komutu
 ```cmd
 cmd /c "cd /d c:\Projects\okul-akli\apps\mobile && c:\Projects\okul-akli\node_modules\.bin\expo.cmd start --dev-client --host localhost --clear"
 ```
 
-## Önemli Düzeltmeler
+## Bilinen Riskler
+- Smoke test fiziksel cihazda yapılamadı
+- Kartlar statik veri kullanıyor, gerçek veri bağlantısı yok
 
-### 1. Metro `c:\C:\` Path Bug (KRITIK - ÇÖZÜLDÜ)
-**Sorun**: pnpm symlink'leri Metro'nun `fileSystem.lookup()` fonksiyonunda Windows sürücü harfi case-insensitivity bug'ına neden oluyordu.
-
-**Çözüm**: `.npmrc` dosyasına `node-linker=hoisted` eklendi.
-
-### 2. Layout Route Uyarıları
-**Çözüm**: `_layout.tsx` dosyasında route isimleri güncellendi:
-```tsx
-<Stack.Screen name="(student)/index" options={{ title: 'Öğrenci Paneli' }} />
-<Stack.Screen name="(parent)/index" options={{ title: 'Veli Paneli' }} />
-<Stack.Screen name="(teacher)/index" options={{ title: 'Öğretmen Paneli' }} />
-```
-
-### 3. Login Routing
-**Çözüm**: `router.replace('/(student)')` → `router.replace('/(student)/index')`
-
-### 4. Typo Fix
-**Sorun**: `_layout.tsx` içinde `Okul Akh` yazıyordu.
-**Çözüm**: `Okul Aklı` olarak düzeltildi.
-
-### 5. Dashboard Dönüş Butonu
-**Sorun**: Üç empty dashboard ekranında "Rol seçimine dön" butonu yoktu.
-**Çözüm**: Öğrenci, Veli, Öğretmen panellerine `TouchableOpacity` + `router.replace('/login')` ile dönüş butonu eklendi.
-
-### 6. Encoding Fix
-**Sorun**: `(teacher)/index.tsx` satır 2'de `dönü��` bozuk karakteri.
-**Çözüm**: `dönüş` olarak düzeltildi.
-
-## Fiziksel Cihaz Test
-- **Cihaz**: Samsung (e3484f25)
-- **APK**: com.okulakli.development
-- **Activity**: .MainActivity
-- **Metro Bundle**: 1040 modül, ~7s
-
-## ADB Komutları
-```cmd
-# Cihaz bağlantısı
-"C:\Users\musab\AppData\Local\Android\Sdk\platform-tools\adb.exe" devices
-
-# Uygulama başlatma
-"C:\Users\musab\AppData\Local\Android\Sdk\platform-tools\adb.exe" -s e3484f25 shell am start -n com.okulakli.development/.MainActivity
-
-# Screenshot
-"C:\Users\musab\AppData\Local\Android\Sdk\platform-tools\adb.exe" -s e3484f25 shell screencap -p /sdcard/screenshot.png
-"C:\Users\musab\AppData\Local\Android\Sdk\platform-tools\adb.exe" -s e3484f25 pull /sdcard/screenshot.png c:\Projects\okul-akli\screenshot.png
-
-# Logcat
-"C:\Users\musab\AppData\Local\Android\Sdk\platform-tools\adb.exe" -s e3484f25 logcat -d | findstr /i "error exception"
-```
-
-## Typecheck Komutu
-```cmd
-node "c:\Projects\okul-akli\node_modules\typescript\bin\tsc" -p "c:\Projects\okul-akli\apps\mobile\tsconfig.json" --noEmit
-```
-
-## Ekran Yapısı
-- **Login**: Rol seçimi (Öğrenci / Veli / Öğretmen)
-- **Öğrenci Paneli**: Empty placeholder + "Rol seçimine dön" butonu
-- **Veli Paneli**: Empty placeholder + "Rol seçimine dön" butonu
-- **Öğretmen Paneli**: Empty placeholder + "Rol seçimine dön" butonu
-
-## Notlar
-- Emulator DLL issue: environment problemi, repo blocker değil
-- PR #2 merge sonrası post-merge audit tamamlandı, repository senkronize durumda.
+## Önemli Düzeltmeler (PR #2'den devralınan)
+1. **Metro `c:\C:\` Path Bug**: `.npmrc` → `node-linker=hoisted`
+2. **Layout Route Uyarıları**: `_layout.tsx` route isimleri güncellendi
+3. **Login Routing**: `router.replace('/(student)')` → `router.replace('/(student)/index')`

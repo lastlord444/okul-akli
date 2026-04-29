@@ -1,33 +1,44 @@
-# Session Handoff - 2026-04-27 21:28
+# Session Handoff - 2026-04-29
 
 ## Son Session'da Yapılanlar
 
-### PR #2 Merge Readiness Kontrolü
-**Hedef**: GitHub mergeability teşhisi + encoding fix
+### PR #3 — Memory Hygiene
+**Hedef**: Memory dosyalarını gerçek kodla uyumlu hale getirme + PR açma
 
 **Yapılanlar**:
-1. `git merge-base HEAD origin/main` → `23d515ec` (merge base)
-2. `git diff --name-only origin/main...HEAD` → 19 dosya değişmiş
-3. `git merge-tree <base> HEAD origin/main` → **BOŞ çıktı, exit 0** → CONFLICT YOK
-4. GitHub'ın `mergeable=false` raporu muhtemelen stale / recalculate bekliyor
-5. `(teacher)/index.tsx` satır 2 encoding fix: `dönü��` → `dönüş`
-6. Memory dosyaları güncellendi
+1. Remote HEAD doğrulandı: `09ff771b6df5255b94e3ebfb1e470932d09d0b10`
+2. Local, remote'a resetlendi
+3. 4 UI dosyası okunarak memory drift tespit edildi
+4. mobile-current-truth.md düzeltildi
+5. session-handoff.md düzeltildi
+6. Recursive SHA drift sorunu çözüldü: "Commit" alanı kaldırıldı
 
-**Typecheck**: GREEN (tsc --noEmit, sıfır hata)
+**Tespit Edilen Memory Drift'ler**:
+- "Logo container (yuvarlak, gölgeli) + emoji ikon" → KODDA YOK, sadece mavi altı çizgi var
+- "İkon + ok işareti" → KODDA YOK, sadece başlık + açıklama var
+- "SafeAreaView eklendi" dashboard'larda → KODDA YOK, sadece ScrollView var
+- "Sarı Yakında badge" → YANLIŞ, gerçek renk gri (`#E8EDF2`)
+- "Eski ADB/APK bilgileri" → PR #2'den kalma, kaldırıldı
+- Recursive SHA drift → "Commit" alanı kaldırıldı
 
 ### Geçmiş Session Referansları
-- **2026-04-27 21:22**: Mobile UX Hygiene - typo fix, dönüş butonları, memory sync (commit: 66b8e82)
-- **2026-04-26**: Metro `c:\C:\` path bug çözümü, layout route düzeltmeleri (commit: 2f8bdab)
+- **2026-04-29 (önceki)**: Login + dashboard visual polish (commit: 09ff771)
+- **2026-04-27 21:28**: PR #2 merge readiness kontrolü, encoding fix
+- **2026-04-27 21:22**: Mobile UX Hygiene - typo fix, dönüş butonları
+- **2026-04-26**: Metro `c:\C:\` path bug çözümü, layout route düzeltmeleri
 
 ## Mevcut Durum
-- **Branch**: main
-- **Commit**: 8907550c3bf5632046615ac83c7cab815e84ef4b
-- **PR**: #2 (MERGED)
-- Metro çalışıyor (localhost:8081)
-- Typecheck GREEN
+- **Branch**: feat/mobile-visual-polish
+- **Base Commit (main)**: d03a70a841286be38e1189bab8913eef9d6e8bd8
+- **Last Code Commit**: 09ff771b6df5255b94e3ebfb1e470932d09d0b10
+- **Latest PR Head**: GitHub PR #3 üzerinden merge öncesi doğrulanacak
+- **PR**: #3 (AÇIK, review bekliyor)
+- **Typecheck**: GREEN
+- **Smoke test**: YAPILMADI
 
 ## Bilinen Uyarılar
-- Emulator DLL issue: Windows environment problemi, repo blocker değil
+- Fiziksel cihaz smoke test yapılamadı
+- Kartlar statik veri, gerçek bağlantı yok
 
 ## Sonraki Adımlar
-- **Next Exact Task**: decide next mobile slice, not auth by default
+- **Next Exact Task**: PR #3 final review + merge kararı
