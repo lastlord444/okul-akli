@@ -47,6 +47,11 @@ export default function LoginScreen() {
             </View>
           </TouchableOpacity>
         ))}
+
+        <View style={styles.infoBox}>
+          <Text style={styles.infoTitle}>Bilgi</Text>
+          <Text style={styles.infoText}>Giriş bilgileri ve rol yetkileri okul yönetimi tarafından tanımlanır.</Text>
+        </View>
       </View>
       <View style={styles.footer}>
         <Text style={styles.footerText}>v1.0 — Erken Erişim</Text>
@@ -117,6 +122,23 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#AABBCC',
     marginTop: 6,
+  },
+  infoBox: {
+    marginTop: 24,
+    padding: 16,
+    backgroundColor: '#E8EDF2',
+    borderRadius: 8,
+  },
+  infoTitle: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#4A90D9',
+    marginBottom: 4,
+  },
+  infoText: {
+    fontSize: 13,
+    color: '#555',
+    lineHeight: 18,
   },
   footer: {
     alignItems: 'center',
