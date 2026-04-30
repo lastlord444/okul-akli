@@ -1,10 +1,10 @@
 # Mobile Current Truth - 2026-04-29
 
 ## Proje Durumu
-- **Branch**: chore/mobile-smoke-evidence (main: 469b201938f5e12369c11ab4d90bae0dee35fbd7)
-- **Base Commit (main)**: 469b201938f5e12369c11ab4d90bae0dee35fbd7
+- **Branch**: main
+- **Base Commit (main)**: ee342e7f4c4f61dd2f7e9969ebb32e7c1a67a0d7
 - **Last Code Commit**: 987529d555dd221293f42ae8c0fa9530fe5f781a
-- **PR**: #4 (OPEN - Mobile Smoke Evidence)
+- **PR**: #4 (MERGED - Mobile Smoke Evidence)
 
 ## Typecheck
 - **Durum**: GREEN
@@ -47,7 +47,7 @@
 ## GitHub Durumu
 - **PR #2**: MERGED (commit: 8907550c3bf5632046615ac83c7cab815e84ef4b)
 - **PR #3**: MERGED (commit: 987529d555dd221293f42ae8c0fa9530fe5f781a)
-- **PR #4**: OPEN (Docs - Smoke Evidence)
+- **PR #4**: MERGED (Docs - Smoke Evidence)
 
 ## Metro Başlatma Komutu
 ```cmd
