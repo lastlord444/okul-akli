@@ -2,38 +2,36 @@
 
 Project: Okul Aklı
 Active Domain: Mobile UI / UX Refinement & Documentation
-Current Slice: PR #7 Android physical device smoke evidence pack (Fix)
-Progress: PR #7 için cihaz üzerinden alınan screenshot "Could not connect to development server" hatası içeriyordu. `adb reverse tcp:8081 tcp:8081` ile USB port yönlendirmesi sağlandı, Metro dev server bağlantısı kuruldu ve başarılı login ekran görüntüsü yeniden alındı.
+Current Slice: PR #7 Android physical device smoke evidence pack (Expansion)
+Progress: PR #7 kapsamında eksik olan diğer ekranların (Öğrenci, Veli, Öğretmen Dashboard'ları ve Yakında Alert) ekran görüntüleri manuel-assisted yaklaşımla fiziksel cihazdan başarıyla alındı ve PR evidence klasörüne eklendi.
 Repo Truth: `docs/mobile-android-smoke-evidence-pr7` branch aktif. PR #7 OPEN. Base Commit: ad2efb5.
 Completed This Session: 
 - PR #7 OPEN
 - Branch: docs/mobile-android-smoke-evidence-pr7
-- Scope: Android physical device smoke evidence fix
-- Problem Found: Metro development server connection error on physical device.
-- Fix Attempted: `adb reverse tcp:8081 tcp:8081` executed.
+- Scope: Android physical device smoke evidence expansion (manuel-assisted)
 - Screenshot evidence path: .project-os/evidence/mobile/pr7-android-smoke/
-- Device model: Xiaomi / 24122RKC7G (Android 16)
-- Tested screens: Login (Diğer ekranlar ajan navigasyon kısıtlaması nedeniyle alınamadı)
+- Hangi ekranlar başarıyla görüntülendi: Login, Öğrenci Dashboard, Öğrenci Coming Soon Alert, Veli Dashboard, Öğretmen Dashboard
 - No app code changes
 - No backend/auth/RBAC/tenant changes
 - No dependency changes
 - No migration
 - CI/status check not available
+- Known risk: app still uses static data
 Files Changed: 
 - .project-os/evidence/mobile/pr7-android-smoke/README.md
-- .project-os/evidence/mobile/pr7-android-smoke/01-login.png
+- .project-os/evidence/mobile/pr7-android-smoke/*.png (02, 03, 04, 05 eklendi)
+- .project-os/memory/mobile-current-truth.md
 - .project-os/memory/session-handoff.md
 Migrations: Yok
-Tests: Typecheck (GREEN)
+Tests: Typecheck (GREEN), Manuel-assisted Smoke Test (GREEN)
 Commands Run:
-- adb reverse tcp:8081 tcp:8081
-- adb shell am force-stop / adb shell monkey (App restart)
-- adb shell screencap / adb pull
-- git status, commit, push
+- adb shell screencap / adb pull (5 ekran)
+- pnpm --filter okul-akli-mobile exec tsc --noEmit
+- git add, commit, push
 GitHub Check: PR #7 OPEN.
-Known Risks: Kartlar hâlâ gerçek veri bağlantısı kullanmıyor. Ajanın cihaz navigasyon otomasyonu yapamaması.
-What Mehmet Learned: Fiziksel testlerde `adb reverse` kullanmamak uygulamanın local Metro server'a erişememesine ve sahte "çalıştı" raporlarına yol açar. Geliştirici ortamında port forwarding standart hale getirilmelidir.
-Scope Locked For Next Session: Next phase implementation (PR #8) veya PR #7 Merge
+Known Risks: app still uses static data.
+What Mehmet Learned: Fiziksel cihazdaki ekran geçişleri manuel yapılıp ekran görüntüleri ADB ile toplandığında tam kapsamlı smoke test evidence'ı problemsiz bir şekilde repoya eklenebilmektedir.
+Scope Locked For Next Session: PR #7 Merge veya yeni bir mobile slice planlamasına geçilmesi.
 Explicit Do Not Touch: Protected core (auth, RBAC, vb.), backend, app code.
 Next Exact Task: PR #7 merge edilmesi veya yeni bir mobile slice planlamasına geçilmesi.
-Drift Audit: PR #7 kapsamında sadece dokümantasyon (evidence) düzeltildi. Hiçbir kod değişikliği yapılmadı.
+Drift Audit: PR #7 kapsamında sadece dokümantasyon (evidence ve memory) düzeltildi. Hiçbir kod değişikliği yapılmadı. Ek dependency eklenmedi.
