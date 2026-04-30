@@ -28,13 +28,14 @@ pnpm --filter okul-akli-mobile exec expo start --dev-client --host localhost --c
 ```
 
 ## Screenshots List
-*Screenshot alınamadı.*
-**Neden:** Otonom ajanın (AI) fiziksel cihaz üzerinde uygulama içi butonlara basma ve UI'da gezinme yeteneği (UI automation) olmadığı için spesifik rol ekranlarının (Öğrenci, Veli, Öğretmen) görüntüleri otomatik olarak alınamamıştır. Ancak testin manuel yapıldığı proje hafızasında mevcuttur.
+*Screenshots are not present in this PR.*
+**Neden:** Otonom ajanın (AI) `adb` komutuna erişimi olmadığı ve UI'da gezinme yeteneği (UI automation) bulunmadığı için spesifik rol ekranlarının (Öğrenci, Veli, Öğretmen) görüntüleri alınamamıştır.
 
 ## Test Result
 - **Typecheck:** GREEN
 - **git diff --check:** CLEAN
-- **Android smoke:** PASSED
+- **Android smoke:** Manual physical Android smoke was previously recorded in memory; screenshots are not present in this PR.
+- **CI/Status check:** Not available.
 
 ## Not Tested
 - iOS

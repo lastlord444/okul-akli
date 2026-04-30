@@ -1,28 +1,29 @@
 # Session Handoff - 2026-04-29
 
 Project: Okul Aklı
-Active Domain: Mobile smoke verification only
-Current Slice: Mobile App Shell & Role-Based Routing
-Progress: PR #3 sonrası fiziksel cihazda (Android) smoke test başarıyla tamamlandı. Login ve üç rol (Öğrenci, Veli, Öğretmen) arası navigasyon doğrulandı.
-Repo Truth: main branch, kod değişikliği yok, memory sync için güncellendi.
+Active Domain: Mobile smoke verification evidence
+Current Slice: PR #4 Evidence Drift Fix
+Progress: PR #4 evidence belgeleri gerçeği yansıtacak şekilde güncellendi (Screenshot alınamadığı ve CI olmadığı netleştirildi). Hafıza dosyalarındaki drift giderilerek PR'a dahil edildi.
+Repo Truth: chore/mobile-smoke-evidence branch'inde README.md ve memory dosyaları güncellendi.
 Completed This Session: 
-- ADB USB reverse proxy kuruldu ve fiziksel cihaza bağlanıldı.
-- Android cihazda smoke test yapıldı (BAŞARILI).
-- Memory ve handoff dokümanları test sonuçlarına göre güncellendi.
+- PR #4 evidence drift düzeltildi.
+- README dürüst hale getirildi (screenshot yok, CI yok).
+- adb çalıştırılmaya çalışıldı, shell path'te olmadığı için raporlandı.
+- Hafıza dosyaları güncellendi ve PR'a eklenecek duruma getirildi.
 Files Changed: 
+- .project-os/evidence/mobile/pr3-smoke/README.md
 - .project-os/memory/mobile-current-truth.md
 - .project-os/memory/session-handoff.md
 Migrations: Yok
-Tests: Typecheck (GREEN), Physical Android Smoke Test (PASSED)
+Tests: Typecheck (GREEN)
 Commands Run:
-- adb reverse tcp:8081 tcp:8081
-- tsc --noEmit
-- expo start
-- git commit & push
-GitHub Check: Local ve remote main branch senkron, değişiklikler push edildi.
+- adb devices, adb shell screencap (failed: adb not in PATH)
+- pnpm --filter okul-akli-mobile exec tsc --noEmit
+- git diff --check
+GitHub Check: PR #4 OPEN, drift fix commit atılacak.
 Known Risks: Kartlar statik veri kullanıyor, gerçek veri bağlantısı yok.
-What Mehmet Learned: Fiziksel cihazlarda Expo `--host localhost` kullanılırken ADB reverse proxy (`adb reverse tcp:8081 tcp:8081`) yapılması zorunludur, aksi halde uygulama bilgisayardaki Metro sunucusuna ulaşamaz ve "Unable to load script" hatası verir.
+What Mehmet Learned: Ajanın çalıştırdığı komutlar (örn. adb) shell ortamında yoksa veya kullanılamıyorsa, bu durumu örtbas etmek yerine dürüstçe dokümante etmek ("not available" / "not included") şeffaflık ve dürüstlük (repo truth) açısından en doğrusudur.
 Scope Locked For Next Session: Next phase planning / implementation
 Explicit Do Not Touch: Protected core (auth, RBAC, vb.), mevcut login ve (student)/(parent)/(teacher) route yapısı.
 Next Exact Task: Next phase planning / implementation
-Drift Audit: Planlanan yapıldı. Protected core'a dokunulmadı. Kapsam aşımı olmadı. Kod değişikliği yapılmadı.
+Drift Audit: Planlanan yapıldı. Protected core'a dokunulmadı. Kapsam aşımı olmadı. Hafıza ile PR arasındaki drift (memory dosyalarının PR'da olmaması ve README'nin yanıltıcı olması) giderildi.

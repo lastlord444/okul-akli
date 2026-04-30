@@ -1,25 +1,22 @@
 # Mobile Current Truth - 2026-04-29
 
 ## Proje Durumu
-- **Branch**: main
-- **Base Commit (main)**: 6d93d940cf8d842fd14db86e50876d65735bcc09
+- **Branch**: chore/mobile-smoke-evidence (main: 469b201938f5e12369c11ab4d90bae0dee35fbd7)
+- **Base Commit (main)**: 469b201938f5e12369c11ab4d90bae0dee35fbd7
 - **Last Code Commit**: 987529d555dd221293f42ae8c0fa9530fe5f781a
-- **PR**: #3 (MERGED)
+- **PR**: #4 (OPEN - Mobile Smoke Evidence)
 
 ## Typecheck
 - **Durum**: GREEN
 - **Komut**: `npx tsc -p apps/mobile/tsconfig.json --noEmit`
 - **git diff --check**: TEMIZ (LF/CRLF uyarıları Windows autocrlf normalitesi)
 
-## PR #3 — Değişen Dosyalar (6)
+## PR #4 — Değişen Dosyalar (3)
 | Dosya | Değişiklik |
 |-------|-----------|
-| `apps/mobile/src/app/login.tsx` | Başlık, altı çizgi, footer |
-| `apps/mobile/src/app/(student)/index.tsx` | 3 statik kart + ScrollView |
-| `apps/mobile/src/app/(parent)/index.tsx` | 3 statik kart + ScrollView |
-| `apps/mobile/src/app/(teacher)/index.tsx` | 3 statik kart + ScrollView |
-| `.project-os/memory/mobile-current-truth.md` | Drift düzeltme |
-| `.project-os/memory/session-handoff.md` | Drift düzeltme |
+| `.project-os/evidence/mobile/pr3-smoke/README.md` | Smoke test sonuç belgesi (Screenshot yok, CI yok) |
+| `.project-os/memory/mobile-current-truth.md` | Drift fix |
+| `.project-os/memory/session-handoff.md` | Drift fix |
 
 ## Login Ekranı Değişiklikleri (login.tsx)
 - SafeAreaView kullanıldı
@@ -41,13 +38,16 @@
 - Payment/ödeme kartı eklenmedi
 
 ## Smoke Test Durumu
-- **Fiziksel cihaz testi**: YAPILDI (Android USB cihaz) - BAŞARILI (Login ve rol bazlı ekran geçişleri stabil)
+- **Fiziksel cihaz testi**: Daha önce manuel olarak test edildiği hafızaya kaydedilmişti.
+- **Ekran Görüntüleri**: PR'da yer almıyor (adb ve UI otomasyon eksikliği nedeniyle alınamadı).
+- **CI/Status Check**: Not available.
 - **Typecheck**: GREEN
 - **git diff --check**: TEMIZ
 
 ## GitHub Durumu
 - **PR #2**: MERGED (commit: 8907550c3bf5632046615ac83c7cab815e84ef4b)
 - **PR #3**: MERGED (commit: 987529d555dd221293f42ae8c0fa9530fe5f781a)
+- **PR #4**: OPEN (Docs - Smoke Evidence)
 
 ## Metro Başlatma Komutu
 ```cmd
