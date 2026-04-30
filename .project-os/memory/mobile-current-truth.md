@@ -1,10 +1,10 @@
 # Mobile Current Truth - 2026-04-30
 
 ## Proje Durumu
-- **Branch**: feat/mobile-dashboard-card-refinement
-- **Base Commit (main)**: 0df18f99580afcfe8a869c6cdd34d623c7e209c9
-- **Last Code Commit**: a868a68ccadb2bedafa928c1a6b71919ae9dff5a
-- **PR**: #5 OPEN - Role dashboard static card refinement
+- **Branch**: main
+- **Base Commit (main)**: 07db58a
+- **Last Code Commit**: f2824a786bb8c2b5723ea70246ac8187fe8f5531
+- **PR**: #5 MERGED - Role dashboard static card refinement
 
 ## Typecheck
 - **Durum**: GREEN
@@ -52,7 +52,7 @@
 - **PR #2**: MERGED (commit: 8907550c3bf5632046615ac83c7cab815e84ef4b)
 - **PR #3**: MERGED (commit: 987529d555dd221293f42ae8c0fa9530fe5f781a)
 - **PR #4**: MERGED (Docs - Smoke Evidence)
-- **PR #5**: OPEN (Role dashboard static card refinement. No backend/auth/RBAC/tenant changes. No dependency changes. No migration.)
+- **PR #5**: MERGED (commit: 07db58a) (Role dashboard static card refinement. No backend/auth/RBAC/tenant changes. No dependency changes. No migration.)
 
 ## Metro Başlatma Komutu
 ```cmd
