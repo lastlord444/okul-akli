@@ -10,22 +10,21 @@
 - **Screenshot Listesi**:
   - `01-login.png`
 - **Çalıştırılan Komutlar**:
+  - `adb reverse tcp:8081 tcp:8081` (Metro sunucusuna cihazdan erişim için USB port yönlendirmesi sağlandı)
   - `pnpm --filter okul-akli-mobile exec tsc --noEmit`
   - `adb devices -l`
-  - `adb shell getprop ro.product.manufacturer`
-  - `adb shell getprop ro.product.model`
-  - `adb shell getprop ro.build.version.release`
-  - `adb shell screencap -p /sdcard/okul-akli-current.png`
-  - `adb pull /sdcard/okul-akli-current.png .project-os/evidence/mobile/pr7-android-smoke/01-login.png`
+  - `adb shell getprop ...`
+  - `adb shell screencap -p /sdcard/okul-akli-screen.png`
+  - `adb pull /sdcard/okul-akli-screen.png .project-os/evidence/mobile/pr7-android-smoke/01-login.png`
 - **Sonuç**:
-  - Login açıldı mı?: Evet
-  - Student dashboard açıldı mı?: Ajan üzerinden ekrana dokunma yetkisi olmadığı için doğrulanamadı (Limitation).
-  - Coming soon Alert göründü mü?: Doğrulanamadı.
-  - Parent dashboard açıldı mı?: Doğrulanamadı.
-  - Teacher dashboard açıldı mı?: Doğrulanamadı.
+  - Login açıldı mı?: Evet (Metro bağlantı hatası `adb reverse` ile çözüldükten sonra başarılı login ekran görüntüsü alındı).
+  - Student dashboard açıldı mı?: Hayır (Ajan üzerinden ekrana dokunma yetkisi olmadığı için geçiş yapılamadı - Limitation).
+  - Coming soon Alert göründü mü?: Hayır.
+  - Parent dashboard açıldı mı?: Hayır.
+  - Teacher dashboard açıldı mı?: Hayır.
 - **Eksikler**:
   - CI/status check yok.
-  - Sadece aktif ekran görüntüsü alınabildi, cihaz navigasyonu otomatik yapılamadığı için diğer dashboard ekranları fotoğraflanamadı. Eksik ekranlar: student, parent, teacher dashboard ve alert.
+  - Cihaz otomasyon/navigasyon yeteneğim olmadığı için login ekranı sonrası dashboard'lara manuel geçiş yapılamadı.
 - **Protected core**:
   - No backend/auth/RBAC/tenant/payment/SMS/notification changes
   - No dependency changes
