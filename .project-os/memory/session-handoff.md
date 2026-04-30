@@ -24,7 +24,7 @@ Commands Run:
 - git checkout main, git pull --ff-only
 - pnpm --filter okul-akli-mobile exec tsc --noEmit
 - git diff --check
-GitHub Check: PR #4 MERGED, main branch memory sync commit atılacak.
+GitHub Check: PR #4 MERGED, post-merge memory sync commit pushed to main: bff5e9e755215080446b425ceae0c26fe46e639a.
 Known Risks: Kartlar statik veri kullanıyor, gerçek veri bağlantısı yok.
 What Mehmet Learned: Ajanın çalıştırdığı komutlar (örn. adb) shell ortamında yoksa veya kullanılamıyorsa, bu durumu örtbas etmek yerine dürüstçe dokümante etmek ("not available" / "not included") şeffaflık ve dürüstlük (repo truth) açısından en doğrusudur.
 Scope Locked For Next Session: Next phase planning / implementation

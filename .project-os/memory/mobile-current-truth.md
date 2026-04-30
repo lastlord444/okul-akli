@@ -2,7 +2,7 @@
 
 ## Proje Durumu
 - **Branch**: main
-- **Base Commit (main)**: ee342e7f4c4f61dd2f7e9969ebb32e7c1a67a0d7
+- **Base Commit (main)**: bff5e9e755215080446b425ceae0c26fe46e639a
 - **Last Code Commit**: 987529d555dd221293f42ae8c0fa9530fe5f781a
 - **PR**: #4 (MERGED - Mobile Smoke Evidence)
 
