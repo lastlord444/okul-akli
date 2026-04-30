@@ -42,8 +42,8 @@
 - Payment/ödeme kartı eklenmedi
 
 ## Smoke Test Durumu
-- **Fiziksel cihaz testi**: Manuel-assisted fiziksel cihaz testi yapıldı. (PR #7)
-- **Ekran Görüntüleri**: 5 ekran görüntüsü (Login, Öğrenci, Veli, Öğretmen, Alert) `.project-os/evidence/mobile/pr7-android-smoke/` altına eklendi.
+- **PR #7 Fiziksel cihaz testi**: Manuel-assisted fiziksel cihaz testi yapıldı. Ekran görüntüleri `.project-os/evidence/mobile/pr7-android-smoke/` altına eklendi.
+- **PR #9 Fiziksel cihaz testi**: NOT RUN / SKIPPED (Android visual smoke blocked by local device/emulator connectivity; no fake screenshot created). Sadece Typecheck ve statik kod doğrulaması yapıldı.
 - **CI/Status Check**: Not available.
 - **Typecheck**: GREEN
 - **git diff --check**: TEMIZ
