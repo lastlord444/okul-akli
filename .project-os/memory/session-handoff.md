@@ -20,7 +20,7 @@ Commands Run:
 - adb devices, adb shell screencap (failed: adb not in PATH)
 - pnpm --filter okul-akli-mobile exec tsc --noEmit
 - git diff --check
-GitHub Check: PR #4 OPEN, drift fix commit atılacak.
+GitHub Check: PR #4 OPEN, drift fix commit pushed to chore/mobile-smoke-evidence.
 Known Risks: Kartlar statik veri kullanıyor, gerçek veri bağlantısı yok.
 What Mehmet Learned: Ajanın çalıştırdığı komutlar (örn. adb) shell ortamında yoksa veya kullanılamıyorsa, bu durumu örtbas etmek yerine dürüstçe dokümante etmek ("not available" / "not included") şeffaflık ve dürüstlük (repo truth) açısından en doğrusudur.
 Scope Locked For Next Session: Next phase planning / implementation
