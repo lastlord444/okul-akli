@@ -1,0 +1,33 @@
+# PR #7 Android Physical Smoke Evidence
+
+- **Test Tarihi**: 2026-04-30
+- **Branch**: docs/mobile-android-smoke-evidence-pr7
+- **Commit SHA**: ad2efb5989f9b3a38d47d75108d97370247035f2
+- **Cihaz Üretici/Model**: Xiaomi / 24122RKC7G
+- **Android Sürümü**: 16
+- **Test Tipi**: physical Android smoke
+- **Test Edilen Ekranlar**: Login
+- **Screenshot Listesi**:
+  - `01-login.png`
+- **Çalıştırılan Komutlar**:
+  - `pnpm --filter okul-akli-mobile exec tsc --noEmit`
+  - `adb devices -l`
+  - `adb shell getprop ro.product.manufacturer`
+  - `adb shell getprop ro.product.model`
+  - `adb shell getprop ro.build.version.release`
+  - `adb shell screencap -p /sdcard/okul-akli-current.png`
+  - `adb pull /sdcard/okul-akli-current.png .project-os/evidence/mobile/pr7-android-smoke/01-login.png`
+- **Sonuç**:
+  - Login açıldı mı?: Evet
+  - Student dashboard açıldı mı?: Ajan üzerinden ekrana dokunma yetkisi olmadığı için doğrulanamadı (Limitation).
+  - Coming soon Alert göründü mü?: Doğrulanamadı.
+  - Parent dashboard açıldı mı?: Doğrulanamadı.
+  - Teacher dashboard açıldı mı?: Doğrulanamadı.
+- **Eksikler**:
+  - CI/status check yok.
+  - Sadece aktif ekran görüntüsü alınabildi, cihaz navigasyonu otomatik yapılamadığı için diğer dashboard ekranları fotoğraflanamadı. Eksik ekranlar: student, parent, teacher dashboard ve alert.
+- **Protected core**:
+  - No backend/auth/RBAC/tenant/payment/SMS/notification changes
+  - No dependency changes
+  - No migration
+  - No app code changes
