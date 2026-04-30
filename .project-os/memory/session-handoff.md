@@ -2,12 +2,12 @@
 
 Project: Okul Aklı
 Active Domain: Mobile role dashboard refinement
-Current Slice: PR #6 - Mobile dashboard cards coming-soon interaction
-Progress: PR #6 oluşturuldu. Öğrenci, veli ve öğretmen dashboard kartlarına "Yakında" uyarı mesajı eklendi.
-Repo Truth: `feat/mobile-dashboard-coming-soon-alerts` branch aktif. PR #6 OPEN.
+Current Slice: PR #6 Post-Merge Memory Sync
+Progress: PR #6 başarıyla merge edildi. `main` branch'e geçilerek hafıza dosyaları post-merge senkronizasyonuna tabi tutuldu.
+Repo Truth: `main` branch aktif. PR #6 MERGED. Merge Commit: de732d6.
 Completed This Session: 
-- PR #6 OPEN
-- Scope: dashboard cards coming-soon interaction
+- PR #6 MERGED
+- Dashboard cards coming-soon interaction main'e geçti
 - Changed code files: 3 dashboard dosyası
 - Memory files updated
 - No backend/auth/RBAC/tenant changes
@@ -16,24 +16,21 @@ Completed This Session:
 - CI/status check not available
 - Android screenshot not present
 Files Changed: 
-- apps/mobile/src/app/(student)/index.tsx
-- apps/mobile/src/app/(parent)/index.tsx
-- apps/mobile/src/app/(teacher)/index.tsx
 - .project-os/memory/mobile-current-truth.md
 - .project-os/memory/session-handoff.md
 Migrations: Yok
 Tests: Typecheck (GREEN)
 Commands Run:
+- gh pr merge 6 --merge
 - git checkout main
 - git pull --ff-only origin main
-- git checkout -b feat/mobile-dashboard-coming-soon-alerts
 - pnpm --filter okul-akli-mobile exec tsc --noEmit
 - git diff --check
-- gh pr create ...
-GitHub Check: PR #6 OPEN. Code and memory changes pushed to feature branch.
+- git status --short
+GitHub Check: PR #6 MERGED. Post-merge memory sync commit pushed to main.
 Known Risks: Kartlar hâlâ gerçek veri bağlantısı kullanmıyor.
-What Mehmet Learned: Ajan ve kullanıcı hafızasının kod gerçeğiyle (repository truth) 1:1 aynı olması projenin gelecekteki bakımını ve diğer ajanlara teslimini (session handoff) çok daha güvenilir hale getirir. Kapsamı kesin sınırlamak, projenin büyümesini kontrol altında tutar.
-Scope Locked For Next Session: PR #6 Review and Merge
+What Mehmet Learned: Ajan ve kullanıcı hafızasının kod gerçeğiyle (repository truth) 1:1 aynı olması projenin gelecekteki bakımını ve diğer ajanlara teslimini (session handoff) çok daha güvenilir hale getirir. PR merge sonrası hafıza dosyalarının main branch'inde güncellenmesi döngüyü tamamlar.
+Scope Locked For Next Session: Next phase planning / implementation
 Explicit Do Not Touch: Protected core (auth, RBAC, vb.), backend.
-Next Exact Task: PR #6 Code Review or Merge
-Drift Audit: PR #6 işleminde belirlenen kapsamın dışına çıkılmadı. Protected core'a dokunulmadı. Kapsam aşımı olmadı. Yeni dependency eklenmedi.
+Next Exact Task: Next mobile slice planning
+Drift Audit: PR #6 merge işleminde kod değişikliği yapılmadı. Protected core'a dokunulmadı. Kapsam aşımı olmadı. Sadece docs/memory güncellendi.

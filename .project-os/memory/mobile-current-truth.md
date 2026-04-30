@@ -1,10 +1,10 @@
 # Mobile Current Truth - 2026-04-30
 
 ## Proje Durumu
-- **Branch**: feat/mobile-dashboard-coming-soon-alerts
-- **Base Commit (main)**: f165470
+- **Branch**: main
+- **Base Commit (main)**: de732d6
 - **Last Code Commit**: 63a02da
-- **PR**: #6 OPEN - Dashboard cards coming-soon interaction
+- **PR**: #6 MERGED - Dashboard cards coming-soon interaction
 
 ## Typecheck
 - **Durum**: GREEN
@@ -53,7 +53,7 @@
 - **PR #3**: MERGED (commit: 987529d555dd221293f42ae8c0fa9530fe5f781a)
 - **PR #4**: MERGED (Docs - Smoke Evidence)
 - **PR #5**: MERGED (commit: 07db58a)
-- **PR #6**: OPEN (Branch: feat/mobile-dashboard-coming-soon-alerts. No backend/auth/RBAC/tenant changes. No dependency changes. No migration.)
+- **PR #6**: MERGED (commit: de732d6) (Dashboard cards coming-soon interaction main'e geçti. No backend/auth/RBAC/tenant changes. No dependency changes. No migration.)
 
 ## Metro Başlatma Komutu
 ```cmd
