@@ -2,21 +2,25 @@
 
 ## Proje Durumu
 - **Branch**: feat/mobile-dashboard-card-refinement
-- **Base Commit (main)**: bff5e9e755215080446b425ceae0c26fe46e639a
-- **Last Code Commit**: a48deac (local port for role dashboard refinement)
-- **PR**: #5 (OPEN - Role dashboard static card refinement)
+- **Base Commit (main)**: 0df18f99580afcfe8a869c6cdd34d623c7e209c9
+- **Last Code Commit**: a868a68ccadb2bedafa928c1a6b71919ae9dff5a
+- **PR**: #5 OPEN - Role dashboard static card refinement
 
 ## Typecheck
 - **Durum**: GREEN
 - **Komut**: `npx tsc -p apps/mobile/tsconfig.json --noEmit`
 - **git diff --check**: TEMIZ (LF/CRLF uyarıları Windows autocrlf normalitesi)
 
-## PR #5 — Değişen Dosyalar (3)
+## PR #5 — Değişen Dosyalar (5 total, 3 code)
 | Dosya | Değişiklik |
 |-------|-----------|
 | `apps/mobile/src/app/(student)/index.tsx` | Öğrenci dashboard static card refinement |
 | `apps/mobile/src/app/(parent)/index.tsx` | Veli dashboard static card refinement |
 | `apps/mobile/src/app/(teacher)/index.tsx` | Öğretmen dashboard static card refinement |
+| `.project-os/memory/mobile-current-truth.md` | PR state tracking |
+| `.project-os/memory/session-handoff.md` | Session tracking |
+
+*Not: `commit-msg.txt` ve `pr-body.txt` artifact dosyaları tamamen silinmiş ve PR dışı bırakılmıştır.*
 
 ## Login Ekranı Değişiklikleri (login.tsx)
 - SafeAreaView kullanıldı
