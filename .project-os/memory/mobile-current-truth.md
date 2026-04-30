@@ -1,10 +1,10 @@
 # Mobile Current Truth - 2026-04-30
 
 ## Proje Durumu
-- **Branch**: docs/mobile-android-smoke-runbook
-- **Base Commit (main)**: 61acaf4
+- **Branch**: main
+- **Base Commit (main)**: 958ea40
 - **Last Code Commit**: 63a02da
-- **PR**: #8 OPEN - Android smoke runbook documentation
+- **PR**: #8 MERGED - Android smoke runbook documentation
 
 ## Typecheck
 - **Durum**: GREEN
@@ -55,7 +55,7 @@
 - **PR #5**: MERGED (commit: 07db58a)
 - **PR #6**: MERGED (commit: de732d6)
 - **PR #7**: MERGED (commit: d47aa31493c76b4bbc71129728bb96076030be2d)
-- **PR #8**: OPEN - Android smoke runbook documentation
+- **PR #8**: MERGED (commit: 958ea4071d5c0da086b98a609555ece5980e3202) (Android smoke runbook main'e geçti. No app code changes.)
 
 ## Metro Başlatma Komutu
 ```cmd
