@@ -1,10 +1,10 @@
 # Mobile Current Truth - 2026-04-30
 
 ## Proje Durumu
-- **Branch**: main
-- **Base Commit (main)**: d47aa31
+- **Branch**: docs/mobile-android-smoke-runbook
+- **Base Commit (main)**: 61acaf4
 - **Last Code Commit**: 63a02da
-- **PR**: #7 MERGED - Android physical device smoke evidence pack
+- **PR**: #8 OPEN - Android smoke runbook documentation
 
 ## Typecheck
 - **Durum**: GREEN
@@ -53,8 +53,9 @@
 - **PR #3**: MERGED (commit: 987529d555dd221293f42ae8c0fa9530fe5f781a)
 - **PR #4**: MERGED (Docs - Smoke Evidence)
 - **PR #5**: MERGED (commit: 07db58a)
-- **PR #6**: MERGED (commit: de732d6) (Dashboard cards coming-soon interaction main'e geçti. No backend/auth/RBAC/tenant changes. No dependency changes. No migration.)
-- **PR #7**: MERGED (commit: d47aa31493c76b4bbc71129728bb96076030be2d) (Android physical smoke evidence main'e geçti. 5 screenshot `.project-os/evidence/mobile/pr7-android-smoke/` altına eklendi. No app code changes.)
+- **PR #6**: MERGED (commit: de732d6)
+- **PR #7**: MERGED (commit: d47aa31493c76b4bbc71129728bb96076030be2d)
+- **PR #8**: OPEN - Android smoke runbook documentation
 
 ## Metro Başlatma Komutu
 ```cmd
