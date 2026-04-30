@@ -1,10 +1,10 @@
 # Mobile Current Truth - 2026-04-30
 
 ## Proje Durumu
-- **Branch**: feat/mobile-login-ux-polish
-- **Base Commit (main)**: 20d72be
+- **Branch**: main
+- **Base Commit (main)**: f62583d
 - **Last Code Commit**: 9f8c64a
-- **PR**: #9 OPEN - Mobile login small UX polish
+- **PR**: #9 MERGED - Mobile login small UX polish
 
 ## Typecheck
 - **Durum**: GREEN
@@ -56,7 +56,7 @@
 - **PR #6**: MERGED (commit: de732d6)
 - **PR #7**: MERGED (commit: d47aa31493c76b4bbc71129728bb96076030be2d)
 - **PR #8**: MERGED (commit: 958ea4071d5c0da086b98a609555ece5980e3202)
-- **PR #9**: OPEN - Mobile login small UX polish
+- **PR #9**: MERGED (commit: f62583d)
 
 ## Metro Başlatma Komutu
 ```cmd

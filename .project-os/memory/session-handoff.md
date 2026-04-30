@@ -4,21 +4,21 @@ Project: Okul Aklı
 Active Domain: Mobile UI / UX Refinement & Documentation
 Current Slice: PR #9 Mobile login small UX polish
 Progress: Login ekranına rol seçimlerini detaylandıran statik bir UX yardım/bilgi alanı eklendi.
-Repo Truth: `feat/mobile-login-ux-polish` branch aktif. PR #9 OPEN.
+Repo Truth: `main` branch aktif. PR #9 MERGED.
 Completed This Session: 
-- PR #9 OPEN
-- Branch: feat/mobile-login-ux-polish
-- Scope: login small UX polish
+- PR #9 MERGED (commit: f62583d)
+- Branch: main
+- Scope: mobile login small UX polish
 - Changed code files: apps/mobile/src/app/login.tsx
 - Typecheck GREEN
 - git diff --check CLEAN
-- Visual smoke evidence: NOT RUN / SKIPPED
-- Reason: Android visual smoke blocked by local device/emulator connectivity; no fake screenshot created
+- Visual smoke SKIPPED, reason açık (Android visual smoke blocked by local device/emulator connectivity; no fake screenshot created)
 - No auth/backend/RBAC/tenant changes
 - No dependency changes
 - No migration
+- No protected core touch
 - CI/status check not available
-- Known risk: app still uses static data
+- Known risk: static app data continues
 Files Changed: 
 - apps/mobile/src/app/login.tsx
 - .project-os/memory/mobile-current-truth.md
