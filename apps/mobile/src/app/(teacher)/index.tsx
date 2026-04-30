@@ -1,6 +1,6 @@
 // Okul Aklı - Öğretmen Dashboard
 // Statik kartlar + rol seçimine dönüş butonu
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Alert, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 
 // Öğretmen paneli statik kart verileri (gerçek veri yok)
@@ -20,7 +20,11 @@ export default function TeacherDashboard() {
 
       <View style={styles.cardGrid}>
         {teacherCards.map((card) => (
-          <View key={card.title} style={styles.card}>
+          <Pressable
+            key={card.title}
+            style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
+            onPress={() => Alert.alert('Yakında', 'Bu modül henüz aktif değil.')}
+          >
             <View style={styles.cardHeader}>
               <View style={styles.cardTitleRow}>
                 <Text style={styles.iconText}>{card.icon}</Text>
@@ -31,7 +35,7 @@ export default function TeacherDashboard() {
               </View>
             </View>
             <Text style={styles.cardDescription}>{card.description}</Text>
-          </View>
+          </Pressable>
         ))}
       </View>
 
@@ -81,6 +85,9 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.08,
     shadowRadius: 3,
+  },
+  cardPressed: {
+    opacity: 0.92,
   },
   cardHeader: {
     flexDirection: 'row',
