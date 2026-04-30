@@ -1,10 +1,10 @@
 # Mobile Current Truth - 2026-04-30
 
 ## Proje Durumu
-- **Branch**: main
-- **Base Commit (main)**: 958ea40
-- **Last Code Commit**: 63a02da
-- **PR**: #8 MERGED - Android smoke runbook documentation
+- **Branch**: feat/mobile-login-ux-polish
+- **Base Commit (main)**: 20d72be
+- **Last Code Commit**: 9f8c64a
+- **PR**: #9 OPEN - Mobile login small UX polish
 
 ## Typecheck
 - **Durum**: GREEN
@@ -42,8 +42,8 @@
 - Payment/ödeme kartı eklenmedi
 
 ## Smoke Test Durumu
-- **Fiziksel cihaz testi**: Manuel-assisted fiziksel cihaz testi yapıldı. (PR #7)
-- **Ekran Görüntüleri**: 5 ekran görüntüsü (Login, Öğrenci, Veli, Öğretmen, Alert) `.project-os/evidence/mobile/pr7-android-smoke/` altına eklendi.
+- **PR #7 Fiziksel cihaz testi**: Manuel-assisted fiziksel cihaz testi yapıldı. Ekran görüntüleri `.project-os/evidence/mobile/pr7-android-smoke/` altına eklendi.
+- **PR #9 Fiziksel cihaz testi**: NOT RUN / SKIPPED (Android visual smoke blocked by local device/emulator connectivity; no fake screenshot created). Sadece Typecheck ve statik kod doğrulaması yapıldı.
 - **CI/Status Check**: Not available.
 - **Typecheck**: GREEN
 - **git diff --check**: TEMIZ
@@ -55,7 +55,8 @@
 - **PR #5**: MERGED (commit: 07db58a)
 - **PR #6**: MERGED (commit: de732d6)
 - **PR #7**: MERGED (commit: d47aa31493c76b4bbc71129728bb96076030be2d)
-- **PR #8**: MERGED (commit: 958ea4071d5c0da086b98a609555ece5980e3202) (Android smoke runbook main'e geçti. No app code changes.)
+- **PR #8**: MERGED (commit: 958ea4071d5c0da086b98a609555ece5980e3202)
+- **PR #9**: OPEN - Mobile login small UX polish
 
 ## Metro Başlatma Komutu
 ```cmd
