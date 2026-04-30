@@ -1,10 +1,10 @@
 # Mobile Current Truth - 2026-04-30
 
 ## Proje Durumu
-- **Branch**: main
-- **Base Commit (main)**: de732d6
+- **Branch**: docs/mobile-android-smoke-evidence-pr7
+- **Base Commit (main)**: ad2efb5
 - **Last Code Commit**: 63a02da
-- **PR**: #6 MERGED - Dashboard cards coming-soon interaction
+- **PR**: #7 OPEN - Android physical device smoke evidence pack
 
 ## Typecheck
 - **Durum**: GREEN
@@ -42,8 +42,8 @@
 - Payment/ödeme kartı eklenmedi
 
 ## Smoke Test Durumu
-- **Fiziksel cihaz testi**: Daha önce manuel olarak test edildiği hafızaya kaydedilmişti. (PR #5 statik değişiklikler)
-- **Ekran Görüntüleri**: PR'da yer almıyor (Android screenshot not present).
+- **Fiziksel cihaz testi**: Manuel-assisted fiziksel cihaz testi yapıldı. (PR #7)
+- **Ekran Görüntüleri**: 5 ekran görüntüsü (Login, Öğrenci, Veli, Öğretmen, Alert) `.project-os/evidence/mobile/pr7-android-smoke/` altına eklendi.
 - **CI/Status Check**: Not available.
 - **Typecheck**: GREEN
 - **git diff --check**: TEMIZ
@@ -54,6 +54,7 @@
 - **PR #4**: MERGED (Docs - Smoke Evidence)
 - **PR #5**: MERGED (commit: 07db58a)
 - **PR #6**: MERGED (commit: de732d6) (Dashboard cards coming-soon interaction main'e geçti. No backend/auth/RBAC/tenant changes. No dependency changes. No migration.)
+- **PR #7**: OPEN - Android physical device smoke evidence pack
 
 ## Metro Başlatma Komutu
 ```cmd

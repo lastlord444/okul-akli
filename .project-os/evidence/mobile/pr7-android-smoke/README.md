@@ -1,0 +1,35 @@
+# PR #7 Android Physical Smoke Evidence
+
+- **Test Tarihi**: 2026-04-30
+- **Branch**: docs/mobile-android-smoke-evidence-pr7
+- **Commit SHA**: ad2efb5989f9b3a38d47d75108d97370247035f2
+- **Cihaz Üretici/Model**: Xiaomi / 24122RKC7G
+- **Android Sürümü**: 16
+- **Test Tipi**: physical Android smoke (manuel-assisted)
+- **Test Edilen Ekranlar**: Login, Öğrenci Dashboard, Öğrenci Alert, Veli Dashboard, Öğretmen Dashboard
+- **Screenshot Listesi**:
+  - `01-login.png`
+  - `02-student-dashboard.png`
+  - `03-student-coming-soon-alert.png`
+  - `04-parent-dashboard.png`
+  - `05-teacher-dashboard.png`
+- **Çalıştırılan Komutlar**:
+  - `adb reverse tcp:8081 tcp:8081` (Metro sunucusuna cihazdan erişim için USB port yönlendirmesi korundu)
+  - `pnpm --filter okul-akli-mobile exec tsc --noEmit`
+  - `adb devices -l`
+  - `adb shell getprop ...`
+  - `adb shell screencap -p /sdcard/okul-akli-screen.png`
+  - `adb pull` komutlarıyla 5 ekran görüntüsü alındı
+- **Sonuç**:
+  - Login açıldı mı?: Evet
+  - Student dashboard açıldı mı?: Evet
+  - Coming soon Alert göründü mü?: Evet
+  - Parent dashboard açıldı mı?: Evet
+  - Teacher dashboard açıldı mı?: Evet
+- **Eksikler**:
+  - CI/status check yok.
+- **Protected core**:
+  - No backend/auth/RBAC/tenant/payment/SMS/notification changes
+  - No dependency changes
+  - No migration
+  - No app code changes

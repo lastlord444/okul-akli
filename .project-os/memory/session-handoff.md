@@ -1,36 +1,37 @@
 # Session Handoff - 2026-04-30
 
 Project: Okul Aklı
-Active Domain: Mobile role dashboard refinement
-Current Slice: PR #6 Post-Merge Memory Sync
-Progress: PR #6 başarıyla merge edildi. `main` branch'e geçilerek hafıza dosyaları post-merge senkronizasyonuna tabi tutuldu.
-Repo Truth: `main` branch aktif. PR #6 MERGED. Merge Commit: de732d6.
+Active Domain: Mobile UI / UX Refinement & Documentation
+Current Slice: PR #7 Android physical device smoke evidence pack (Expansion)
+Progress: PR #7 kapsamında eksik olan diğer ekranların (Öğrenci, Veli, Öğretmen Dashboard'ları ve Yakında Alert) ekran görüntüleri manuel-assisted yaklaşımla fiziksel cihazdan başarıyla alındı ve PR evidence klasörüne eklendi.
+Repo Truth: `docs/mobile-android-smoke-evidence-pr7` branch aktif. PR #7 OPEN. Base Commit: ad2efb5.
 Completed This Session: 
-- PR #6 MERGED
-- Dashboard cards coming-soon interaction main'e geçti
-- Changed code files: 3 dashboard dosyası
-- Memory files updated
+- PR #7 OPEN
+- Branch: docs/mobile-android-smoke-evidence-pr7
+- Scope: Android physical device smoke evidence expansion (manuel-assisted)
+- Screenshot evidence path: .project-os/evidence/mobile/pr7-android-smoke/
+- Hangi ekranlar başarıyla görüntülendi: Login, Öğrenci Dashboard, Öğrenci Coming Soon Alert, Veli Dashboard, Öğretmen Dashboard
+- No app code changes
 - No backend/auth/RBAC/tenant changes
 - No dependency changes
 - No migration
 - CI/status check not available
-- Android screenshot not present
+- Known risk: app still uses static data
 Files Changed: 
+- .project-os/evidence/mobile/pr7-android-smoke/README.md
+- .project-os/evidence/mobile/pr7-android-smoke/*.png (02, 03, 04, 05 eklendi)
 - .project-os/memory/mobile-current-truth.md
 - .project-os/memory/session-handoff.md
 Migrations: Yok
-Tests: Typecheck (GREEN)
+Tests: Typecheck (GREEN), Manuel-assisted Smoke Test (GREEN)
 Commands Run:
-- gh pr merge 6 --merge
-- git checkout main
-- git pull --ff-only origin main
+- adb shell screencap / adb pull (5 ekran)
 - pnpm --filter okul-akli-mobile exec tsc --noEmit
-- git diff --check
-- git status --short
-GitHub Check: PR #6 MERGED. Post-merge memory sync commit pushed to main.
-Known Risks: Kartlar hâlâ gerçek veri bağlantısı kullanmıyor.
-What Mehmet Learned: Ajan ve kullanıcı hafızasının kod gerçeğiyle (repository truth) 1:1 aynı olması projenin gelecekteki bakımını ve diğer ajanlara teslimini (session handoff) çok daha güvenilir hale getirir. PR merge sonrası hafıza dosyalarının main branch'inde güncellenmesi döngüyü tamamlar.
-Scope Locked For Next Session: Next phase planning / implementation
-Explicit Do Not Touch: Protected core (auth, RBAC, vb.), backend.
-Next Exact Task: Next mobile slice planning
-Drift Audit: PR #6 merge işleminde kod değişikliği yapılmadı. Protected core'a dokunulmadı. Kapsam aşımı olmadı. Sadece docs/memory güncellendi.
+- git add, commit, push
+GitHub Check: PR #7 OPEN.
+Known Risks: app still uses static data.
+What Mehmet Learned: Fiziksel cihazdaki ekran geçişleri manuel yapılıp ekran görüntüleri ADB ile toplandığında tam kapsamlı smoke test evidence'ı problemsiz bir şekilde repoya eklenebilmektedir.
+Scope Locked For Next Session: PR #7 Merge veya yeni bir mobile slice planlamasına geçilmesi.
+Explicit Do Not Touch: Protected core (auth, RBAC, vb.), backend, app code.
+Next Exact Task: PR #7 merge edilmesi veya yeni bir mobile slice planlamasına geçilmesi.
+Drift Audit: PR #7 kapsamında sadece dokümantasyon (evidence ve memory) düzeltildi. Hiçbir kod değişikliği yapılmadı. Ek dependency eklenmedi.
