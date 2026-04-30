@@ -5,9 +5,9 @@ import { useRouter } from 'expo-router';
 
 // Öğretmen paneli statik kart verileri (gerçek veri yok)
 const teacherCards = [
-  { title: 'Yoklama', description: 'Sınıf yoklamasını hızlıca alın', badge: 'Yakında' },
-  { title: 'Ders Programı', description: 'Haftalık ders programınızı görüntüleyin', badge: 'Yakında' },
-  { title: 'Sınıf Duyuruları', description: 'Sınıfınıza duyuru paylaşın', badge: 'Yakında' },
+  { icon: '✅', title: 'Yoklama', description: 'Sınıf yoklamasını hızlıca alın', badge: 'Yakında' },
+  { icon: '📚', title: 'Ders Programı', description: 'Haftalık ders programınızı görüntüleyin', badge: 'Yakında' },
+  { icon: '📢', title: 'Sınıf Duyuruları', description: 'Sınıfınıza duyuru paylaşın', badge: 'Yakında' },
 ];
 
 export default function TeacherDashboard() {
@@ -22,7 +22,10 @@ export default function TeacherDashboard() {
         {teacherCards.map((card) => (
           <View key={card.title} style={styles.card}>
             <View style={styles.cardHeader}>
-              <Text style={styles.cardTitle}>{card.title}</Text>
+              <View style={styles.cardTitleRow}>
+                <Text style={styles.iconText}>{card.icon}</Text>
+                <Text style={styles.cardTitle}>{card.title}</Text>
+              </View>
               <View style={styles.badge}>
                 <Text style={styles.badgeText}>{card.badge}</Text>
               </View>
@@ -84,6 +87,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 8,
+  },
+  cardTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  iconText: {
+    fontSize: 18,
   },
   cardTitle: {
     fontSize: 16,

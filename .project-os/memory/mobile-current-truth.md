@@ -1,22 +1,22 @@
-# Mobile Current Truth - 2026-04-29
+# Mobile Current Truth - 2026-04-30
 
 ## Proje Durumu
-- **Branch**: main
+- **Branch**: feat/mobile-dashboard-card-refinement
 - **Base Commit (main)**: bff5e9e755215080446b425ceae0c26fe46e639a
-- **Last Code Commit**: 987529d555dd221293f42ae8c0fa9530fe5f781a
-- **PR**: #4 (MERGED - Mobile Smoke Evidence)
+- **Last Code Commit**: a48deac (local port for role dashboard refinement)
+- **PR**: #5 (OPEN - Role dashboard static card refinement)
 
 ## Typecheck
 - **Durum**: GREEN
 - **Komut**: `npx tsc -p apps/mobile/tsconfig.json --noEmit`
 - **git diff --check**: TEMIZ (LF/CRLF uyarıları Windows autocrlf normalitesi)
 
-## PR #4 — Değişen Dosyalar (3)
+## PR #5 — Değişen Dosyalar (3)
 | Dosya | Değişiklik |
 |-------|-----------|
-| `.project-os/evidence/mobile/pr3-smoke/README.md` | Smoke test sonuç belgesi (Screenshot yok, CI yok) |
-| `.project-os/memory/mobile-current-truth.md` | Drift fix |
-| `.project-os/memory/session-handoff.md` | Drift fix |
+| `apps/mobile/src/app/(student)/index.tsx` | Öğrenci dashboard static card refinement |
+| `apps/mobile/src/app/(parent)/index.tsx` | Veli dashboard static card refinement |
+| `apps/mobile/src/app/(teacher)/index.tsx` | Öğretmen dashboard static card refinement |
 
 ## Login Ekranı Değişiklikleri (login.tsx)
 - SafeAreaView kullanıldı
@@ -38,8 +38,8 @@
 - Payment/ödeme kartı eklenmedi
 
 ## Smoke Test Durumu
-- **Fiziksel cihaz testi**: Daha önce manuel olarak test edildiği hafızaya kaydedilmişti.
-- **Ekran Görüntüleri**: PR'da yer almıyor (adb ve UI otomasyon eksikliği nedeniyle alınamadı).
+- **Fiziksel cihaz testi**: Daha önce manuel olarak test edildiği hafızaya kaydedilmişti. (PR #5 statik değişiklikler)
+- **Ekran Görüntüleri**: PR'da yer almıyor (Android screenshot not present).
 - **CI/Status Check**: Not available.
 - **Typecheck**: GREEN
 - **git diff --check**: TEMIZ
@@ -48,6 +48,7 @@
 - **PR #2**: MERGED (commit: 8907550c3bf5632046615ac83c7cab815e84ef4b)
 - **PR #3**: MERGED (commit: 987529d555dd221293f42ae8c0fa9530fe5f781a)
 - **PR #4**: MERGED (Docs - Smoke Evidence)
+- **PR #5**: OPEN (Role dashboard static card refinement. No backend/auth/RBAC/tenant changes. No dependency changes. No migration.)
 
 ## Metro Başlatma Komutu
 ```cmd

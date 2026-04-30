@@ -1,33 +1,36 @@
-# Session Handoff - 2026-04-29
+# Session Handoff - 2026-04-30
 
 Project: Okul Aklı
-Active Domain: Mobile smoke verification evidence
-Current Slice: PR #4 Post-Merge Memory Sync
-Progress: PR #4 başarıyla merge edildi. `main` branch'e geçilerek hafıza dosyaları post-merge senkronizasyonuna tabi tutuldu.
-Repo Truth: PR #4 MERGED. `main` branch güncel, memory dosyaları main üzerinde senkronize edildi.
+Active Domain: Mobile role dashboard refinement
+Current Slice: PR #5 Creation
+Progress: PR #5 (Role dashboard static card refinement) branch'i oluşturuldu, PR clean-up yapıldı. `commit-msg.txt` ve `pr-body.txt` artifact'leri PR dışı bırakıldı.
+Repo Truth: `feat/mobile-dashboard-card-refinement` branch aktif. PR #5 OPEN olacak.
 Completed This Session: 
-- PR #4 GitHub CLI ile merge edildi.
-- `main` branch güncellendi (pull --ff-only).
-- Memory dosyalarında PR #4 statüsü MERGED yapıldı.
-- Sadece evidence ve memory documentation değiştirildiğine dair onay alındı.
-- Screenshots not present.
-- CI/status check not available.
-- No application code changes.
-- Protected core untouched.
+- PR #5 için clean branch oluşturuldu.
+- `a48deac` commit'inden sadece 3 dashboard dosyası kurtarıldı.
+- Artifact dosyaları silindi.
+- No backend/auth/RBAC/tenant changes
+- No dependency changes
+- No migration
+- CI/status check not available
+- Android screenshot not present
 Files Changed: 
+- apps/mobile/src/app/(student)/index.tsx
+- apps/mobile/src/app/(parent)/index.tsx
+- apps/mobile/src/app/(teacher)/index.tsx
 - .project-os/memory/mobile-current-truth.md
 - .project-os/memory/session-handoff.md
 Migrations: Yok
 Tests: Typecheck (GREEN)
 Commands Run:
-- gh pr merge 4 --merge
-- git checkout main, git pull --ff-only
+- git checkout -B feat/mobile-dashboard-card-refinement origin/main
+- git checkout a48deac -- ...
 - pnpm --filter okul-akli-mobile exec tsc --noEmit
 - git diff --check
-GitHub Check: PR #4 MERGED, post-merge memory sync commit pushed to main: bff5e9e755215080446b425ceae0c26fe46e639a.
+GitHub Check: PR #5 OPEN (feat(mobile): refine role dashboard cards)
 Known Risks: Kartlar statik veri kullanıyor, gerçek veri bağlantısı yok.
-What Mehmet Learned: Ajanın çalıştırdığı komutlar (örn. adb) shell ortamında yoksa veya kullanılamıyorsa, bu durumu örtbas etmek yerine dürüstçe dokümante etmek ("not available" / "not included") şeffaflık ve dürüstlük (repo truth) açısından en doğrusudur.
-Scope Locked For Next Session: Next phase planning / implementation
-Explicit Do Not Touch: Protected core (auth, RBAC, vb.), mevcut login ve (student)/(parent)/(teacher) route yapısı.
-Next Exact Task: Next mobile slice planning
-Drift Audit: PR #4'te kod değişikliği yapılmadı. Protected core'a dokunulmadı. Kapsam aşımı olmadı. Sadece docs/memory güncellendi.
+What Mehmet Learned: Ajanların commit atarken oluşturdukları log dosyalarını repoya dahil etmemesi, repository temizliği için hayati önem taşır. Bazen temiz bir branch üzerinden değişiklikleri seçerek almak, branch commit rebase yapmaktan daha güvenlidir.
+Scope Locked For Next Session: PR #5 Merge / Next phase planning
+Explicit Do Not Touch: Protected core (auth, RBAC, vb.), backend.
+Next Exact Task: PR #5 Merge or PR review
+Drift Audit: İzinsiz scope aşımı yapılmadı, temiz bir PR akışı sağlandı.

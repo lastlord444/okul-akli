@@ -5,9 +5,9 @@ import { useRouter } from 'expo-router';
 
 // Veli paneli statik kart verileri (gerçek veri yok, ödeme kartı yok)
 const parentCards = [
-  { title: 'Devamsızlık Özeti', description: 'Çocuğunuzun devam durumunu takip edin', badge: 'Yakında' },
-  { title: 'Öğrenci Duyuruları', description: 'Okul ve sınıf duyurularını görüntüleyin', badge: 'Yakında' },
-  { title: 'Görüşme Notları', description: 'Öğretmen görüşme notlarını okuyun', badge: 'Yakında' },
+  { icon: '📊', title: 'Devamsızlık Özeti', description: 'Çocuğunuzun devam durumunu takip edin', badge: 'Yakında' },
+  { icon: '📢', title: 'Öğrenci Duyuruları', description: 'Okul ve sınıf duyurularını görüntüleyin', badge: 'Yakında' },
+  { icon: '💬', title: 'Görüşme Notları', description: 'Öğretmen görüşme notlarını okuyun', badge: 'Yakında' },
 ];
 
 export default function ParentDashboard() {
@@ -22,7 +22,10 @@ export default function ParentDashboard() {
         {parentCards.map((card) => (
           <View key={card.title} style={styles.card}>
             <View style={styles.cardHeader}>
-              <Text style={styles.cardTitle}>{card.title}</Text>
+              <View style={styles.cardTitleRow}>
+                <Text style={styles.iconText}>{card.icon}</Text>
+                <Text style={styles.cardTitle}>{card.title}</Text>
+              </View>
               <View style={styles.badge}>
                 <Text style={styles.badgeText}>{card.badge}</Text>
               </View>
@@ -84,6 +87,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 8,
+  },
+  cardTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  iconText: {
+    fontSize: 18,
   },
   cardTitle: {
     fontSize: 16,
