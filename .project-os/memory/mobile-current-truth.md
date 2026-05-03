@@ -1,10 +1,10 @@
 # Mobile Current Truth - 2026-05-03
 
 ## Proje Durumu
-- **Branch**: feat/mobile-typecheck-ci
-- **Base Commit (main)**: e50390e
-- **Last Code Commit**: 4a5cdf6
-- **PR**: #10 OPEN - Mobile Typecheck CI
+- **Branch**: main
+- **Base Commit (main)**: b2d3128
+- **Last Code Commit**: b2d3128
+- **PR**: #10 MERGED - Mobile Typecheck CI
 - **CI**: GREEN / GitHub Actions Mobile Typecheck SUCCESS
 
 ## Typecheck
@@ -58,6 +58,7 @@
 - **PR #7**: MERGED (commit: d47aa31493c76b4bbc71129728bb96076030be2d)
 - **PR #8**: MERGED (commit: 958ea4071d5c0da086b98a609555ece5980e3202)
 - **PR #9**: MERGED (commit: f62583d)
+- **PR #10**: MERGED (commit: b2d3128)
 
 ## Metro Başlatma Komutu
 ```cmd
