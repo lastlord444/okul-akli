@@ -1,15 +1,15 @@
-# Mobile Current Truth - 2026-04-30
+# Mobile Current Truth - 2026-05-03
 
 ## Proje Durumu
-- **Branch**: main
-- **Base Commit (main)**: f62583d
-- **Last Code Commit**: 9f8c64a
-- **PR**: #9 MERGED - Mobile login small UX polish
+- **Branch**: feat/mobile-typecheck-ci
+- **Base Commit (main)**: e50390e
+- **Last Code Commit**: 4a5cdf6
+- **PR**: PENDING - Mobile Typecheck CI
 
 ## Typecheck
 - **Durum**: GREEN
-- **Komut**: `npx tsc -p apps/mobile/tsconfig.json --noEmit`
-- **git diff --check**: TEMIZ (LF/CRLF uyarıları Windows autocrlf normalitesi)
+- **Komut**: `pnpm --filter okul-akli-mobile exec tsc --noEmit`
+- **git diff --check**: CLEAN
 
 ## PR #6 — Değişen Dosyalar (5 total, 3 code)
 | Dosya | Değişiklik |
