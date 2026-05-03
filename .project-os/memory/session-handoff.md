@@ -44,7 +44,7 @@ Commands Run:
 GitHub Check: SUCCESS (PR #12 OPEN, Mobile Typecheck GREEN).
 Known limitation: deep-link validates route render, not physical tap from login buttons
 What Mehmet Learned: Deep-linking allows safe autonomous verification of internal app routes.
-Scope Locked For Next Session: Geliştirme akışına devam edilmesi.
+Scope Locked For Next Session: PR #12 merge and post-merge memory sync only.
 Explicit Do Not Touch: Protected core (auth, RBAC, vb.), backend, shared UI.
-Next Exact Task: Android environment sorunsuz hale geldiğinden, UI veya entegrasyon task'larına geri dönüş yapılabilir.
-Drift Audit: Temiz. Uygulama koduna dokunulmadı. Sadece build test edildi.
+Next Exact Task: Merge PR #12, then sync main memory/handoff as PR #12 MERGED.
+Drift Audit: Temiz. Uygulama koduna dokunulmadı. Sadece dashboard route smoke evidence ve memory dosyaları güncellendi.
