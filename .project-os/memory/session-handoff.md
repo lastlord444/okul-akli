@@ -2,44 +2,49 @@
 
 Project: Okul Aklı
 Active Domain: Mobile Infrastructure
-Current Slice: Android Emulator Smoke Test & Env Fix
-Branch: main
-Purpose: Fixing Android SDK environment variables and running local emulator build.
+Current Slice: Android Emulator Dashboard Route Smoke Test
+Branch: docs/mobile-dashboard-smoke-evidence
+PR: #12 OPEN
+Purpose: Student, parent, teacher dashboard route smoke evidence capture
+Navigation method: adb deep-link using okulakli:// route scheme
 Local typecheck: GREEN
 git diff --check: CLEAN
-CI result: Not applicable for local env fix
-Progress: Windows ortam değişkenleri düzeltildi, pnpm android başarılı şekilde derlendi ve uygulama emulator üzerinde çalıştırıldı.
-Repo Truth: `main` branch aktif. Repo temiz.
+CI result: GitHub Actions Mobile Typecheck SUCCESS
+Progress: Dashboard routes rendered and captured successfully.
+Repo Truth: `docs/mobile-dashboard-smoke-evidence` branch active. Repo clean.
 
 Completed This Session: 
-- ANDROID_HOME ve ANDROID_SDK_ROOT ortam değişkenleri tanımlandı.
-- Local Android build (pnpm android) hatasız tamamlandı.
-- Emulator (emulator-5554) üzerinde uygulama çalıştırıldı.
-- Smoke test ekran görüntüsü (`mobile-smoke-login.png`) başarıyla alındı.
-- Local typecheck: GREEN
-- git diff --check: Clean (screenshot moved to docs).
-- Kod veya bağımlılık değişikliği yapılmadı.
-- Protected core untouched.
+- Dashboard route smoke evidence produced (Student, Parent, Teacher via deep link).
+- Evidence path: docs/mobile-smoke-evidence/emulator-dashboard-routes/
+- Screenshots:
+  - student-dashboard.png
+  - parent-dashboard.png
+  - teacher-dashboard.png
+- Typecheck: GREEN
+- git diff --check: CLEAN
+- App code/dependency changes: NONE
+- Protected core: untouched
+- Migrations: none
 
 Files Changed: 
+- docs/mobile-smoke-evidence/emulator-dashboard-routes/*
 - .project-os/memory/mobile-current-truth.md
 - .project-os/memory/session-handoff.md
 
-Migrations: Yok
-Tests: Typecheck (GREEN), Android Build & Run (SUCCESS)
+Migrations: none
+Tests: Typecheck (GREEN), Dashboard Routes Smoke Test (SUCCESS)
 
 Commands Run:
 - git status --short
-- powershell environment variables fix (ANDROID_HOME, Path)
 - adb devices
-- cmd /c "cd /d C:\Projects\okul-akli\apps\mobile && pnpm android"
-- adb exec-out screencap -p > mobile-smoke-login.png
+- adb shell am start -W -a android.intent.action.VIEW -d okulakli://...
+- adb shell screencap -p > ...-dashboard.png
 - pnpm type-check
 
-GitHub Check: SUCCESS (PR #11 MERGED, Mobile Typecheck GREEN).
-Known Risks: Yeni developer'lar Windows ortamında `ANDROID_HOME` tanımlamak zorunda kalacak, aksi takdirde build fail olur.
-What Mehmet Learned: `local.properties` yerine kalıcı environment variable (ANDROID_HOME) kullanmak, Expo prebuild senaryolarında her temizlemede ayarların kaybolmasını engelliyor ve daha stabil çalışıyor.
-Scope Locked For Next Session: Geliştirme akışına devam edilmesi.
+GitHub Check: SUCCESS (PR #12 OPEN, Mobile Typecheck GREEN).
+Known limitation: deep-link validates route render, not physical tap from login buttons
+What Mehmet Learned: Deep-linking allows safe autonomous verification of internal app routes.
+Scope Locked For Next Session: PR #12 merge and post-merge memory sync only.
 Explicit Do Not Touch: Protected core (auth, RBAC, vb.), backend, shared UI.
-Next Exact Task: Android environment sorunsuz hale geldiğinden, UI veya entegrasyon task'larına geri dönüş yapılabilir.
-Drift Audit: Temiz. Uygulama koduna dokunulmadı. Sadece build test edildi.
+Next Exact Task: Merge PR #12, then sync main memory/handoff as PR #12 MERGED.
+Drift Audit: Temiz. Uygulama koduna dokunulmadı. Sadece dashboard route smoke evidence ve memory dosyaları güncellendi.
