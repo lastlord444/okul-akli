@@ -1,8 +1,8 @@
 # Session Handoff - 2026-05-03
 
 Project: Okul Aklı
-Active Domain: Mobile Infrastructure
-Current Slice: Mobile infrastructure smoke evidence slice closed
+Active Domain: Product Core Planning
+Current Slice: Question Bank MVP Audit
 Branch: main
 PR: #12 MERGED
 Purpose: Post-merge memory sync for dashboard route smoke evidence
@@ -44,7 +44,7 @@ Commands Run:
 GitHub Check: SUCCESS (PR #12 MERGED, Mobile Typecheck GREEN).
 Known limitation: deep-link validates route render, not physical tap from login buttons
 What Mehmet Learned: Deep-linking allows safe autonomous verification of internal app routes.
-Scope Locked For Next Session: None. Mobile infrastructure smoke evidence slice closed.
-Explicit Do Not Touch: Protected core (auth, RBAC, vb.), backend, shared UI. Do not continue mobile feature work.
-Next Exact Task: Start Question Bank MVP audit/planning; do not continue mobile feature work until backend/domain plan is confirmed.
+Scope Locked For Next Session: Mobile feature work is frozen. Start Question Bank MVP audit/planning only.
+Explicit Do Not Touch: auth, RBAC, tenant resolution, payment, SMS, notification core, mobile feature expansion.
+Next Exact Task: Audit existing repo for question bank/exam domain files, data models, routes, APIs, and gaps before any implementation.
 Drift Audit: Temiz. Uygulama koduna dokunulmadı. Sadece memory dosyaları güncellendi.
