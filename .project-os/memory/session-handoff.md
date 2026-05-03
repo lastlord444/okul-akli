@@ -2,16 +2,16 @@
 
 Project: Okul Aklı
 Active Domain: Mobile Infrastructure
-Current Slice: Android Emulator Dashboard Route Smoke Test
-Branch: docs/mobile-dashboard-smoke-evidence
-PR: #12 OPEN
-Purpose: Student, parent, teacher dashboard route smoke evidence capture
+Current Slice: Mobile infrastructure smoke evidence slice closed
+Branch: main
+PR: #12 MERGED
+Purpose: Post-merge memory sync for dashboard route smoke evidence
 Navigation method: adb deep-link using okulakli:// route scheme
 Local typecheck: GREEN
 git diff --check: CLEAN
 CI result: GitHub Actions Mobile Typecheck SUCCESS
-Progress: Dashboard routes rendered and captured successfully.
-Repo Truth: `docs/mobile-dashboard-smoke-evidence` branch active. Repo clean.
+Progress: PR #12 merged. Mobile infrastructure slice closed.
+Repo Truth: `main` branch active. Repo clean.
 
 Completed This Session: 
 - Dashboard route smoke evidence produced (Student, Parent, Teacher via deep link).
@@ -41,10 +41,10 @@ Commands Run:
 - adb shell screencap -p > ...-dashboard.png
 - pnpm type-check
 
-GitHub Check: SUCCESS (PR #12 OPEN, Mobile Typecheck GREEN).
+GitHub Check: SUCCESS (PR #12 MERGED, Mobile Typecheck GREEN).
 Known limitation: deep-link validates route render, not physical tap from login buttons
 What Mehmet Learned: Deep-linking allows safe autonomous verification of internal app routes.
-Scope Locked For Next Session: PR #12 merge and post-merge memory sync only.
-Explicit Do Not Touch: Protected core (auth, RBAC, vb.), backend, shared UI.
-Next Exact Task: Merge PR #12, then sync main memory/handoff as PR #12 MERGED.
-Drift Audit: Temiz. Uygulama koduna dokunulmadı. Sadece dashboard route smoke evidence ve memory dosyaları güncellendi.
+Scope Locked For Next Session: None. Mobile infrastructure smoke evidence slice closed.
+Explicit Do Not Touch: Protected core (auth, RBAC, vb.), backend, shared UI. Do not continue mobile feature work.
+Next Exact Task: Start Question Bank MVP audit/planning; do not continue mobile feature work until backend/domain plan is confirmed.
+Drift Audit: Temiz. Uygulama koduna dokunulmadı. Sadece memory dosyaları güncellendi.
