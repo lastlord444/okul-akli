@@ -2,45 +2,45 @@
 
 Project: Okul Aklı
 Active Domain: Mobile Infrastructure
-Current Slice: Mobile Typecheck CI
+Current Slice: Android Emulator Smoke Test & Env Fix
 Branch: main
-Purpose: GitHub Actions mobile typecheck
+Purpose: Fixing Android SDK environment variables and running local emulator build.
 Local typecheck: GREEN
 git diff --check: CLEAN
-CI result: GREEN / GitHub Actions Mobile Typecheck SUCCESS
-Progress: PR #10 merge edildi ve main branch memory senkronizasyonu yapıldı.
-Repo Truth: `main` branch aktif. PR #10 MERGED. Merge Commit: b2d3128.
+CI result: Not applicable for local env fix
+Progress: Windows ortam değişkenleri düzeltildi, pnpm android başarılı şekilde derlendi ve uygulama emulator üzerinde çalıştırıldı.
+Repo Truth: `main` branch aktif. Repo temiz.
 
 Completed This Session: 
-- PR #10 MERGED
-- Changed files: .github/workflows/mobile-typecheck.yml
-- Workflow runs on pull_request to main and push to main
+- ANDROID_HOME ve ANDROID_SDK_ROOT ortam değişkenleri tanımlandı.
+- Local Android build (pnpm android) hatasız tamamlandı.
+- Emulator (emulator-5554) üzerinde uygulama çalıştırıldı.
+- Smoke test ekran görüntüsü (`mobile-smoke-login.png`) başarıyla alındı.
 - Local typecheck: GREEN
-- git diff --check: CLEAN
-- No app code changes
-- No dependency changes
-- No migration
-- Protected core untouched
-- Known risk: none currently; future CI failures should block PR merge
+- git diff --check: Clean (screenshot moved to docs).
+- Kod veya bağımlılık değişikliği yapılmadı.
+- Protected core untouched.
 
 Files Changed: 
-- .github/workflows/mobile-typecheck.yml
+- docs/mobile-smoke-evidence/emulator-android-local/*
 - .project-os/memory/mobile-current-truth.md
 - .project-os/memory/session-handoff.md
 
 Migrations: Yok
-Tests: Typecheck (GREEN)
+Tests: Typecheck (GREEN), Android Build & Run (SUCCESS)
 
 Commands Run:
-- git checkout -b feat/mobile-typecheck-ci
-- pnpm --filter okul-akli-mobile exec tsc --noEmit
-- git diff --check
-- git add, commit, push, gh pr create
+- git status --short
+- powershell environment variables fix (ANDROID_HOME, Path)
+- adb devices
+- cmd /c "cd /d C:\Projects\okul-akli\apps\mobile && pnpm android"
+- adb exec-out screencap -p > mobile-smoke-login.png
+- pnpm type-check
 
-GitHub Check: PENDING.
-Known Risks: first GitHub Actions run may expose pnpm/node version assumptions.
-What Mehmet Learned: CI eklemek PR'larda bağımlılığımızı manuelden otomatiğe kaydırarak güvenli scale etmeyi sağlar.
-Scope Locked For Next Session: PR'ın açılması ve testin GitHub'da sonuçlanmasının kontrolü.
+GitHub Check: PENDING (Evidence PR opened).
+Known Risks: Yeni developer'lar Windows ortamında `ANDROID_HOME` tanımlamak zorunda kalacak, aksi takdirde build fail olur.
+What Mehmet Learned: `local.properties` yerine kalıcı environment variable (ANDROID_HOME) kullanmak, Expo prebuild senaryolarında her temizlemede ayarların kaybolmasını engelliyor ve daha stabil çalışıyor.
+Scope Locked For Next Session: Geliştirme akışına devam edilmesi.
 Explicit Do Not Touch: Protected core (auth, RBAC, vb.), backend, shared UI.
-Next Exact Task: PR merge işlemi veya CI hata verirse düzeltmesi.
-Drift Audit: Temiz. Uygulama koduna dokunulmadı. Sadece GitHub actions YAML eklendi.
+Next Exact Task: Android environment sorunsuz hale geldiğinden, UI veya entegrasyon task'larına geri dönüş yapılabilir.
+Drift Audit: Temiz. Uygulama koduna dokunulmadı. Sadece build test edildi.

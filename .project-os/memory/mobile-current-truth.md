@@ -43,9 +43,10 @@
 - Payment/ödeme kartı eklenmedi
 
 ## Smoke Test Durumu
+- **Android Emulator Smoke Test**: SUCCESS. ANDROID_HOME environment variable ile build başarıyla alındı ve emulator üzerinde çalıştırıldı (kanıtlar `docs/mobile-smoke-evidence/emulator-android-local` altına eklendi).
 - **PR #7 Fiziksel cihaz testi**: Manuel-assisted fiziksel cihaz testi yapıldı. Ekran görüntüleri `.project-os/evidence/mobile/pr7-android-smoke/` altına eklendi.
-- **PR #9 Fiziksel cihaz testi**: NOT RUN / SKIPPED (Android visual smoke blocked by local device/emulator connectivity; no fake screenshot created). Sadece Typecheck ve statik kod doğrulaması yapıldı.
-- **CI/Status Check**: Not available.
+- **PR #9 Fiziksel cihaz testi**: NOT RUN / SKIPPED. Sadece Typecheck yapıldı.
+- **CI/Status Check**: GREEN (Typecheck).
 - **Typecheck**: GREEN
 - **git diff --check**: TEMIZ
 
@@ -59,6 +60,7 @@
 - **PR #8**: MERGED (commit: 958ea4071d5c0da086b98a609555ece5980e3202)
 - **PR #9**: MERGED (commit: f62583d)
 - **PR #10**: MERGED (commit: b2d3128)
+- **PR #11**: OPEN (docs(mobile): add emulator smoke evidence)
 
 ## Metro Başlatma Komutu
 ```cmd
