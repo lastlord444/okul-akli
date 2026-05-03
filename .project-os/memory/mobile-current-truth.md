@@ -5,6 +5,7 @@
 - **Base Commit (main)**: cdca159
 - **Last Code Commit**: b2d3128
 - **PR**: #11 MERGED - docs(mobile): add emulator smoke evidence
+- **PR**: OPEN - docs(mobile): add dashboard route smoke evidence
 - **CI**: GREEN / GitHub Actions Mobile Typecheck SUCCESS
 
 ## Typecheck
@@ -44,6 +45,7 @@
 
 ## Smoke Test Durumu
 - **Android Emulator Smoke Test**: SUCCESS. ANDROID_HOME environment variable ile build başarıyla alındı ve emulator üzerinde çalıştırıldı (kanıtlar `docs/mobile-smoke-evidence/emulator-android-local` altına eklendi).
+- **Android Emulator Dashboard Routes Smoke Test**: SUCCESS. Öğrenci, veli ve öğretmen rotalarına deep-link ile gidildi ve screenshot alındı (`docs/mobile-smoke-evidence/emulator-dashboard-routes/`).
 - **PR #7 Fiziksel cihaz testi**: Manuel-assisted fiziksel cihaz testi yapıldı. Ekran görüntüleri `.project-os/evidence/mobile/pr7-android-smoke/` altına eklendi.
 - **PR #9 Fiziksel cihaz testi**: NOT RUN / SKIPPED. Sadece Typecheck yapıldı.
 - **CI/Status Check**: GREEN (Typecheck).

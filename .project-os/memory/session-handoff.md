@@ -2,7 +2,7 @@
 
 Project: Okul Aklı
 Active Domain: Mobile Infrastructure
-Current Slice: Android Emulator Smoke Test & Env Fix
+Current Slice: Android Emulator Dashboard Route Smoke Test
 Branch: main
 Purpose: Fixing Android SDK environment variables and running local emulator build.
 Local typecheck: GREEN
@@ -12,16 +12,16 @@ Progress: Windows ortam değişkenleri düzeltildi, pnpm android başarılı şe
 Repo Truth: `main` branch aktif. Repo temiz.
 
 Completed This Session: 
-- ANDROID_HOME ve ANDROID_SDK_ROOT ortam değişkenleri tanımlandı.
-- Local Android build (pnpm android) hatasız tamamlandı.
-- Emulator (emulator-5554) üzerinde uygulama çalıştırıldı.
-- Smoke test ekran görüntüsü (`mobile-smoke-login.png`) başarıyla alındı.
-- Local typecheck: GREEN
-- git diff --check: Clean (screenshot moved to docs).
-- Kod veya bağımlılık değişikliği yapılmadı.
+- Dashboard route smoke evidence produced (Student, Parent, Teacher via deep link).
+- Student/parent/teacher dashboard screenshots present.
+- Typecheck GREEN.
+- git diff --check CLEAN.
+- No app code/dependency changes.
 - Protected core untouched.
+- No migration.
 
 Files Changed: 
+- docs/mobile-smoke-evidence/emulator-dashboard-routes/*
 - .project-os/memory/mobile-current-truth.md
 - .project-os/memory/session-handoff.md
 
@@ -36,7 +36,7 @@ Commands Run:
 - adb exec-out screencap -p > mobile-smoke-login.png
 - pnpm type-check
 
-GitHub Check: SUCCESS (PR #11 MERGED, Mobile Typecheck GREEN).
+GitHub Check: PENDING (Evidence PR opened).
 Known Risks: Yeni developer'lar Windows ortamında `ANDROID_HOME` tanımlamak zorunda kalacak, aksi takdirde build fail olur.
 What Mehmet Learned: `local.properties` yerine kalıcı environment variable (ANDROID_HOME) kullanmak, Expo prebuild senaryolarında her temizlemede ayarların kaybolmasını engelliyor ve daha stabil çalışıyor.
 Scope Locked For Next Session: Geliştirme akışına devam edilmesi.
