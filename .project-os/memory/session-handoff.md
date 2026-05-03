@@ -22,7 +22,6 @@ Completed This Session:
 - Protected core untouched.
 
 Files Changed: 
-- docs/mobile-smoke-evidence/emulator-android-local/*
 - .project-os/memory/mobile-current-truth.md
 - .project-os/memory/session-handoff.md
 
@@ -37,7 +36,7 @@ Commands Run:
 - adb exec-out screencap -p > mobile-smoke-login.png
 - pnpm type-check
 
-GitHub Check: PENDING (Evidence PR opened).
+GitHub Check: SUCCESS (PR #11 MERGED, Mobile Typecheck GREEN).
 Known Risks: Yeni developer'lar Windows ortamında `ANDROID_HOME` tanımlamak zorunda kalacak, aksi takdirde build fail olur.
 What Mehmet Learned: `local.properties` yerine kalıcı environment variable (ANDROID_HOME) kullanmak, Expo prebuild senaryolarında her temizlemede ayarların kaybolmasını engelliyor ve daha stabil çalışıyor.
 Scope Locked For Next Session: Geliştirme akışına devam edilmesi.

@@ -2,9 +2,9 @@
 
 ## Proje Durumu
 - **Branch**: main
-- **Base Commit (main)**: b2d3128
+- **Base Commit (main)**: cdca159
 - **Last Code Commit**: b2d3128
-- **PR**: #10 MERGED - Mobile Typecheck CI
+- **PR**: #11 MERGED - docs(mobile): add emulator smoke evidence
 - **CI**: GREEN / GitHub Actions Mobile Typecheck SUCCESS
 
 ## Typecheck
@@ -60,7 +60,7 @@
 - **PR #8**: MERGED (commit: 958ea4071d5c0da086b98a609555ece5980e3202)
 - **PR #9**: MERGED (commit: f62583d)
 - **PR #10**: MERGED (commit: b2d3128)
-- **PR #11**: OPEN (docs(mobile): add emulator smoke evidence)
+- **PR #11**: MERGED (commit: cdca159)
 
 ## Metro Başlatma Komutu
 ```cmd
