@@ -5,7 +5,7 @@
 - **Base Commit (main)**: cdca159
 - **Last Code Commit**: b2d3128
 - **PR**: #11 MERGED - docs(mobile): add emulator smoke evidence
-- **PR**: OPEN - docs(mobile): add dashboard route smoke evidence
+- **PR**: #12 OPEN - docs(mobile): add dashboard route smoke evidence
 - **CI**: GREEN / GitHub Actions Mobile Typecheck SUCCESS
 
 ## Typecheck
