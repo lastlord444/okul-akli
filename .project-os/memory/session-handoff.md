@@ -1,39 +1,43 @@
-# Session Handoff - 2026-04-30
+# Session Handoff - 2026-05-03
 
 Project: Okul Aklı
-Active Domain: Mobile UI / UX Refinement & Documentation
-Current Slice: PR #9 Mobile login small UX polish
-Progress: Login ekranına rol seçimlerini detaylandıran statik bir UX yardım/bilgi alanı eklendi.
-Repo Truth: `main` branch aktif. PR #9 MERGED.
+Active Domain: Mobile Infrastructure
+Current Slice: Mobile Typecheck CI
+Branch: feat/mobile-typecheck-ci
+Purpose: GitHub Actions mobile typecheck
+Local typecheck: GREEN
+git diff --check: CLEAN
+CI result: GREEN / GitHub Actions Mobile Typecheck SUCCESS
+Progress: GitHub Actions workflow triggers güncellendi.
+Repo Truth: `feat/mobile-typecheck-ci` branch aktif. PR #10 OPEN.
+
 Completed This Session: 
-- PR #9 MERGED (commit: f62583d)
-- Branch: main
-- Scope: mobile login small UX polish
-- Changed code files: apps/mobile/src/app/login.tsx
-- Typecheck GREEN
-- git diff --check CLEAN
-- Visual smoke SKIPPED, reason açık (Android visual smoke blocked by local device/emulator connectivity; no fake screenshot created)
-- No auth/backend/RBAC/tenant changes
+- Local workflow creation for mobile typecheck
+- Workflow now runs on pull_request to main and push to main
+- pnpm install updated to use --frozen-lockfile
+- No app code changes
 - No dependency changes
 - No migration
-- No protected core touch
-- CI/status check not available
-- Known risk: static app data continues
+- Protected core untouched
+
 Files Changed: 
-- apps/mobile/src/app/login.tsx
+- .github/workflows/mobile-typecheck.yml
 - .project-os/memory/mobile-current-truth.md
 - .project-os/memory/session-handoff.md
+
 Migrations: Yok
 Tests: Typecheck (GREEN)
+
 Commands Run:
-- git checkout -b feat/mobile-login-ux-polish
+- git checkout -b feat/mobile-typecheck-ci
 - pnpm --filter okul-akli-mobile exec tsc --noEmit
 - git diff --check
 - git add, commit, push, gh pr create
-GitHub Check: PR #9 OPEN.
-Known Risks: app still uses static data.
-What Mehmet Learned: Basit statik UX iyileştirmelerini logic/navigasyon/component-extraction değişikliklerinden izole etmek, frontend entegrasyon risklerini sıfıra indirir.
-Scope Locked For Next Session: PR #9 Merge işlemi.
+
+GitHub Check: PENDING.
+Known Risks: first GitHub Actions run may expose pnpm/node version assumptions.
+What Mehmet Learned: CI eklemek PR'larda bağımlılığımızı manuelden otomatiğe kaydırarak güvenli scale etmeyi sağlar.
+Scope Locked For Next Session: PR'ın açılması ve testin GitHub'da sonuçlanmasının kontrolü.
 Explicit Do Not Touch: Protected core (auth, RBAC, vb.), backend, shared UI.
-Next Exact Task: PR #9'un main'e merge edilmesi.
-Drift Audit: Sadece login.tsx'e statik JSX eklendi. Auth, navigation, layout ve dependency'ler korunuyor.
+Next Exact Task: PR merge işlemi veya CI hata verirse düzeltmesi.
+Drift Audit: Temiz. Uygulama koduna dokunulmadı. Sadece GitHub actions YAML eklendi.
