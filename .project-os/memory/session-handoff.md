@@ -7,17 +7,18 @@ Branch: feat/mobile-typecheck-ci
 Purpose: GitHub Actions mobile typecheck
 Local typecheck: GREEN
 git diff --check: CLEAN
-CI result: PENDING until PR opened
-Progress: GitHub Actions workflow dosyası oluşturuldu.
-Repo Truth: `feat/mobile-typecheck-ci` branch aktif. PR PENDING.
+CI result: GREEN / GitHub Actions Mobile Typecheck SUCCESS
+Progress: GitHub Actions workflow triggers güncellendi.
+Repo Truth: `feat/mobile-typecheck-ci` branch aktif. PR #10 OPEN.
 
 Completed This Session: 
 - Local workflow creation for mobile typecheck
+- Workflow now runs on pull_request to main and push to main
+- pnpm install updated to use --frozen-lockfile
 - No app code changes
 - No dependency changes
 - No migration
 - Protected core untouched
-- Known risk: first GitHub Actions run may expose pnpm/node version assumptions
 
 Files Changed: 
 - .github/workflows/mobile-typecheck.yml
