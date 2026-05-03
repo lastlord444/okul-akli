@@ -1,0 +1,30 @@
+name: Mobile Typecheck
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  typecheck:
+    name: Mobile Typecheck
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run Mobile Typecheck
+        run: pnpm --filter okul-akli-mobile exec tsc --noEmit
