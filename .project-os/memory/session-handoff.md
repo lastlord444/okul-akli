@@ -46,5 +46,5 @@ Known limitation: deep-link validates route render, not physical tap from login 
 What Mehmet Learned: Deep-linking allows safe autonomous verification of internal app routes.
 Scope Locked For Next Session: Mobile feature work is frozen. Start Question Bank MVP audit/planning only.
 Explicit Do Not Touch: auth, RBAC, tenant resolution, payment, SMS, notification core, mobile feature expansion.
-Next Exact Task: Audit existing repo for question bank/exam domain files, data models, routes, APIs, and gaps before any implementation.
+Next Exact Task: Scaffold backend/database infrastructure and define Question Bank MVP data models (Subject, Topic, GradeLevel, Question) without violating protected core boundaries.
 Drift Audit: Temiz. Uygulama koduna dokunulmadı. Sadece memory dosyaları güncellendi.
