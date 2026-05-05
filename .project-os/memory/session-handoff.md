@@ -1,6 +1,6 @@
 # Session Handoff - 2026-05-05
 
-Project: Okul Akli
+Project: Okul Aklı
 Active Domain: Product Core Planning / Question Bank MVP Audit
 Current Slice: Question Bank blueprint commit + PR #13
 Branch: docs/question-bank-mvp-blueprint
@@ -10,12 +10,12 @@ Previous Stable State: PR #12 MERGED. Mobile infrastructure slice closed/frozen.
 ---
 
 Completed This Session:
-- Protected Core Kontrol tablosu duzeltildi (Prisma Schema acıklaması netlestirildi)
-- Question Bank MVP blueprint branch/commit/push yapildi
-- PR #13 olusturuldu
+- Protected Core Kontrol tablosu düzeltildi (Prisma Schema açıklaması netleştirildi)
+- Question Bank MVP blueprint branch/commit/push yapıldı
+- PR #13 oluşturuldu
 - AGENTS.md ve AI_OPERATING_CONTRACT.md eklendi
-- STARTUP_PROTOCOL ve core rules, yeni AI operating contract okuma kuraliyla guncellendi
-- PR template agent kontrol listesiyle guncellendi
+- STARTUP_PROTOCOL ve core rules, yeni AI operating contract okuma kuralıyla güncellendi
+- PR template agent kontrol listesiyle güncellendi
 
 Files Changed (PR #13 - 8 files total):
 - .github/pull_request_template.md
@@ -31,7 +31,7 @@ Migrations: none
 
 Tests:
 - git diff --check CLEAN
-- GitHub Actions Mobile Typecheck SUCCESS (main branch)
+- GitHub Actions Mobile Typecheck SUCCESS (PR #13 head commit)
 
 GitHub Check:
 - Branch: docs/question-bank-mvp-blueprint
@@ -39,20 +39,20 @@ GitHub Check:
 - Remote latest stable: PR #12 (main)
 
 Drift Audit:
-- Application code degismedi (apps/mobile, apps/backend yok)
+- Application code değişmedi (apps/mobile, apps/backend yok)
 - Backend/schema/migration yok
 - Protected core koduna temas yok
-- PR kapsami blueprint + AI operating contract/protocol docs olarak genisledi ve bu acikca belgelendi
+- PR kapsamı blueprint + AI operating contract/protocol docs olarak genişledi ve bu açıkça belgelendi
 
 Known Risks:
-- PR basligi blueprint odakli ama governance/protocol dosyalari da degisti; merge oncesi GPT review gerekir
-- Blueprint henuz review asamasinda
+- PR başlığı blueprint odaklı ama governance/protocol dosyaları da değişti; merge öncesi GPT review gerekir
+- Blueprint henüz review aşamasında
 - Backend stack hâlâ aday karar
-- Auth/RBAC/tenant netlesmeden production CRUD acilmayacak
+- Auth/RBAC/tenant netleşmeden production CRUD açılmayacak
 
 What Mehmet Learned:
-- Blueprint dokumaninda kelime secimi onemli
-- PR kapsami genisleyince Files Changed tam listesi tutulmali
+- Blueprint dokümanında kelime seçimi önemli
+- PR kapsamı genişleyince Files Changed tam listesi tutulmalı
 
 Scope Locked:
 - No backend implementation
