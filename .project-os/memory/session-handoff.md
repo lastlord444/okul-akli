@@ -3,15 +3,16 @@
 Project: Okul Aklı
 Active Domain: Product Core Planning / Question Bank MVP
 Current Slice: Backend Stack ADR completed
-Branch: main
-Repo Truth: main branch active. ADR-0003 accepted for backend stack.
+Branch: docs/backend-stack-adr
+Repo Truth: PR #14 open for backend stack ADR review. Base branch main. No backend implementation yet.
 
 ---
 
 Completed This Session:
 - PR #13 merged into main
 - Question Bank MVP blueprint accepted
-- ADR-0003 backend stack decision accepted (Node.js + Fastify + PostgreSQL + Prisma)
+- ADR-0003 backend stack decision drafted in PR #14
+- Proposed stack: Node.js + Fastify + PostgreSQL + Prisma
 - AI operating contract/protocol docs accepted
 
 Files Changed (This session):
@@ -34,9 +35,10 @@ Tests:
 - git diff --check CLEAN
 
 GitHub Check:
-- Branch: main
-- ADR-0003 accepted
-- PR #13 MERGED
+- Branch: docs/backend-stack-adr
+- PR: #14 OPEN
+- Base: main
+- ADR: ADR-0003 proposed/accepted in PR, pending GPT review and merge
 
 Drift Audit:
 - Application code değişmedi
@@ -49,16 +51,20 @@ Known Risks:
 - Prisma schema Protected Core olarak ele alınmalı
 - Migration data loss riski oluşabilir
 - Auth/RBAC/tenant kararı gelmeden production CRUD açılamaz
+- Prisma schema must not be created until scaffold planning is reviewed and explicitly approved
+- apps/backend creation requires a separate PR after ADR merge
 
 Scope Locked:
-- No backend implementation (scaffold planning next)
+- No backend implementation
+- No apps/backend creation
+- No package/dependency change
 - No Prisma schema
+- No migration
 - No CRUD endpoint
-- No dependency change
+- No auth/RBAC/tenant implementation
 - No mobile feature expansion
 
 Next Exact Task:
-- Backend scaffold planning (after ADR-0003)
-- apps/backend folder creation
-- package.json setup
-- Prisma schema initial (with protected-core review)
+- PR #14 review and merge
+- After merge: memory sync on main
+- Then: backend scaffold planning prompt only
