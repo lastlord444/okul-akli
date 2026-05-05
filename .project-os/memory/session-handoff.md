@@ -2,20 +2,17 @@
 
 Project: Okul Aklı
 Active Domain: Product Core Planning / Question Bank MVP Audit
-Current Slice: Question Bank blueprint commit + PR #13
-Branch: docs/question-bank-mvp-blueprint
-Repo Truth: main branch active. PR #13 open for Question Bank MVP blueprint + AI operating contract.
+Current Slice: Question Bank MVP Blueprint closed / Backend Stack ADR planning next
+Branch: main
+Repo Truth: main branch active. PR #13 MERGED (commit: 1cfc39a17a33a82a9e5c3c722112bf4f361f55e6)
 Previous Stable State: PR #12 MERGED. Mobile infrastructure slice closed/frozen.
 
 ---
 
 Completed This Session:
-- Protected Core Kontrol tablosu düzeltildi (Prisma Schema açıklaması netleştirildi)
-- Question Bank MVP blueprint branch/commit/push yapıldı
-- PR #13 oluşturuldu
-- AGENTS.md ve AI_OPERATING_CONTRACT.md eklendi
-- STARTUP_PROTOCOL ve core rules, yeni AI operating contract okuma kuralıyla güncellendi
-- PR template agent kontrol listesiyle güncellendi
+- PR #13 merged into main
+- Question Bank MVP blueprint accepted as planning baseline
+- AI operating contract/protocol docs accepted
 
 Files Changed (PR #13 - 8 files total):
 - .github/pull_request_template.md
@@ -31,28 +28,27 @@ Migrations: none
 
 Tests:
 - git diff --check CLEAN
-- GitHub Actions Mobile Typecheck SUCCESS (PR #13 head commit)
+- GitHub Actions Mobile Typecheck SUCCESS
 
 GitHub Check:
-- Branch: docs/question-bank-mvp-blueprint
-- PR: #13 open
-- Remote latest stable: PR #12 (main)
+- Branch: main
+- PR: #13 MERGED
+- Merge commit: 1cfc39a17a33a82a9e5c3c722112bf4f361f55e6
+- PR URL: https://github.com/lastlord444/okul-akli/pull/13
 
 Drift Audit:
-- Application code değişmedi (apps/mobile, apps/backend yok)
+- Application code değişmedi
 - Backend/schema/migration yok
 - Protected core koduna temas yok
-- PR kapsamı blueprint + AI operating contract/protocol docs olarak genişledi ve bu açıkça belgelendi
+- Drift: clean
 
 Known Risks:
-- PR başlığı blueprint odaklı ama governance/protocol dosyaları da değişti; merge öncesi GPT review gerekir
-- Blueprint henüz review aşamasında
-- Backend stack hâlâ aday karar
+- Backend stack hâlâ karar aşamasında
 - Auth/RBAC/tenant netleşmeden production CRUD açılmayacak
+- Question Bank implementation henüz başlamadı
 
 What Mehmet Learned:
-- Blueprint dokümanında kelime seçimi önemli
-- PR kapsamı genişleyince Files Changed tam listesi tutulmalı
+- PR merge sonrası main branch memory sync kritik
 
 Scope Locked:
 - No backend implementation
@@ -62,5 +58,4 @@ Scope Locked:
 - No mobile feature expansion
 
 Next Exact Task:
-- PR #13 review and merge
-- Backend implementation planning (after PR #13 merge)
+- Backend stack ADR audit and decision plan
