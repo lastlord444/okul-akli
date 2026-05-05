@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "mobile": "pnpm --filter okul-akli-mobile"
+    "mobile": "pnpm --filter okul-akli-mobile",
+    "backend:dev": "pnpm --filter okul-akli-backend dev",
+    "backend:typecheck": "pnpm --filter okul-akli-backend typecheck",
+    "backend:build": "pnpm --filter okul-akli-backend build"
   }
 }
