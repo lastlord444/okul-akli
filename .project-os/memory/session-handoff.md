@@ -1,20 +1,24 @@
 # Session Handoff - 2026-05-05
 
 Project: Okul Aklı
-Active Domain: Product Core Planning / Question Bank MVP Audit
-Current Slice: Question Bank MVP Blueprint closed / Backend Stack ADR planning next
+Active Domain: Product Core Planning / Question Bank MVP
+Current Slice: Backend Stack ADR completed
 Branch: main
-Repo Truth: main branch active. PR #13 MERGED (commit: 1cfc39a17a33a82a9e5c3c722112bf4f361f55e6)
-Previous Stable State: PR #12 MERGED. Mobile infrastructure slice closed/frozen.
+Repo Truth: main branch active. ADR-0003 accepted for backend stack.
 
 ---
 
 Completed This Session:
 - PR #13 merged into main
-- Question Bank MVP blueprint accepted as planning baseline
+- Question Bank MVP blueprint accepted
+- ADR-0003 backend stack decision accepted (Node.js + Fastify + PostgreSQL + Prisma)
 - AI operating contract/protocol docs accepted
 
-Files Changed (PR #13 - 8 files total):
+Files Changed (This session):
+- .project-os/adr/ADR-0003-backend-stack-for-question-bank.md (new)
+- .project-os/memory/session-handoff.md (updated)
+
+Previous Files (PR #13):
 - .github/pull_request_template.md
 - .project-os/AI_OPERATING_CONTRACT.md
 - .project-os/memory/mobile-current-truth.md
@@ -28,34 +32,33 @@ Migrations: none
 
 Tests:
 - git diff --check CLEAN
-- GitHub Actions Mobile Typecheck SUCCESS
 
 GitHub Check:
 - Branch: main
-- PR: #13 MERGED
-- Merge commit: 1cfc39a17a33a82a9e5c3c722112bf4f361f55e6
-- PR URL: https://github.com/lastlord444/okul-akli/pull/13
+- ADR-0003 accepted
+- PR #13 MERGED
 
 Drift Audit:
 - Application code değişmedi
+- apps/backend yok
 - Backend/schema/migration yok
 - Protected core koduna temas yok
-- Drift: clean
+- ADR ile stack kararı alındı, implementasyon sonra
 
 Known Risks:
-- Backend stack hâlâ karar aşamasında
-- Auth/RBAC/tenant netleşmeden production CRUD açılmayacak
-- Question Bank implementation henüz başlamadı
-
-What Mehmet Learned:
-- PR merge sonrası main branch memory sync kritik
+- Prisma schema Protected Core olarak ele alınmalı
+- Migration data loss riski oluşabilir
+- Auth/RBAC/tenant kararı gelmeden production CRUD açılamaz
 
 Scope Locked:
-- No backend implementation
+- No backend implementation (scaffold planning next)
 - No Prisma schema
 - No CRUD endpoint
 - No dependency change
 - No mobile feature expansion
 
 Next Exact Task:
-- Backend stack ADR audit and decision plan
+- Backend scaffold planning (after ADR-0003)
+- apps/backend folder creation
+- package.json setup
+- Prisma schema initial (with protected-core review)
