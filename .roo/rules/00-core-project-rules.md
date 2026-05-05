@@ -1,5 +1,7 @@
 # Okul Aklı - Temel Proje Kuralları
 
+> **DİKKAT:** Bu projedeki tüm AI ajanları öncelikle repo kökündeki `AGENTS.md` ve `.project-os/AI_OPERATING_CONTRACT.md` dosyalarını okumakla yükümlüdür. Buradaki kurallar ana sözleşmeyi destekler niteliktedir.
+
 ## PROJE BİLGİLERİ
 
 **Proje Adı:** Okul Aklı  
@@ -211,15 +213,11 @@ Gerçek kabul Android development build veya doğrulanmış Android cihaz/emulat
 - shared package extraction
 - backend auth/RBAC/tenant redesign
 
-## AKTİF MOBİL SLICE (Şimdilik izin verilenler)
+## AKTİF DOMAIN VE MOBİL DURUMU
 
-- mobile app shell (mobil uygulama iskeleti)
-- login entry point (giriş noktası)
-- role-based route skeleton (rol tabanlı yönlendirme iskeleti)
-- student empty dashboard (öğrenci boş paneli)
-- parent empty dashboard (veli boş paneli)
-- teacher empty dashboard (öğretmen boş paneli)
-- Android run flow (Android çalışma akışı)
+- **Mobil Altyapı:** Kapanmış/Dondurulmuştur (Closed/Frozen). Yukarıda hedeflenen iskelet tamamlandı. Şu an mobile feature eklenmeyecek.
+- **Aktif Domain:** `Product Core Planning / Question Bank MVP Audit`.
+- Büyük vizyon korunur ama tek active slice ile (şu an Question Bank) ilerlenir.
 
 ## KULLANICIYI EĞİTME KURALI
 

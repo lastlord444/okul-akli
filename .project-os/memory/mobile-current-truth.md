@@ -73,6 +73,11 @@ cmd /c "cd /d c:\Projects\okul-akli\apps\mobile && c:\Projects\okul-akli\node_mo
 ## Bilinen Riskler
 - Kartlar statik veri kullanıyor, gerçek veri bağlantısı yok
 
+## Question Bank MVP Durumu
+- PR #13 open: docs/question-bank-mvp-blueprint
+- Backend implementation planı blueprint olarak mevcut
+- Backend implementation henüz başlatılmadı
+
 ## Önemli Düzeltmeler (PR #2'den devralınan)
 1. **Metro `c:\C:\` Path Bug**: `.npmrc` → `node-linker=hoisted`
 2. **Layout Route Uyarıları**: `_layout.tsx` route isimleri güncellendi
