@@ -8,7 +8,9 @@ Bu protokol, her Roo oturumunun başında yapılması zorunlu adımları tanıml
 
 Her oturum başında sırasıyla şu adımlar gerçekleştirilecektir:
 
-### 1. Roo Kurallarını Oku
+### 1. Ana Sözleşme ve Proje Kurallarını Oku
+- Repo kökündeki `AGENTS.md` okunacak.
+- `.project-os/AI_OPERATING_CONTRACT.md` (Ana proje ve mimari vizyon sözleşmesi) okunacak.
 - `.roo/rules/**` altındaki tüm kural dosyaları okunacak
 - Özellikle `00-core-project-rules.md` ve `10-agent-skills-adapter.md`
 - Aktif modun kural dosyası mutlaka okunacak

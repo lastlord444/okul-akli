@@ -6,6 +6,18 @@
 
 <!-- Bu PR hangi alanda çalışıyor? (örn: mobil iskelet, auth, UI, protokol) -->
 
+## AI Agent Sözleşmesi & Kontrol Listesi
+
+- [ ] `AGENTS.md` okundu
+- [ ] `AI_OPERATING_CONTRACT.md` okundu
+- [ ] `STARTUP_PROTOCOL` okundu
+- [ ] Repo truth kontrol edildi
+- [ ] Protected core teması yok veya açıkça gerekçelendirildi
+- [ ] Test/build/smoke sonucu yazıldı
+- [ ] Migration var/yok yazıldı
+- [ ] Memory/handoff güncellendi
+- [ ] Drift audit yapıldı
+
 ## Scope Dışı Bırakılanlar
 
 <!-- Bu PR'da YAPILMAYAN şeyler -->
