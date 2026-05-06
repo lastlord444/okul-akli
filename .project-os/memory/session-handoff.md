@@ -2,22 +2,29 @@
 
 Project: Okul Aklı
 Active Domain: Product Core Planning / Question Bank MVP
-Current Slice: Backend Stack ADR closed / Backend scaffold planning next
-Branch: main
-Repo Truth: main branch active, PR #14 merged
+Current Slice: Backend scaffold health endpoint
+Branch: feat/backend-scaffold-health
+Repo Truth: apps/backend created with Fastify. Health endpoint added. No Prisma or DB.
 
 ---
 
 Completed This Session:
-- PR #14 merged into main
-- ADR-0003 accepted as backend stack decision
-- Backend implementation not started
+- apps/backend folder and minimal package.json created
+- Fastify server entry (server.ts) and /health endpoint added
+- Backend TypeScript and Typecheck configuration added
+- Root package.json updated with backend scripts
+- Backend typecheck GitHub Action added
 
 Files Changed (This session):
-- .project-os/adr/ADR-0003-backend-stack-for-question-bank.md (new)
+- apps/backend/package.json (new)
+- apps/backend/tsconfig.json (new)
+- apps/backend/src/server.ts (new)
+- apps/backend/src/routes/health.ts (new)
+- package.json (root, updated)
+- .github/workflows/backend-typecheck.yml (new)
 - .project-os/memory/session-handoff.md (updated)
 
-Previous Files (PR #13):
+Previous Files (ADR):
 - .github/pull_request_template.md
 - .project-os/AI_OPERATING_CONTRACT.md
 - .project-os/memory/mobile-current-truth.md
@@ -33,15 +40,11 @@ Tests:
 - git diff --check CLEAN
 
 GitHub Check:
-- Branch: main
-- PR: #14 MERGED
-- ADR: ADR-0003 accepted
-- Backend stack: Node.js + Fastify + PostgreSQL + Prisma
-- Tests: GitHub Actions Mobile Typecheck SUCCESS
+- Branch: feat/backend-scaffold-health
+- Fastify package added
+- Prisma schema: not created
 - Migrations: none
 - Protected core: untouched
-- apps/backend: not created
-- Prisma schema: not created
 - Drift Audit: clean
 
 Drift Audit:
@@ -59,9 +62,7 @@ Known Risks:
 - apps/backend creation requires a separate PR after ADR merge
 
 Scope Locked:
-- No backend implementation
-- No apps/backend creation
-- No package/dependency change
+- No database connection
 - No Prisma schema
 - No migration
 - No CRUD endpoint
@@ -69,4 +70,4 @@ Scope Locked:
 - No mobile feature expansion
 
 Next Exact Task:
-- Backend scaffold planning prompt only
+- PR review and merge, then memory sync
