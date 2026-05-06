@@ -2,16 +2,16 @@
 
 Project: Okul Aklı
 Active Domain: Product Core Planning / Question Bank MVP
-Current Slice: Question Bank domain plan docs
-Branch: docs/question-bank-domain-plan
-Repo Truth: docs-only domain plan PR
+Current Slice: Question Bank domain plan docs closed / Prisma schema planning next
+Branch: main
+Repo Truth: main branch active, PR #16 merged
 
 ---
 
 Completed This Session:
-- Question Bank backend domain schema plan drafted
+- PR #16 merged into main
+- Question Bank backend domain schema plan accepted
 - Blueprint stack decision drift synced with ADR-0003
-- Docs-only PR created for domain planning
 - No code, Prisma schema, migration, database connection, CRUD endpoint, auth/RBAC/tenant changes
 
 Files Changed (This session):
@@ -35,16 +35,17 @@ Tests:
 - git diff --check CLEAN
 
 GitHub Check:
-- Branch: docs/question-bank-domain-plan
-- PR: #16 OPEN
-- docs/domain/question-bank-schema-plan.md added
-- docs/question-bank-mvp-blueprint.md updated
+- Branch: main
+- PR: #16 MERGED
+- Merge commit: 67934c9e8d4af6eb383d0a09ec2873e87728d5fd
+- Backend CI: green before merge
+- Mobile CI: green before merge
 - Prisma schema: not created
 - Migrations: none
 - Database connection: none
 - CRUD endpoint: none
 - Protected core: untouched
-- Drift Audit: clean after this fix
+- Drift Audit: clean
 
 Drift Audit:
 - Application code değişmedi
@@ -54,18 +55,19 @@ Drift Audit:
 - Sadece iskelet PR #15 ile sağlandı
 
 Known Risks:
-- Prisma schema Protected Core olarak ele alınmalı
-- DB bağlantısı ve migration ayrı PR gerektirir
-- Auth/RBAC/tenant kararı gelmeden production CRUD açılamaz
-- Question Bank domain modeli henüz başlamadı
+- Prisma schema remains protected core
+- First schema PR must be explicitly reviewed before migration
+- DB connection and migration require separate PR
+- Auth/RBAC/tenant decision still blocks production write endpoints
+- Question CRUD remains deferred
 
 Scope Locked:
-- No database connection
 - No Prisma schema
 - No migration
+- No database connection
 - No CRUD endpoint
 - No auth/RBAC/tenant implementation
 - No mobile feature expansion
 
 Next Exact Task:
-- PR #16 review and merge, then memory sync
+- Prisma schema planning / protected-core review only
