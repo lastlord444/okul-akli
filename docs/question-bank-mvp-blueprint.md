@@ -16,21 +16,21 @@ Bu blueprint Question Bank MVP için mimari yön belirleyici olarak hazırlanmı
 
 ## 2. Mimari Yön Kararları (Açık)
 
-### Karar Bekleyen: Backend Runtime/Framework
+### Karara Bağlandı: Backend Runtime/Framework
 
-| Aday | Durum | Not |
-|------|-------|-----|
-| Node.js + Fastify | Aday | Nihai karar backend audit sonrası |
-| Node.js + Express | Aday | Alternatif |
-| Bun + Hono | Aday | Gelecek aday |
+| Seçim | Durum | Not |
+|-------|-------|-----|
+| **Node.js + Fastify** | **Kabul Edildi** | ADR-0003 ile onaylandı |
+| Node.js + Express | Reddedildi | |
+| Bun + Hono | Reddedildi | |
 
-### Karar Bekleyen: DB/ORM
+### Karara Bağlandı: DB/ORM
 
-| Aday | Durum | Not |
-|------|-------|-----|
-| PostgreSQL + Prisma | Aday | Nihai karar backend audit sonrası |
-| PostgreSQL + Drizzle | Aday | Alternatif |
-| PostgreSQL + TypeORM | Aday | Klasik seçenek |
+| Seçim | Durum | Not |
+|-------|-------|-----|
+| **PostgreSQL + Prisma** | **Kabul Edildi** | ADR-0003 ile onaylandı |
+| PostgreSQL + Drizzle | Reddedildi | |
+| PostgreSQL + TypeORM | Reddedildi | |
 
 ### Karar Bekleyen: Migration Stratejisi
 
@@ -103,8 +103,8 @@ Aşağıdaki konular kesinleşmemiştir; backend audit ve review sürecinde kara
 
 | Konu | Durum |
 |------|-------|
-| backend runtime/framework | Açık |
-| DB/ORM | Açık |
+| backend runtime/framework | Kapandı (ADR-0003: Node.js + Fastify) |
+| DB/ORM | Kapandı (ADR-0003: PostgreSQL + Prisma) |
 | migration stratejisi | Açık |
 | auth/RBAC timing | Açık |
 | tenant timing | Açık |
