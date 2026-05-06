@@ -2,18 +2,18 @@
 
 Project: Okul Aklı
 Active Domain: Product Core Planning / Question Bank MVP
-Current Slice: Backend scaffold health endpoint
-Branch: feat/backend-scaffold-health
-Repo Truth: apps/backend created with Fastify. Health endpoint added. No Prisma or DB.
+Current Slice: Backend scaffold health endpoint closed / next planning
+Branch: main
+Repo Truth: main branch active, PR #15 merged
 
 ---
 
 Completed This Session:
-- apps/backend folder and minimal package.json created
-- Fastify server entry (server.ts) and /health endpoint added
-- Backend TypeScript and Typecheck configuration added
-- Root package.json updated with backend scripts
-- Backend typecheck GitHub Action added
+- PR #15 merged into main
+- Minimal Fastify backend scaffold accepted
+- GET /health endpoint accepted
+- Backend CI accepted
+- Backend implementation remains non-domain/non-database
 
 Files Changed (This session):
 - apps/backend/package.json (new)
@@ -40,26 +40,30 @@ Tests:
 - git diff --check CLEAN
 
 GitHub Check:
-- Branch: feat/backend-scaffold-health
-- Fastify package added
+- Branch: main
+- apps/backend: created
+- Health endpoint: added
+- Backend CI: added and green
+- Backend typecheck/build: green
+- Mobile CI: green
 - Prisma schema: not created
 - Migrations: none
+- Database connection: none
 - Protected core: untouched
 - Drift Audit: clean
 
 Drift Audit:
 - Application code değişmedi
-- apps/backend yok
+- apps/backend/src/routes/health.ts var
 - Backend/schema/migration yok
 - Protected core koduna temas yok
-- ADR ile stack kararı alındı, implementasyon sonra
+- Sadece iskelet PR #15 ile sağlandı
 
 Known Risks:
 - Prisma schema Protected Core olarak ele alınmalı
-- Migration data loss riski oluşabilir
+- DB bağlantısı ve migration ayrı PR gerektirir
 - Auth/RBAC/tenant kararı gelmeden production CRUD açılamaz
-- Prisma schema must not be created until scaffold planning is reviewed and explicitly approved
-- apps/backend creation requires a separate PR after ADR merge
+- Question Bank domain modeli henüz başlamadı
 
 Scope Locked:
 - No database connection
@@ -70,4 +74,4 @@ Scope Locked:
 - No mobile feature expansion
 
 Next Exact Task:
-- PR review and merge, then memory sync
+- Backend scaffold post-merge memory sync closed, next: Question Bank backend domain planning only
