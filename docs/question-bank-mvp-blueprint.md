@@ -21,16 +21,16 @@ Bu blueprint Question Bank MVP için mimari yön belirleyici olarak hazırlanmı
 | Seçim | Durum | Not |
 |-------|-------|-----|
 | **Node.js + Fastify** | **Kabul Edildi** | ADR-0003 ile onaylandı |
-| Node.js + Express | Reddedildi | |
-| Bun + Hono | Reddedildi | |
+| Node.js + Express | Seçilmedi / Alternatif olarak değerlendirildi | |
+| Bun + Hono | Seçilmedi / Gelecek aday olarak değerlendirildi | |
 
 ### Karara Bağlandı: DB/ORM
 
 | Seçim | Durum | Not |
 |-------|-------|-----|
 | **PostgreSQL + Prisma** | **Kabul Edildi** | ADR-0003 ile onaylandı |
-| PostgreSQL + Drizzle | Reddedildi | |
-| PostgreSQL + TypeORM | Reddedildi | |
+| PostgreSQL + Drizzle | Seçilmedi / Alternatif olarak değerlendirildi | |
+| PostgreSQL + TypeORM | Seçilmedi / Alternatif olarak değerlendirildi | |
 
 ### Karar Bekleyen: Migration Stratejisi
 

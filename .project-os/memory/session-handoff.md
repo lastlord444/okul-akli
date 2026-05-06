@@ -9,11 +9,10 @@ Repo Truth: docs-only domain plan PR
 ---
 
 Completed This Session:
-- PR #15 merged into main
-- Minimal Fastify backend scaffold accepted
-- GET /health endpoint accepted
-- Backend CI accepted
-- Backend implementation remains non-domain/non-database
+- Question Bank backend domain schema plan drafted
+- Blueprint stack decision drift synced with ADR-0003
+- Docs-only PR created for domain planning
+- No code, Prisma schema, migration, database connection, CRUD endpoint, auth/RBAC/tenant changes
 
 Files Changed (This session):
 - docs/domain/question-bank-schema-plan.md (new)
@@ -37,13 +36,15 @@ Tests:
 
 GitHub Check:
 - Branch: docs/question-bank-domain-plan
+- PR: #16 OPEN
 - docs/domain/question-bank-schema-plan.md added
+- docs/question-bank-mvp-blueprint.md updated
 - Prisma schema: not created
 - Migrations: none
 - Database connection: none
 - CRUD endpoint: none
 - Protected core: untouched
-- Drift Audit: clean
+- Drift Audit: clean after this fix
 
 Drift Audit:
 - Application code değişmedi
@@ -67,4 +68,4 @@ Scope Locked:
 - No mobile feature expansion
 
 Next Exact Task:
-- PR review and merge, then memory sync
+- PR #16 review and merge, then memory sync
