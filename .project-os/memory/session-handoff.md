@@ -1,76 +1,69 @@
-# Session Handoff - 2026-05-05
+# Session Handoff - 2026-05-06
 
 Project: Okul Aklı
 Active Domain: Product Core Planning / Question Bank MVP
-Current Slice: Question Bank domain plan docs closed / Prisma schema planning next
-Branch: main
-Repo Truth: main branch active, PR #16 merged
+Current Slice: Question Bank Prisma Catalog Schema
+Branch: feat/question-bank-catalog-schema
+Repo Truth: main branch active, PR #16 merged, PR for feat/question-bank-catalog-schema opened
 
 ---
 
 Completed This Session:
-- PR #16 merged into main
-- Question Bank backend domain schema plan accepted
-- Blueprint stack decision drift synced with ADR-0003
-- No code, Prisma schema, migration, database connection, CRUD endpoint, auth/RBAC/tenant changes
+- Added Prisma to apps/backend
+- Created minimal global catalog schema (GradeLevel, Subject, Topic)
+- Generated initial migration via prisma migrate dev
+- Verified DB migration against local Postgres
+- No Question, ReviewStatus, or protected core entities added
 
 Files Changed (This session):
-- docs/domain/question-bank-schema-plan.md (new)
-- docs/question-bank-mvp-blueprint.md (updated)
-- .project-os/memory/session-handoff.md (updated)
+- apps/backend/package.json
+- pnpm-lock.yaml
+- apps/backend/prisma/schema.prisma
+- apps/backend/prisma.config.ts
+- apps/backend/.env.example
+- apps/backend/prisma/migrations/20260506124420_init_catalog_schema/migration.sql
+- .project-os/memory/session-handoff.md
 
 Previous Files (Backend Scaffold):
-- .github/pull_request_template.md
-- .project-os/AI_OPERATING_CONTRACT.md
-- .project-os/memory/mobile-current-truth.md
-- .project-os/memory/session-handoff.md
-- .project-os/protocols/STARTUP_PROTOCOL.md
-- .roo/rules/00-core-project-rules.md
-- AGENTS.md
+- docs/domain/question-bank-schema-plan.md
 - docs/question-bank-mvp-blueprint.md
 
-Migrations: none
+Migrations:
+- 20260506124420_init_catalog_schema
 
 Tests:
+- pnpm typecheck (okul-akli-backend)
+- prisma validate
+- local migration applied
 - git diff --check CLEAN
 
 GitHub Check:
-- Branch: main
-- PR: #16 MERGED
-- Merge commit: 67934c9e8d4af6eb383d0a09ec2873e87728d5fd
-- Backend CI: green before merge
-- Mobile CI: green before merge
-- Prisma schema: not created
-- Migrations: none
-- Database connection: none
-- CRUD endpoint: none
+- Branch: feat/question-bank-catalog-schema
+- PR: Created
+- Backend CI: expected to pass
+- Mobile CI: frozen/unaffected
 - Protected core: untouched
 - Drift Audit: clean
 
 Drift Audit:
 - Application code değişmedi
 - apps/backend/src/routes/health.ts var
-- Backend/schema/migration yok
-- Protected core koduna temas yok
-- Sadece iskelet PR #15 ile sağlandı
+- Backend schema/migration EKLENDİ (Sadece catalog)
+- Protected core koduna temas YOK
+- Onaysız entity YOK
 
 Known Risks:
-- Prisma schema remains protected core
-- First schema PR must be explicitly reviewed before migration
-- DB connection and migration require separate PR
-- Auth/RBAC/tenant decision still blocks production write endpoints
-- Question CRUD remains deferred
+- Prisma schema is now in place but write/CRUD is pending Auth/RBAC/tenant decisions.
+- Seed data needs to be populated safely via a separate approved PR.
+- Delete operations use Restrict on Topics, preventing accidental deletion of catalog items.
 
-Scope Locked:
-- No Prisma schema
-- No migration
-- No database connection
-- No CRUD endpoint
-- No auth/RBAC/tenant implementation
-- No mobile feature expansion
+Scope Locked For Next Session:
+- No CRUD endpoint implementation yet
+- No auth/RBAC/tenant implementation yet
+- No Question models
 
 Next Exact Task:
-- Prisma schema planning / protected-core review only
+- Seed strategy implementation or read-only API endpoint for catalog.
 
 ---
 
@@ -83,3 +76,7 @@ Next Exact Task:
 - Bundan sonra Dyad kullanılırken `main` seçiliyken GitHub sync yapılmayacak; her görev ayrı branch üzerinde yürütülecek.
 - Docs/memory-only görevlerde Dyad Preview/Build tarafındaki `npm run dev` hatası dikkate alınmayacak.
 - Bir sonraki teknik iş PR #17 Question Bank Prisma schema review olarak bekliyor.
+
+## PR #17 Refresh Notes - 2026-05-11
+- Merged with `main` to pull in PR #18/19 changes.
+- `prisma.config.ts` fallback DB URL updated to be secure.
