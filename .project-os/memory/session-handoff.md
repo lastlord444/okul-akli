@@ -1,25 +1,23 @@
 # Session Handoff - 2026-05-11
 
 Project: Okul Aklı
-Active Domain: Question Bank MVP / Dataset Spike
-Current Slice: PR Preparation
-Branch: feat/question-bank-hf-normalize-spike
-Repo Truth: `feat/question-bank-hf-normalize-spike` branch created. PR prepared for MMLU normalization tool.
+Active Domain: Question Bank MVP
+Current Slice: PR #20 Post-Merge Memory Sync
+Branch: main
+Repo Truth: PR #17 (Catalog Schema) and PR #20 (HF Normalize Spike) are merged into main. `main` is active.
 
 ---
 
 Completed This Session:
-- Security scan verified no HF tokens are exposed in code or commits.
-- `.local-data/` confirmed ignored by git.
-- Staged `.gitignore`, `scripts/`, `docs/product/`, and `session-handoff.md`.
-- No raw data, jsonl output, or .env files staged or committed.
-- Prepared commit and PR: "chore(question-bank): add HF Turkish MMLU normalize spike tooling".
+- PR #17 (Question Bank Catalog Schema) has been successfully merged.
+- PR #20 (HF Turkish MMLU normalize spike tooling) has been successfully merged.
+- A 50k normalized JSONL dataset (`.local-data/question-bank/alibayram-turkish-mmlu-normalized-50k.jsonl`) was generated locally for seeding purposes.
+- Verified that **raw data was NOT committed** to the repo.
+- Verified that **Hugging Face token was NOT committed** to the repo.
+- `Question` model does NOT exist yet.
+- Database import has NOT been executed yet.
 
 Files Changed (This session):
-- `.gitignore`
-- `scripts/question-bank/normalize_hf_turkish_mmlu.py` (New)
-- `scripts/question-bank/README.md` (New)
-- `docs/product/question-bank-hf-turkish-mmlu-spike.md` (New)
 - `.project-os/memory/session-handoff.md`
 
 Migrations:
@@ -27,33 +25,37 @@ Migrations:
 
 Tests:
 - `git diff --check` CLEAN
-- Verified `.local-data` is ignored by Git.
+- Verified Protected Core audit holds true.
 
 GitHub Check:
-- Branch: feat/question-bank-hf-normalize-spike
-- Git Status: Only script and doc files are tracked. Raw data is hidden.
-- HF Token is secure and confirmed not exposed.
+- Branch: main
+- Git Status: Only `session-handoff.md` is modified in this final sync.
 
 Drift Audit:
 - Application code değişmedi
 - Protected core koduna temas YOK
 - Onaysız entity YOK
-- Dataset and output completely ignored by Git.
+- Raw dataset ve Token güvende.
 
 Known Risks:
-- Environment missing pip packages if dev environment is not set up properly.
-- Normalization mapping assumes static A, B, C, D, E ordering based on numeric indices, which could mismatch rare question formats.
+- Soru Bankası Seed stratejisi uygulanırken (sonraki adımda) veritabanı performans sorunları yaşanabilir.
 
 Scope Locked For Next Session:
-- No CRUD endpoint implementation yet
-- No auth/RBAC/tenant implementation yet
-- No Question models
+- No Auth/RBAC/tenant implementation yet.
 
 Next Exact Task:
-- Review and merge PR. Seed strategy implementation or read-only API endpoint for catalog.
+- Question Bank Minimum Schema
 
 ---
 
-## PR #17 Refresh Notes - 2026-05-11
-- Merged with `main` to pull in PR #18/19 changes.
-- `prisma.config.ts` fallback DB URL updated to be secure.
+## Historical Drift Notes
+
+**Dyad Issues (Resolved via PR #18/19):**
+- Dyad `main` branch seçiliyken GitHub sync yaptığı için `AI_RULES.md` yanında istenmeyen `package-lock.json` dosyası oluşmuştu.
+- PR #18 ile `AI_RULES.md` DB/ORM ifadesi güvenli hale getirildi ve yanlışlıkla oluşan `package-lock.json` kaldırıldı.
+- `.dyad/` kuralı Dyad lokal dosyalarının repo'ya girmesini engellemek için kabul edildi.
+- Kural: Bundan sonra Dyad kullanılırken `main` seçiliyken GitHub sync yapılmayacak; her görev ayrı branch üzerinde yürütülecek.
+- Docs/memory-only görevlerde Dyad Preview/Build tarafındaki `npm run dev` hatası dikkate alınmayacak.
+
+**Security Notes:**
+- `prisma.config.ts` fallback DB URL updated to be secure. Any hardcoded secrets were removed.
