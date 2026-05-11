@@ -64,3 +64,19 @@ Scope Locked For Next Session:
 
 Next Exact Task:
 - Seed strategy implementation or read-only API endpoint for catalog.
+
+---
+
+## Dyad Drift Notes - 2026-05-11
+
+- Dyad `main` branch seçiliyken GitHub sync yaptığı için `AI_RULES.md` yanında istenmeyen `package-lock.json` dosyası oluştu.
+- PR #18 ile `AI_RULES.md` DB/ORM ifadesi güvenli hale getirildi.
+- PR #18 ile yanlışlıkla oluşan `package-lock.json` kaldırıldı.
+- `.dyad/` kuralı Dyad lokal dosyalarının repo'ya girmesini engellemek için kabul edildi.
+- Bundan sonra Dyad kullanılırken `main` seçiliyken GitHub sync yapılmayacak; her görev ayrı branch üzerinde yürütülecek.
+- Docs/memory-only görevlerde Dyad Preview/Build tarafındaki `npm run dev` hatası dikkate alınmayacak.
+- Bir sonraki teknik iş PR #17 Question Bank Prisma schema review olarak bekliyor.
+
+## PR #17 Refresh Notes - 2026-05-11
+- Merged with `main` to pull in PR #18/19 changes.
+- `prisma.config.ts` fallback DB URL updated to be secure.
