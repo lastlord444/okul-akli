@@ -14,7 +14,7 @@
 - **Mobil:** React Native 0.76.5 + **Expo** ~52.0.0 + **Expo Router** ~4.0.0 (dosya tabanlı navigasyon).
 - **Mobil Stil:** React Native `StyleSheet.create()` — platforma duyarlı gölgeler (Android `elevation`, iOS `shadowColor`/`shadowOffset`).
 - **Mobil Durumu:** **Dondurulmuş (frozen).** Mobil iskelet (login + 3 dashboard) tamamlandı, yeni mobil özellik eklenmez.
-- **Veritabanı:** Henüz bağlı değil. Plan: PostgreSQL + Prisma (ileriki fazlarda).
+- **Veritabanı / ORM:** main repo truth kontrol edilmeden Prisma, migration veya schema değişikliği yapılamaz. Prisma/PostgreSQL çalışmaları yalnızca ayrı onaylı Question Bank slice’larında ele alınır.
 - **State Yönetimi:** Henüz harici state kütüphanesi yok. Basit React state + router kullanılır.
 - **Aktif Domain:** Product Core Planning / Question Bank MVP Audit.
 - **Korunan Çekirdek (Protected Core — izinsiz dokunulamaz):** auth, RBAC, tenant, payment, SMS, push notification, storage/file, shared types, Prisma schema core, app shell/navigation core, audit, notification core.
