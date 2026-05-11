@@ -53,3 +53,8 @@ xcuserdata/
 *.temp
 Thumbs.db
 .dyad/
+
+# --- Question Bank Local Data ---
+.local-data/
+dev-data/
+tmp/question-bank/
