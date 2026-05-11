@@ -1,61 +1,48 @@
-# Session Handoff - 2026-05-06
+# Session Handoff - 2026-05-11
 
 Project: Okul Aklı
-Active Domain: Product Core Planning / Question Bank MVP
-Current Slice: Question Bank Prisma Catalog Schema
-Branch: feat/question-bank-catalog-schema
-Repo Truth: main branch active, PR #16 merged, PR for feat/question-bank-catalog-schema opened
+Active Domain: Question Bank MVP / Dataset Spike
+Current Slice: PR Preparation
+Branch: feat/question-bank-hf-normalize-spike
+Repo Truth: `feat/question-bank-hf-normalize-spike` branch created. PR prepared for MMLU normalization tool.
 
 ---
 
 Completed This Session:
-- Added Prisma to apps/backend
-- Created minimal global catalog schema (GradeLevel, Subject, Topic)
-- Generated initial migration via prisma migrate dev
-- Verified DB migration against local Postgres
-- No Question, ReviewStatus, or protected core entities added
+- Security scan verified no HF tokens are exposed in code or commits.
+- `.local-data/` confirmed ignored by git.
+- Staged `.gitignore`, `scripts/`, `docs/product/`, and `session-handoff.md`.
+- No raw data, jsonl output, or .env files staged or committed.
+- Prepared commit and PR: "chore(question-bank): add HF Turkish MMLU normalize spike tooling".
 
 Files Changed (This session):
-- apps/backend/package.json
-- pnpm-lock.yaml
-- apps/backend/prisma/schema.prisma
-- apps/backend/prisma.config.ts
-- apps/backend/.env.example
-- apps/backend/prisma/migrations/20260506124420_init_catalog_schema/migration.sql
-- .project-os/memory/session-handoff.md
-
-Previous Files (Backend Scaffold):
-- docs/domain/question-bank-schema-plan.md
-- docs/question-bank-mvp-blueprint.md
+- `.gitignore`
+- `scripts/question-bank/normalize_hf_turkish_mmlu.py` (New)
+- `scripts/question-bank/README.md` (New)
+- `docs/product/question-bank-hf-turkish-mmlu-spike.md` (New)
+- `.project-os/memory/session-handoff.md`
 
 Migrations:
-- 20260506124420_init_catalog_schema
+- None
 
 Tests:
-- pnpm typecheck (okul-akli-backend)
-- prisma validate
-- local migration applied
-- git diff --check CLEAN
+- `git diff --check` CLEAN
+- Verified `.local-data` is ignored by Git.
 
 GitHub Check:
-- Branch: feat/question-bank-catalog-schema
-- PR: Created
-- Backend CI: expected to pass
-- Mobile CI: frozen/unaffected
-- Protected core: untouched
-- Drift Audit: clean
+- Branch: feat/question-bank-hf-normalize-spike
+- Git Status: Only script and doc files are tracked. Raw data is hidden.
+- HF Token is secure and confirmed not exposed.
 
 Drift Audit:
 - Application code değişmedi
-- apps/backend/src/routes/health.ts var
-- Backend schema/migration EKLENDİ (Sadece catalog)
 - Protected core koduna temas YOK
 - Onaysız entity YOK
+- Dataset and output completely ignored by Git.
 
 Known Risks:
-- Prisma schema is now in place but write/CRUD is pending Auth/RBAC/tenant decisions.
-- Seed data needs to be populated safely via a separate approved PR.
-- Delete operations use Restrict on Topics, preventing accidental deletion of catalog items.
+- Environment missing pip packages if dev environment is not set up properly.
+- Normalization mapping assumes static A, B, C, D, E ordering based on numeric indices, which could mismatch rare question formats.
 
 Scope Locked For Next Session:
 - No CRUD endpoint implementation yet
@@ -63,19 +50,9 @@ Scope Locked For Next Session:
 - No Question models
 
 Next Exact Task:
-- Seed strategy implementation or read-only API endpoint for catalog.
+- Review and merge PR. Seed strategy implementation or read-only API endpoint for catalog.
 
 ---
-
-## Dyad Drift Notes - 2026-05-11
-
-- Dyad `main` branch seçiliyken GitHub sync yaptığı için `AI_RULES.md` yanında istenmeyen `package-lock.json` dosyası oluştu.
-- PR #18 ile `AI_RULES.md` DB/ORM ifadesi güvenli hale getirildi.
-- PR #18 ile yanlışlıkla oluşan `package-lock.json` kaldırıldı.
-- `.dyad/` kuralı Dyad lokal dosyalarının repo'ya girmesini engellemek için kabul edildi.
-- Bundan sonra Dyad kullanılırken `main` seçiliyken GitHub sync yapılmayacak; her görev ayrı branch üzerinde yürütülecek.
-- Docs/memory-only görevlerde Dyad Preview/Build tarafındaki `npm run dev` hatası dikkate alınmayacak.
-- Bir sonraki teknik iş PR #17 Question Bank Prisma schema review olarak bekliyor.
 
 ## PR #17 Refresh Notes - 2026-05-11
 - Merged with `main` to pull in PR #18/19 changes.
