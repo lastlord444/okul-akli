@@ -3,8 +3,8 @@
 Project: Okul Aklı
 Active Domain: Question Bank MVP
 Current Slice: Minimum Schema Implementation
-Branch: feat/question-bank-min-schema
-Repo Truth: `Question`, `QuestionOption`, `QuestionSource` eklendi. Domain drift düzeltildi (ReviewStatus güncellendi, devOnly ve label eklendi). Temiz bir migration (20260512201441_add_minimum_question_schema) üretildi. Smoke import ve idempotency başarıyla doğrulandı. PR açıldı.
+Branch: main
+Repo Truth: Minimum Question Bank Schema eklendi ve `main` branch'ine merge edildi (PR #21). 20260512201441_add_minimum_question_schema migration'ı hazır. Smoke import doğrulanmış olup, API, 50k dataset import ve Auth katmanları henüz entegre edilmemiştir.
 
 ---
 
@@ -38,9 +38,9 @@ Tests:
 - Repo Hygiene: `.env` is NOT tracked/committed.
 
 GitHub Check:
-- Branch: feat/question-bank-min-schema
-- PR: #21 open
-- Head commit: 653aa059adb67ecfe4d5d620c349e14686637ab2
+- Branch: main
+- PR: #21 merged
+- Migration: 20260512201441_add_minimum_question_schema
 - CI: Mobile Typecheck success, Backend Typecheck success
 
 Drift Audit:
@@ -54,7 +54,7 @@ Scope Locked For Next Session:
 - No Auth/RBAC/tenant implementation.
 
 Next Exact Task:
-- Create/Update PR and merge to main.
+- 50k local import dry-run planı veya read-only question API kararı için audit.
 
 ---
 
