@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  engineType = "library"
 }
 
 datasource db {
@@ -14,6 +15,7 @@ model GradeLevel {
   name       String   @unique
   levelOrder Int      @unique
   topics     Topic[]
+  questions  Question[]
 
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -23,6 +25,7 @@ model Subject {
   id        String   @id @default(uuid())
   name      String   @unique
   topics    Topic[]
+  questions Question[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -34,6 +37,8 @@ model Topic {
   subjectId    String
   gradeLevelId String
 
+  questions    Question[]
+
   subject      Subject    @relation(fields: [subjectId], references: [id], onDelete: Restrict)
   gradeLevel   GradeLevel @relation(fields: [gradeLevelId], references: [id], onDelete: Restrict)
 
@@ -43,4 +48,70 @@ model Topic {
   @@unique([name, subjectId, gradeLevelId])
   @@index([subjectId])
   @@index([gradeLevelId])
+}
+
+enum ReviewStatus {
+  DRAFT
+  REVIEW
+  READY
+  PUBLISHED
+  ARCHIVED
+}
+
+model QuestionSource {
+  id         String     @id @default(uuid())
+  sourceName String     @unique
+  sourceUrl  String?
+  license    String?
+  devOnly    Boolean    @default(true)
+  questions  Question[]
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Question {
+  id           String   @id @default(uuid())
+  externalId   String?
+  sourceId     String?
+  gradeLevelId String?
+  subjectId    String?
+  topicId      String?
+  questionText String
+  explanation  String?
+  difficulty   Int?
+  reviewStatus ReviewStatus @default(DRAFT)
+  devOnly      Boolean @default(true)
+  options      QuestionOption[]
+
+  source       QuestionSource? @relation(fields: [sourceId], references: [id], onDelete: SetNull)
+  gradeLevel   GradeLevel?     @relation(fields: [gradeLevelId], references: [id], onDelete: SetNull)
+  subject      Subject?        @relation(fields: [subjectId], references: [id], onDelete: SetNull)
+  topic        Topic?          @relation(fields: [topicId], references: [id], onDelete: SetNull)
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([sourceId, externalId])
+  @@index([gradeLevelId])
+  @@index([subjectId])
+  @@index([topicId])
+  @@index([reviewStatus])
+  @@index([devOnly])
+}
+
+model QuestionOption {
+  id         String   @id @default(uuid())
+  questionId String
+  label      String
+  text       String
+  isCorrect  Boolean  @default(false)
+
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([questionId, label])
+  @@index([questionId])
 }

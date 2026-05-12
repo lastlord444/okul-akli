@@ -1,0 +1,72 @@
+[
+  {
+    "externalId": "smk-001",
+    "text": "Aşağıdakilerden hangisi bir asal sayıdır?",
+    "topicName": "Asal Sayılar",
+    "subjectName": "Matematik",
+    "gradeLevelName": "9. Sınıf",
+    "sourceName": "Smoke Test Yayınevi",
+    "options": [
+      { "label": "A", "text": "4", "isCorrect": false },
+      { "label": "B", "text": "9", "isCorrect": false },
+      { "label": "C", "text": "11", "isCorrect": true },
+      { "label": "D", "text": "15", "isCorrect": false }
+    ]
+  },
+  {
+    "externalId": "smk-002",
+    "text": "Hangi gezegen Güneş sistemindeki en büyük gezegendir?",
+    "topicName": "Güneş Sistemi",
+    "subjectName": "Fizik",
+    "gradeLevelName": "9. Sınıf",
+    "sourceName": "Smoke Test Yayınevi",
+    "options": [
+      { "label": "A", "text": "Dünya", "isCorrect": false },
+      { "label": "B", "text": "Mars", "isCorrect": false },
+      { "label": "C", "text": "Jüpiter", "isCorrect": true },
+      { "label": "D", "text": "Venüs", "isCorrect": false }
+    ]
+  },
+  {
+    "externalId": "smk-003",
+    "text": "İstanbul hangi yılda fethedilmiştir?",
+    "topicName": "Osmanlı Yükselme Dönemi",
+    "subjectName": "Tarih",
+    "gradeLevelName": "10. Sınıf",
+    "sourceName": "Smoke Test Yayınevi",
+    "options": [
+      { "label": "A", "text": "1071", "isCorrect": false },
+      { "label": "B", "text": "1453", "isCorrect": true },
+      { "label": "C", "text": "1526", "isCorrect": false },
+      { "label": "D", "text": "1299", "isCorrect": false }
+    ]
+  },
+  {
+    "externalId": "smk-004",
+    "text": "Aşağıdakilerden hangisi bir soygazdır?",
+    "topicName": "Periyodik Cetvel",
+    "subjectName": "Kimya",
+    "gradeLevelName": "9. Sınıf",
+    "sourceName": "Smoke Test Yayınevi",
+    "options": [
+      { "label": "A", "text": "Oksijen", "isCorrect": false },
+      { "label": "B", "text": "Azot", "isCorrect": false },
+      { "label": "C", "text": "Helyum", "isCorrect": true },
+      { "label": "D", "text": "Karbon", "isCorrect": false }
+    ]
+  },
+  {
+    "externalId": "smk-005",
+    "text": "İstiklal Marşı'nın şairi kimdir?",
+    "topicName": "Milli Mücadele Edebiyatı",
+    "subjectName": "Türk Dili ve Edebiyatı",
+    "gradeLevelName": "11. Sınıf",
+    "sourceName": "Smoke Test Yayınevi",
+    "options": [
+      { "label": "A", "text": "Namık Kemal", "isCorrect": false },
+      { "label": "B", "text": "Mehmet Akif Ersoy", "isCorrect": true },
+      { "label": "C", "text": "Yahya Kemal Beyatlı", "isCorrect": false },
+      { "label": "D", "text": "Orhan Veli Kanık", "isCorrect": false }
+    ]
+  }
+]

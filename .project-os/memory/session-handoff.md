@@ -1,61 +1,63 @@
-# Session Handoff - 2026-05-11
+# Session Handoff - 2026-05-12
 
 Project: Okul Aklı
 Active Domain: Question Bank MVP
-Current Slice: PR #20 Post-Merge Memory Sync
-Branch: main
-Repo Truth: PR #17 (Catalog Schema) and PR #20 (HF Normalize Spike) are merged into main. `main` is active.
+Current Slice: Minimum Schema Implementation
+Branch: feat/question-bank-min-schema
+Repo Truth: `Question`, `QuestionOption`, `QuestionSource` eklendi. Domain drift düzeltildi (ReviewStatus güncellendi, devOnly ve label eklendi). Temiz bir migration (20260512201441_add_minimum_question_schema) üretildi. Smoke import ve idempotency başarıyla doğrulandı. PR açıldı.
 
 ---
 
 Completed This Session:
-- PR #17 (Question Bank Catalog Schema) has been successfully merged.
-- PR #20 (HF Turkish MMLU normalize spike tooling) has been successfully merged.
-- A 50k normalized JSONL dataset (`.local-data/question-bank/alibayram-turkish-mmlu-normalized-50k.jsonl`) was generated locally for seeding purposes.
-- Verified that **raw data was NOT committed** to the repo.
-- Verified that **Hugging Face token was NOT committed** to the repo.
-- `Question` model does NOT exist yet.
-- Database import has NOT been executed yet.
+- Schema domain drift düzeltildi:
+  - `ReviewStatus` enum: `DRAFT`, `REVIEW`, `READY`, `PUBLISHED`, `ARCHIVED`.
+  - `QuestionSource` modeline `sourceUrl`, `license`, `devOnly` eklendi. `name` alanı `sourceName` yapıldı.
+  - `Question` modeline `gradeLevelId`, `subjectId`, `devOnly` gibi alanlar eklenip eksik relation ve index'ler tanımlandı.
+  - `QuestionOption` modeline `label` (A, B, C, D) eklendi ve unique constraint koyuldu.
+- `GradeLevel`, `Subject`, `Topic` gibi kataloglara `Question` bağları atandı.
+- Eski migration geri alınıp, `prisma migrate reset` ile tek bir temiz migration dosyası bırakıldı.
+- Smoke import test scripti (`smoke-import.ts`) güncel şemaya (label, sourceName) uyarlandı.
+- Smoke import (5 create) ve idempotency (5 update) tekrar başarılı çalıştırıldı.
+- Repo Hygiene: Raw data, token veya `.env` sızıntısı tarandı (sızıntı yok).
 
 Files Changed (This session):
+- `apps/backend/prisma/schema.prisma`
+- `apps/backend/prisma/smoke-import.ts`
+- `apps/backend/prisma/fixtures/smoke-questions.json`
+- `apps/backend/prisma/migrations/20260512201441_add_minimum_question_schema/migration.sql`
 - `.project-os/memory/session-handoff.md`
 
 Migrations:
-- None
+- `20260512201441_add_minimum_question_schema` (Tekil temiz migration)
 
 Tests:
+- `prisma validate` CLEAN
+- `tsc --noEmit` CLEAN
 - `git diff --check` CLEAN
-- Verified Protected Core audit holds true.
+- Smoke import SUCCESS (Idempotency verified)
+- Repo Hygiene: `.env` is NOT tracked/committed.
 
 GitHub Check:
-- Branch: main
-- Git Status: Only `session-handoff.md` is modified in this final sync.
+- Branch: feat/question-bank-min-schema
+- PR: #21 open
+- Head commit: 653aa059adb67ecfe4d5d620c349e14686637ab2
+- CI: Mobile Typecheck success, Backend Typecheck success
 
 Drift Audit:
-- Application code değişmedi
-- Protected core koduna temas YOK
-- Onaysız entity YOK
-- Raw dataset ve Token güvende.
+- Protected core koduna temas YOK (tenantId vs eklenmedi).
+- Raw dataset ve Token güvende (script'e dahil edilmedi).
 
 Known Risks:
-- Soru Bankası Seed stratejisi uygulanırken (sonraki adımda) veritabanı performans sorunları yaşanabilir.
+- PostgreSQL bağlantısında pooling için Prisma Pg adapter kullanılıyor. Prod ortamında connection pool sınırları gözden geçirilmeli.
 
 Scope Locked For Next Session:
-- No Auth/RBAC/tenant implementation yet.
+- No Auth/RBAC/tenant implementation.
 
 Next Exact Task:
-- Question Bank Minimum Schema
+- Create/Update PR and merge to main.
 
 ---
 
 ## Historical Drift Notes
-
-**Dyad Issues (Resolved via PR #18/19):**
-- Dyad `main` branch seçiliyken GitHub sync yaptığı için `AI_RULES.md` yanında istenmeyen `package-lock.json` dosyası oluşmuştu.
-- PR #18 ile `AI_RULES.md` DB/ORM ifadesi güvenli hale getirildi ve yanlışlıkla oluşan `package-lock.json` kaldırıldı.
-- `.dyad/` kuralı Dyad lokal dosyalarının repo'ya girmesini engellemek için kabul edildi.
-- Kural: Bundan sonra Dyad kullanılırken `main` seçiliyken GitHub sync yapılmayacak; her görev ayrı branch üzerinde yürütülecek.
-- Docs/memory-only görevlerde Dyad Preview/Build tarafındaki `npm run dev` hatası dikkate alınmayacak.
-
-**Security Notes:**
-- `prisma.config.ts` fallback DB URL updated to be secure. Any hardcoded secrets were removed.
+- Dyad `main` branch seçiliyken GitHub sync yaptığı için oluşan hatalar giderildi, `.dyad/` kuralı kabul edildi.
+- Security Notes: Token, raw data (.jsonl) ve DB şifresi (.env) sızıntısı tarandı, hiçbir sızıntı bulunmadı.
