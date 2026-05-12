@@ -2,25 +2,22 @@
 
 Project: Okul Aklı
 Active Domain: Question Bank MVP
-Current Slice: 50k local import dry-run audit
-Branch: main
-Repo Truth: PR #22 merged. 50k dry-run audit tamamlandı. DB import yapılmadı. Raw JSONL commit edilmedi. Token/.env commit edilmedi.
+Current Slice: 500-row local DB import smoke
+Branch: feat/question-bank-500-import-smoke
+Repo Truth: 500-row smoke import completed locally. Script is proven idempotent. Raw JSONL and tokens remain uncommitted.
 
 ---
 
 Completed This Session:
-- 50k dry-run audit tamamlandı
-- DB import yapılmadı
-- Raw JSONL commit edilmedi
-- Token/.env commit edilmedi
-- Importable rows: 50,000
-- Hard invalid rows: 0
-- Warning rows: 14,513
-- Duplicate questionText: warning, not hard invalid
+- 500-row import performed against local database
+- Script idempotency verified (first run created 500 questions, second run updated 500 questions without error)
+- DB Verification Counts: Questions: 500, Options: 2500
+- Protected core boundaries respected
+- No sensitive data (token/env/jsonl) committed
 
 Files Changed (This session):
-- `scripts/question-bank/dry-run-normalized-questions.ts` (Yeni)
-- `docs/product/question-bank-50k-import-dry-run.md` (Yeni)
+- `scripts/question-bank/import-normalized-questions-smoke.ts` (Yeni)
+- `docs/product/question-bank-500-import-smoke.md` (Yeni)
 - `.project-os/memory/session-handoff.md`
 
 Migrations:
@@ -28,24 +25,25 @@ Migrations:
 
 Tests:
 - `tsc --noEmit` CLEAN
-- Dry-run script SUCCESS
+- Import smoke script SUCCESS
+- Idempotency pass SUCCESS
 
 GitHub Check:
-- Branch: main
-- PR: #22 merged
+- Branch: feat/question-bank-500-import-smoke
+- PR: To be opened
 
 Drift Audit:
 - Protected core koduna temas YOK.
 - Raw dataset ve Token güvende.
 
 Known Risks:
-- Data import sırasında duplicate filter eklendiği için import süresi hafif uzayabilir ancak DB idempotency için gereklidir.
+- Data import sırasında ilişki (Topic, Subject) oluşturma overhead'i büyük dosyalarda belirginleşebilir.
 
 Scope Locked For Next Session:
 - No Auth/RBAC/tenant implementation.
 
 Next Exact Task:
-- Limited DB import smoke, 500 rows.
+- Question Bank 5k or full 50k import smoke/benchmark.
 
 ---
 
