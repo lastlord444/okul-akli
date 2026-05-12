@@ -3,58 +3,48 @@
 Project: Okul Aklı
 Active Domain: Question Bank MVP
 Current Slice: Minimum Schema Implementation
-Branch: main
-Repo Truth: Minimum Question Bank Schema eklendi ve `main` branch'ine merge edildi (PR #21). 20260512201441_add_minimum_question_schema migration'ı hazır. Smoke import doğrulanmış olup, API, 50k dataset import ve Auth katmanları henüz entegre edilmemiştir.
+Branch: feat/question-bank-50k-dry-run
+Repo Truth: 50k local import dry-run audit tamamlandı. Veritabanına yazım yapılmadan dataset analizi yapıldı (35487 valid, 14513 duplicate). Dry-run raporu belgelendi.
 
 ---
 
 Completed This Session:
-- Schema domain drift düzeltildi:
-  - `ReviewStatus` enum: `DRAFT`, `REVIEW`, `READY`, `PUBLISHED`, `ARCHIVED`.
-  - `QuestionSource` modeline `sourceUrl`, `license`, `devOnly` eklendi. `name` alanı `sourceName` yapıldı.
-  - `Question` modeline `gradeLevelId`, `subjectId`, `devOnly` gibi alanlar eklenip eksik relation ve index'ler tanımlandı.
-  - `QuestionOption` modeline `label` (A, B, C, D) eklendi ve unique constraint koyuldu.
-- `GradeLevel`, `Subject`, `Topic` gibi kataloglara `Question` bağları atandı.
-- Eski migration geri alınıp, `prisma migrate reset` ile tek bir temiz migration dosyası bırakıldı.
-- Smoke import test scripti (`smoke-import.ts`) güncel şemaya (label, sourceName) uyarlandı.
-- Smoke import (5 create) ve idempotency (5 update) tekrar başarılı çalıştırıldı.
-- Repo Hygiene: Raw data, token veya `.env` sızıntısı tarandı (sızıntı yok).
+- `scripts/question-bank/dry-run-normalized-questions.ts` oluşturuldu ve çalıştırıldı.
+- 50,000 satırlık JSONL dosyası memory-safe (stream) şekilde analiz edildi.
+- 35,487 valid soru (Subject/Topic ve Option kurallarına tam uygun).
+- 14,513 satır sadece `Duplicate questionText` sebebiyle elendi.
+- Elde edilen tüm metrikler (Option dağılımı, Correct Label dağılımı, Top Subjects vb.) raporlandı: `docs/product/question-bank-50k-import-dry-run.md`.
+- Veritabanına (`Prisma.create` vs) hiçbir veri yazılmadı.
+- Raw veri dosyası (.jsonl) ve Token güvenliği (hygiene) korundu.
 
 Files Changed (This session):
-- `apps/backend/prisma/schema.prisma`
-- `apps/backend/prisma/smoke-import.ts`
-- `apps/backend/prisma/fixtures/smoke-questions.json`
-- `apps/backend/prisma/migrations/20260512201441_add_minimum_question_schema/migration.sql`
+- `scripts/question-bank/dry-run-normalized-questions.ts` (Yeni)
+- `docs/product/question-bank-50k-import-dry-run.md` (Yeni)
 - `.project-os/memory/session-handoff.md`
 
 Migrations:
-- `20260512201441_add_minimum_question_schema` (Tekil temiz migration)
+- No migration changes.
 
 Tests:
-- `prisma validate` CLEAN
 - `tsc --noEmit` CLEAN
-- `git diff --check` CLEAN
-- Smoke import SUCCESS (Idempotency verified)
-- Repo Hygiene: `.env` is NOT tracked/committed.
+- Dry-run script SUCCESS
 
 GitHub Check:
-- Branch: main
-- PR: #21 merged
-- Migration: 20260512201441_add_minimum_question_schema
-- CI: Mobile Typecheck success, Backend Typecheck success
+- Branch: feat/question-bank-50k-dry-run
+- PR: Draft / To be opened
 
 Drift Audit:
-- Protected core koduna temas YOK (tenantId vs eklenmedi).
-- Raw dataset ve Token güvende (script'e dahil edilmedi).
+- Protected core koduna temas YOK.
+- Raw dataset ve Token güvende.
 
 Known Risks:
-- PostgreSQL bağlantısında pooling için Prisma Pg adapter kullanılıyor. Prod ortamında connection pool sınırları gözden geçirilmeli.
+- Data import sırasında duplicate filter eklendiği için import süresi hafif uzayabilir ancak DB idempotency için gereklidir.
 
 Scope Locked For Next Session:
 - No Auth/RBAC/tenant implementation.
 
 Next Exact Task:
-- 50k local import dry-run planı veya read-only question API kararı için audit.
+- Create PR for dry-run scripts. Wait for review or proceed with read-only question API implementation.
 
 ---
 
