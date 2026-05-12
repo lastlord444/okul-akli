@@ -39,7 +39,9 @@ Tests:
 
 GitHub Check:
 - Branch: feat/question-bank-min-schema
-- Unpushed commits exist.
+- PR: #21 open
+- Head commit: 653aa059adb67ecfe4d5d620c349e14686637ab2
+- CI: Mobile Typecheck success, Backend Typecheck success
 
 Drift Audit:
 - Protected core koduna temas YOK (tenantId vs eklenmedi).
@@ -57,4 +59,5 @@ Next Exact Task:
 ---
 
 ## Historical Drift Notes
-...
+- Dyad `main` branch seçiliyken GitHub sync yaptığı için oluşan hatalar giderildi, `.dyad/` kuralı kabul edildi.
+- Security Notes: Token, raw data (.jsonl) ve DB şifresi (.env) sızıntısı tarandı, hiçbir sızıntı bulunmadı.
