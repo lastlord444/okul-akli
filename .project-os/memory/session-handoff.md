@@ -2,20 +2,21 @@
 
 Project: Okul Aklı
 Active Domain: Question Bank MVP
-Current Slice: Minimum Schema Implementation
-Branch: feat/question-bank-50k-dry-run
-Repo Truth: 50k local import dry-run audit tamamlandı. Veritabanına yazım yapılmadan dataset analizi yapıldı. Duplicate questionText warning olarak ayrıştırıldı ve hard invalid count düzeltildi. Dry-run raporu güncellendi.
+Current Slice: 50k local import dry-run audit
+Branch: main
+Repo Truth: PR #22 merged. 50k dry-run audit tamamlandı. DB import yapılmadı. Raw JSONL commit edilmedi. Token/.env commit edilmedi.
 
 ---
 
 Completed This Session:
-- `scripts/question-bank/dry-run-normalized-questions.ts` oluşturuldu ve çalıştırıldı.
-- 50,000 satırlık JSONL dosyası memory-safe (stream) şekilde analiz edildi.
-- Duplicate questionText warning olarak ayrıştırıldı, hard invalid count düzeltildi.
-- Örnek questionText alanları redact edilerek public repo güvenliği sağlandı.
-- Elde edilen tüm metrikler raporlandı: `docs/product/question-bank-50k-import-dry-run.md`.
-- Veritabanına (`Prisma.create` vs) hiçbir veri yazılmadı.
-- Raw veri dosyası (.jsonl) ve Token güvenliği (hygiene) korundu.
+- 50k dry-run audit tamamlandı
+- DB import yapılmadı
+- Raw JSONL commit edilmedi
+- Token/.env commit edilmedi
+- Importable rows: 50,000
+- Hard invalid rows: 0
+- Warning rows: 14,513
+- Duplicate questionText: warning, not hard invalid
 
 Files Changed (This session):
 - `scripts/question-bank/dry-run-normalized-questions.ts` (Yeni)
@@ -30,8 +31,8 @@ Tests:
 - Dry-run script SUCCESS
 
 GitHub Check:
-- Branch: feat/question-bank-50k-dry-run
-- PR: #22 open
+- Branch: main
+- PR: #22 merged
 
 Drift Audit:
 - Protected core koduna temas YOK.
@@ -44,7 +45,7 @@ Scope Locked For Next Session:
 - No Auth/RBAC/tenant implementation.
 
 Next Exact Task:
-- Limited DB import smoke planı: 500 row import, then 5k, then 50k.
+- Limited DB import smoke, 500 rows.
 
 ---
 
