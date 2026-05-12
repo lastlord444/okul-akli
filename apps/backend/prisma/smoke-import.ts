@@ -18,7 +18,6 @@ async function main() {
   const fileContent = fs.readFileSync(fixturePath, 'utf-8');
   const questions = JSON.parse(fileContent);
 
-  console.log(`Bắt đầu xử lý ${questions.length} soru...`); // Wait, let's use Turkish
   console.log(`[Smoke Import] Starting to process ${questions.length} questions...`);
 
   let createdCount = 0;
@@ -61,9 +60,9 @@ async function main() {
 
     // 2. Ensure QuestionSource exists (Upsert)
     const source = await prisma.questionSource.upsert({
-      where: { name: q.sourceName },
+      where: { sourceName: q.sourceName },
       update: {},
-      create: { name: q.sourceName },
+      create: { sourceName: q.sourceName },
     });
 
     // 3. Upsert Question using sourceId + externalId
@@ -87,9 +86,11 @@ async function main() {
       question = await prisma.question.update({
         where: { id: existingQuestion.id },
         data: {
-          text: q.text,
+          questionText: q.text,
           topicId: topic.id,
-          status: 'DRAFT',
+          gradeLevelId: gradeLevel.id,
+          subjectId: subject.id,
+          reviewStatus: 'DRAFT',
         }
       });
       updatedCount++;
@@ -97,10 +98,12 @@ async function main() {
       question = await prisma.question.create({
         data: {
           externalId: q.externalId,
-          text: q.text,
+          questionText: q.text,
           topicId: topic.id,
+          gradeLevelId: gradeLevel.id,
+          subjectId: subject.id,
           sourceId: source.id,
-          status: 'DRAFT',
+          reviewStatus: 'DRAFT',
         }
       });
       createdCount++;
@@ -110,6 +113,7 @@ async function main() {
     for (const opt of q.options) {
       await prisma.questionOption.create({
         data: {
+          label: opt.label,
           text: opt.text,
           isCorrect: opt.isCorrect,
           questionId: question.id,

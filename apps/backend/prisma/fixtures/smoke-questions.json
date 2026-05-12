@@ -7,10 +7,10 @@
     "gradeLevelName": "9. Sınıf",
     "sourceName": "Smoke Test Yayınevi",
     "options": [
-      { "text": "4", "isCorrect": false },
-      { "text": "9", "isCorrect": false },
-      { "text": "11", "isCorrect": true },
-      { "text": "15", "isCorrect": false }
+      { "label": "A", "text": "4", "isCorrect": false },
+      { "label": "B", "text": "9", "isCorrect": false },
+      { "label": "C", "text": "11", "isCorrect": true },
+      { "label": "D", "text": "15", "isCorrect": false }
     ]
   },
   {
@@ -21,10 +21,10 @@
     "gradeLevelName": "9. Sınıf",
     "sourceName": "Smoke Test Yayınevi",
     "options": [
-      { "text": "Dünya", "isCorrect": false },
-      { "text": "Mars", "isCorrect": false },
-      { "text": "Jüpiter", "isCorrect": true },
-      { "text": "Venüs", "isCorrect": false }
+      { "label": "A", "text": "Dünya", "isCorrect": false },
+      { "label": "B", "text": "Mars", "isCorrect": false },
+      { "label": "C", "text": "Jüpiter", "isCorrect": true },
+      { "label": "D", "text": "Venüs", "isCorrect": false }
     ]
   },
   {
@@ -35,10 +35,10 @@
     "gradeLevelName": "10. Sınıf",
     "sourceName": "Smoke Test Yayınevi",
     "options": [
-      { "text": "1071", "isCorrect": false },
-      { "text": "1453", "isCorrect": true },
-      { "text": "1526", "isCorrect": false },
-      { "text": "1299", "isCorrect": false }
+      { "label": "A", "text": "1071", "isCorrect": false },
+      { "label": "B", "text": "1453", "isCorrect": true },
+      { "label": "C", "text": "1526", "isCorrect": false },
+      { "label": "D", "text": "1299", "isCorrect": false }
     ]
   },
   {
@@ -49,10 +49,10 @@
     "gradeLevelName": "9. Sınıf",
     "sourceName": "Smoke Test Yayınevi",
     "options": [
-      { "text": "Oksijen", "isCorrect": false },
-      { "text": "Azot", "isCorrect": false },
-      { "text": "Helyum", "isCorrect": true },
-      { "text": "Karbon", "isCorrect": false }
+      { "label": "A", "text": "Oksijen", "isCorrect": false },
+      { "label": "B", "text": "Azot", "isCorrect": false },
+      { "label": "C", "text": "Helyum", "isCorrect": true },
+      { "label": "D", "text": "Karbon", "isCorrect": false }
     ]
   },
   {
@@ -63,10 +63,10 @@
     "gradeLevelName": "11. Sınıf",
     "sourceName": "Smoke Test Yayınevi",
     "options": [
-      { "text": "Namık Kemal", "isCorrect": false },
-      { "text": "Mehmet Akif Ersoy", "isCorrect": true },
-      { "text": "Yahya Kemal Beyatlı", "isCorrect": false },
-      { "text": "Orhan Veli Kanık", "isCorrect": false }
+      { "label": "A", "text": "Namık Kemal", "isCorrect": false },
+      { "label": "B", "text": "Mehmet Akif Ersoy", "isCorrect": true },
+      { "label": "C", "text": "Yahya Kemal Beyatlı", "isCorrect": false },
+      { "label": "D", "text": "Orhan Veli Kanık", "isCorrect": false }
     ]
   }
 ]
