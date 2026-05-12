@@ -1,0 +1,72 @@
+[
+  {
+    "externalId": "smk-001",
+    "text": "Aşağıdakilerden hangisi bir asal sayıdır?",
+    "topicName": "Asal Sayılar",
+    "subjectName": "Matematik",
+    "gradeLevelName": "9. Sınıf",
+    "sourceName": "Smoke Test Yayınevi",
+    "options": [
+      { "text": "4", "isCorrect": false },
+      { "text": "9", "isCorrect": false },
+      { "text": "11", "isCorrect": true },
+      { "text": "15", "isCorrect": false }
+    ]
+  },
+  {
+    "externalId": "smk-002",
+    "text": "Hangi gezegen Güneş sistemindeki en büyük gezegendir?",
+    "topicName": "Güneş Sistemi",
+    "subjectName": "Fizik",
+    "gradeLevelName": "9. Sınıf",
+    "sourceName": "Smoke Test Yayınevi",
+    "options": [
+      { "text": "Dünya", "isCorrect": false },
+      { "text": "Mars", "isCorrect": false },
+      { "text": "Jüpiter", "isCorrect": true },
+      { "text": "Venüs", "isCorrect": false }
+    ]
+  },
+  {
+    "externalId": "smk-003",
+    "text": "İstanbul hangi yılda fethedilmiştir?",
+    "topicName": "Osmanlı Yükselme Dönemi",
+    "subjectName": "Tarih",
+    "gradeLevelName": "10. Sınıf",
+    "sourceName": "Smoke Test Yayınevi",
+    "options": [
+      { "text": "1071", "isCorrect": false },
+      { "text": "1453", "isCorrect": true },
+      { "text": "1526", "isCorrect": false },
+      { "text": "1299", "isCorrect": false }
+    ]
+  },
+  {
+    "externalId": "smk-004",
+    "text": "Aşağıdakilerden hangisi bir soygazdır?",
+    "topicName": "Periyodik Cetvel",
+    "subjectName": "Kimya",
+    "gradeLevelName": "9. Sınıf",
+    "sourceName": "Smoke Test Yayınevi",
+    "options": [
+      { "text": "Oksijen", "isCorrect": false },
+      { "text": "Azot", "isCorrect": false },
+      { "text": "Helyum", "isCorrect": true },
+      { "text": "Karbon", "isCorrect": false }
+    ]
+  },
+  {
+    "externalId": "smk-005",
+    "text": "İstiklal Marşı'nın şairi kimdir?",
+    "topicName": "Milli Mücadele Edebiyatı",
+    "subjectName": "Türk Dili ve Edebiyatı",
+    "gradeLevelName": "11. Sınıf",
+    "sourceName": "Smoke Test Yayınevi",
+    "options": [
+      { "text": "Namık Kemal", "isCorrect": false },
+      { "text": "Mehmet Akif Ersoy", "isCorrect": true },
+      { "text": "Yahya Kemal Beyatlı", "isCorrect": false },
+      { "text": "Orhan Veli Kanık", "isCorrect": false }
+    ]
+  }
+]

@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  engineType = "library"
 }
 
 datasource db {
@@ -34,6 +35,8 @@ model Topic {
   subjectId    String
   gradeLevelId String
 
+  questions    Question[]
+
   subject      Subject    @relation(fields: [subjectId], references: [id], onDelete: Restrict)
   gradeLevel   GradeLevel @relation(fields: [gradeLevelId], references: [id], onDelete: Restrict)
 
@@ -43,4 +46,55 @@ model Topic {
   @@unique([name, subjectId, gradeLevelId])
   @@index([subjectId])
   @@index([gradeLevelId])
+}
+
+enum ReviewStatus {
+  DRAFT
+  IN_REVIEW
+  PUBLISHED
+  ARCHIVED
+}
+
+model QuestionSource {
+  id        String     @id @default(uuid())
+  name      String     @unique
+  questions Question[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Question {
+  id         String   @id @default(uuid())
+  externalId String
+  text       String
+
+  topicId    String
+  topic      Topic    @relation(fields: [topicId], references: [id], onDelete: Restrict)
+
+  sourceId   String
+  source     QuestionSource @relation(fields: [sourceId], references: [id], onDelete: Restrict)
+
+  status     ReviewStatus @default(DRAFT)
+  options    QuestionOption[]
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([sourceId, externalId])
+  @@index([topicId])
+}
+
+model QuestionOption {
+  id         String   @id @default(uuid())
+  text       String
+  isCorrect  Boolean  @default(false)
+
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([questionId])
 }
