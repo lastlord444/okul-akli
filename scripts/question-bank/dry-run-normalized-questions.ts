@@ -18,10 +18,11 @@ async function main() {
   });
 
   let totalRowsSeen = 0;
-  let validRows = 0;
-  let invalidRows = 0;
+  let importableRows = 0;
+  let hardInvalidRows = 0;
+  let warningRows = 0;
   let duplicateExternalIdCount = 0;
-  let duplicateQuestionTextCount = 0;
+  let duplicateQuestionTextWarningCount = 0;
 
   const seenExternalIds = new Set<string>();
   const seenQuestionTexts = new Set<string>();
@@ -47,13 +48,14 @@ async function main() {
     try {
       parsed = JSON.parse(line);
     } catch (err) {
-      invalidRows++;
+      hardInvalidRows++;
       addReason("Invalid JSON format");
       if (first5Invalid.length < 5) first5Invalid.push({ data: line, reasons: ["Invalid JSON format"] });
       continue;
     }
 
     const reasons: string[] = [];
+    const warnings: string[] = [];
 
     // Validations
     if (!parsed.externalId) reasons.push("externalId is missing or empty");
@@ -98,22 +100,32 @@ async function main() {
 
     if (parsed.questionText) {
       if (seenQuestionTexts.has(parsed.questionText)) {
-        reasons.push("Duplicate questionText");
-        duplicateQuestionTextCount++;
+        warnings.push("Duplicate questionText");
+        duplicateQuestionTextWarningCount++;
       } else {
         seenQuestionTexts.add(parsed.questionText);
       }
     }
 
-    if (reasons.length > 0) {
-      invalidRows++;
-      reasons.forEach(addReason);
-      if (first5Invalid.length < 5) first5Invalid.push({ data: parsed, reasons });
-    } else {
-      validRows++;
-      if (first5Valid.length < 5) first5Valid.push(parsed);
+    const redactedParsed = { ...parsed };
+    if (redactedParsed.questionText) redactedParsed.questionText = "[redacted sample question]";
+    if (Array.isArray(redactedParsed.options)) {
+      redactedParsed.options = redactedParsed.options.map((o: any) => ({ ...o, text: "[redacted]" }));
+    }
 
-      // Aggregations only for valid rows
+    if (reasons.length > 0) {
+      hardInvalidRows++;
+      reasons.forEach(addReason);
+      if (first5Invalid.length < 5) first5Invalid.push({ data: redactedParsed, reasons });
+    } else {
+      importableRows++;
+      if (warnings.length > 0) {
+        warningRows++;
+      }
+
+      if (first5Valid.length < 5) first5Valid.push(redactedParsed);
+
+      // Aggregations only for importable rows
       if (parsed.subject) {
         subjectCount.set(parsed.subject, (subjectCount.get(parsed.subject) || 0) + 1);
       }
@@ -138,14 +150,20 @@ async function main() {
 
   let md = `# Question Bank 50k Import Dry-Run Report
 
+- DB import performed: no
+- Raw JSONL committed: no
+- Duplicate questionText is a warning, not a hard invalid
+- Import recommendation: "Proceed with limited DB import smoke after review, starting with 500 rows."
+
 ## Overview
 - **Total Rows Seen**: ${totalRowsSeen}
-- **Valid Rows**: ${validRows}
-- **Invalid Rows**: ${invalidRows}
+- **Importable Rows**: ${importableRows}
+- **Hard Invalid Rows**: ${hardInvalidRows}
+- **Warning Rows**: ${warningRows}
 - **Duplicate externalId count**: ${duplicateExternalIdCount}
-- **Duplicate questionText count**: ${duplicateQuestionTextCount}
+- **Duplicate questionText warning count**: ${duplicateQuestionTextWarningCount}
 
-## Aggregations (from valid rows)
+## Aggregations (from importable rows)
 
 ### Option Count Distribution
 ${Array.from(optionCountDistribution.entries()).map(([k, v]) => `- ${k} options: ${v}`).join('\n')}
