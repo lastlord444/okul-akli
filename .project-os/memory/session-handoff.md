@@ -31,7 +31,7 @@ Tests:
 
 GitHub Check:
 - Branch: feat/question-bank-import-performance-audit
-- PR: Pending Creation
+- PR: #25 open
 
 Drift Audit:
 - Protected core koduna temas YOK.
