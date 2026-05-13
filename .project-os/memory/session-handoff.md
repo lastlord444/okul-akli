@@ -19,8 +19,6 @@ Completed This Session:
 - No sensitive data (token/env/jsonl) committed
 
 Files Changed (This session):
-- `apps/backend/.env` (Local dev credentials updated)
-- `scripts/question-bank/import-normalized-questions-smoke.ts` (Added 5k limits, timers, and count logging)
 - `docs/product/question-bank-5k-import-benchmark.md` (New)
 - `.project-os/memory/session-handoff.md`
 
@@ -34,7 +32,7 @@ Tests:
 
 GitHub Check:
 - Branch: feat/question-bank-5k-import-benchmark
-- PR: Pending Creation
+- PR: #24 open
 
 Drift Audit:
 - Protected core koduna temas YOK.
