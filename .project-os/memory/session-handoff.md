@@ -2,24 +2,23 @@
 
 Project: Okul Aklı
 Active Domain: Question Bank MVP
-Current Slice: Post-merge memory sync after PR #24
-Branch: main
-Repo Truth: 5000-row smoke import and performance benchmark completed locally. Script is proven idempotent at scale. Full 50k import is not performed yet. Raw JSONL and tokens remain uncommitted.
+Current Slice: Question Bank import performance optimization audit before 50k
+Branch: feat/question-bank-import-performance-audit
+Repo Truth: Performance audit for 50k import completed. Bottlenecks (sequential option inserts) identified. Full 50k import is not performed yet. Raw JSONL and tokens remain uncommitted.
 
 ---
 
 Completed This Session:
-- 5000-row import performed against local database
-- Script idempotency verified at 5k volume (second run updated 5000 questions without error)
-- Performance metrics recorded:
-  - First run: 5000 created, 25000 options, ~71s, ~70 rows/sec
-  - Second run: 0 created, 5000 updated, 25000 options, ~64s, ~77 rows/sec
+- Performed performance audit of the import script
+- Identified sequential option queries as the main bottleneck
+- Created optimization roadmap (createMany for options, DRY_RUN flag)
+- Estimated 50k runtime (~12 minutes sequential, 1-2 minutes batched)
 - Full 50k import performed: no
 - Protected core boundaries respected
 - No sensitive data (token/env/jsonl) committed
 
 Files Changed (This session):
-- `docs/product/question-bank-5k-import-benchmark.md` (New)
+- `docs/product/question-bank-import-performance-audit.md` (New)
 - `.project-os/memory/session-handoff.md`
 
 Migrations:
@@ -31,8 +30,8 @@ Tests:
 - Idempotency pass SUCCESS
 
 GitHub Check:
-- Branch: main
-- PR: #24 MERGED
+- Branch: feat/question-bank-import-performance-audit
+- PR: #25 open
 
 Drift Audit:
 - Protected core koduna temas YOK.
@@ -46,7 +45,7 @@ Scope Locked For Next Session:
 - No Auth/RBAC/tenant implementation.
 
 Next Exact Task:
-- Question Bank import performance optimization audit before 50k
+- Implement safe optimizations to import script (createMany options, DRY_RUN) and run 10k benchmark
 
 ---
 
