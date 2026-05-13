@@ -2,8 +2,8 @@
 
 Project: Okul Aklı
 Active Domain: Question Bank MVP
-Current Slice: Question Bank 5k import smoke/benchmark
-Branch: feat/question-bank-5k-import-benchmark
+Current Slice: Post-merge memory sync after PR #24
+Branch: main
 Repo Truth: 5000-row smoke import and performance benchmark completed locally. Script is proven idempotent at scale. Full 50k import is not performed yet. Raw JSONL and tokens remain uncommitted.
 
 ---
@@ -31,8 +31,8 @@ Tests:
 - Idempotency pass SUCCESS
 
 GitHub Check:
-- Branch: feat/question-bank-5k-import-benchmark
-- PR: #24 open
+- Branch: main
+- PR: #24 MERGED
 
 Drift Audit:
 - Protected core koduna temas YOK.
