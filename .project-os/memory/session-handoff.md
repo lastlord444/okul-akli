@@ -3,8 +3,8 @@
 Project: Okul Aklı
 Active Domain: Question Bank MVP
 Current Slice: 500-row local DB import smoke
-Branch: feat/question-bank-500-import-smoke
-Repo Truth: 500-row smoke import completed locally. Script is proven idempotent. Raw JSONL and tokens remain uncommitted.
+Branch: main
+Repo Truth: PR #23 merged. 500-row smoke import completed locally. Script is proven idempotent. Full 50k import is not yet performed. Raw JSONL and tokens remain uncommitted.
 
 ---
 
@@ -29,8 +29,8 @@ Tests:
 - Idempotency pass SUCCESS
 
 GitHub Check:
-- Branch: feat/question-bank-500-import-smoke
-- PR: To be opened
+- Branch: main
+- PR: #23 merged
 
 Drift Audit:
 - Protected core koduna temas YOK.
