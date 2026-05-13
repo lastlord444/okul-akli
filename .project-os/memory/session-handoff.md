@@ -2,36 +2,30 @@
 
 Project: Okul Aklı
 Active Domain: Question Bank MVP
-Current Slice: Post-merge memory sync after PR #26
-Branch: main
-Repo Truth: PR #26 MERGED. Safe import optimizations completed. 10k benchmark completed. Full 50k import is strictly blocked and not performed yet. Raw JSONL, tokens, and .env are not committed.
+Current Slice: GradeLevel mapping audit before 50k readiness decision
+Branch: feat/question-bank-gradelevel-mapping-audit
+Repo Truth: PR #26 MERGED. GradeLevel mapping audit completed. Sampled dataset confirms 100% of rows lack `gradeLevel`, and content is largely Higher Education/General Knowledge. The `Unspecified` fallback is verified as the safest and most accurate mapping. Application is designated READY for the full 50k import.
 
 ---
 
 Completed This Session:
-- createMany option insert optimization
-- DRY_RUN guard
-- LIMIT guard raised safely to 15000
-- 10k benchmark result (72.51s for 10k initial load)
-- idempotency result (81.53s for 10k reload)
+- Sampled and analyzed the 50k dataset for `gradeLevel` values.
+- Documented mapping options and risk assessments.
+- Formally recommended proceeding with the `Unspecified` fallback strategy.
 
 Files Changed:
-- `scripts/question-bank/import-normalized-questions-smoke.ts`
-- `docs/product/question-bank-10k-import-benchmark.md`
+- `docs/product/question-bank-gradelevel-mapping-audit.md`
 - `.project-os/memory/session-handoff.md`
 
 Migrations:
 - No migration changes.
 
 Tests:
-- `pnpm --filter okul-akli-backend typecheck` (SUCCESS)
-- `DRY_RUN=true` 10k (0.06s)
-- `DRY_RUN=false` 10k import (72.51s)
-- `DRY_RUN=false` 10k idempotency pass (81.53s)
+- Read-only data sampling via terminal scripts. No database writes or full imports executed.
 
 GitHub Check:
-- Branch: main
-- PR #26 MERGED
+- Branch: feat/question-bank-gradelevel-mapping-audit
+- PR opened for documentation update.
 
 Drift Audit:
 - Protected core koduna temas YOK.
@@ -40,16 +34,15 @@ Drift Audit:
 - Changed files match approved scope.
 
 Known Risks:
-- GradeLevel Unspecified fallback unresolved.
-- Full 50k not yet validated.
-- Transaction chunking not introduced.
-- DRY_RUN still requires DATABASE_URL due to global Prisma/env setup; no writes are performed in DRY_RUN.
+- UI/Mobile teams must handle the `Unspecified` GradeLevel bucket by heavily relying on Subject and Topic filters.
+- Full 50k DB import still unexecuted, transaction limits or connection pooling issues may surface at true scale.
 
 Scope Locked For Next Session:
 - No Auth/RBAC/tenant implementation.
+- No schema modifications.
 
 Next Exact Task:
-- Choose 50k readiness decision or GradeLevel mapping audit
+- Execute Full 50k Question Bank Import and capture final benchmark
 
 ---
 
