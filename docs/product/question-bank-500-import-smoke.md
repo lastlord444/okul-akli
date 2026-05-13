@@ -35,10 +35,16 @@ A query performed immediately after the idempotency pass returned the expected b
 - **Source count**: 1
 - **Subject count**: 1
 - **Topic count**: 1
+- **GradeLevel count**: 1
 - **Question count (alibayram/turkish_mmlu)**: 500
 - **Option count (alibayram/turkish_mmlu)**: 2500
+
+## GradeLevel Fallback Behavior
+Dataset gradeLevel alanı null geldiği için `Question.gradeLevelId` null bırakıldı.
+Ancak `Topic.gradeLevelId` mevcut schema’da required olduğu için Topic oluşturulurken `Unspecified` grade level kullanıldı.
+Bu geçici catalog fallback’tir; ileride gerçek sınıf/grade mapping yapılmadan production content olarak kullanılmamalıdır.
 
 ## Next Recommendation
 The 500-row baseline has proven mathematically and logically stable. The database adapter handles operations seamlessly, and relationship mapping works flawlessly. 
 
-**Recommended Next Step**: A wider 5K row (or 10K row) import test or full 50K import to analyze performance profiles (e.g. indexing duration, transaction overheads) over larger volumes.
+**Recommended Next Step**: 5k import smoke/benchmark

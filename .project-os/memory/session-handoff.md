@@ -38,12 +38,13 @@ Drift Audit:
 
 Known Risks:
 - Data import sırasında ilişki (Topic, Subject) oluşturma overhead'i büyük dosyalarda belirginleşebilir.
+- GradeLevel fallback riski: Dataset gradeLevel alanı null geldiği için Topic.gradeLevelId'ye geçici olarak `Unspecified` atanmıştır, ileride gerçek mapping olmadan production'da kullanılmamalıdır.
 
 Scope Locked For Next Session:
 - No Auth/RBAC/tenant implementation.
 
 Next Exact Task:
-- Question Bank 5k or full 50k import smoke/benchmark.
+- Question Bank 5k import smoke/benchmark
 
 ---
 
