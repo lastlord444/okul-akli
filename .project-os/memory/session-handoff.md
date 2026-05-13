@@ -2,8 +2,8 @@
 
 Project: Okul Aklı
 Active Domain: Question Bank MVP
-Current Slice: Question Bank import performance optimization audit before 50k
-Branch: feat/question-bank-import-performance-audit
+Current Slice: Post-merge memory sync after PR #25
+Branch: main
 Repo Truth: Performance audit for 50k import completed. Bottlenecks (sequential option inserts) identified. Full 50k import is not performed yet. Raw JSONL and tokens remain uncommitted.
 
 ---
@@ -30,8 +30,8 @@ Tests:
 - Idempotency pass SUCCESS
 
 GitHub Check:
-- Branch: feat/question-bank-import-performance-audit
-- PR: #25 open
+- Branch: main
+- PR: #25 MERGED
 
 Drift Audit:
 - Protected core koduna temas YOK.
