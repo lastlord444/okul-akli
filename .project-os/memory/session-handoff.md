@@ -2,30 +2,27 @@
 
 Project: Okul Aklı
 Active Domain: Question Bank MVP
-Current Slice: GradeLevel mapping audit before 50k readiness decision
-Branch: feat/question-bank-gradelevel-mapping-audit
-Repo Truth: PR #26 MERGED. GradeLevel mapping audit completed. Unspecified fallback is accepted for this dataset. Full 50k import still requires a separate guarded runbook/readiness plan. Sampled dataset confirms 100% of rows lack `gradeLevel`, and content is largely Higher Education/General Knowledge.
+Current Slice: Post-merge memory sync after PR #27
+Branch: main
+Repo Truth: PR #27 MERGED. GradeLevel mapping audit completed. Unspecified fallback accepted for this dataset. Full 50k import not performed. Full 50k still requires guarded runbook/readiness plan. Raw JSONL/token/.env yok. DB write yok. Schema/migration/API/mobile/auth/tenant untouched.
 
 ---
 
 Completed This Session:
-- Sampled and analyzed the 50k dataset for `gradeLevel` values.
-- Documented mapping options and risk assessments.
-- Formally recommended proceeding with the `Unspecified` fallback strategy.
+- Synced project memory after PR #27 merge
 
 Files Changed:
-- `docs/product/question-bank-gradelevel-mapping-audit.md`
 - `.project-os/memory/session-handoff.md`
 
 Migrations:
 - No migration changes.
 
 Tests:
-- Read-only data sampling via terminal scripts. No database writes or full imports executed.
+- No tests required for memory sync.
 
 GitHub Check:
-- Branch: feat/question-bank-gradelevel-mapping-audit
-- PR opened for documentation update.
+- Branch: main
+- PR #27 MERGED
 
 Drift Audit:
 - Protected core koduna temas YOK.
