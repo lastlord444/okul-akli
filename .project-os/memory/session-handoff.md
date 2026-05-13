@@ -4,7 +4,7 @@ Project: Okul Aklı
 Active Domain: Question Bank MVP
 Current Slice: Safe import optimizations + 10k benchmark
 Branch: feat/question-bank-import-10k-optimization
-Repo Truth: `import-normalized-questions-smoke.ts` successfully optimized to use `createMany` for options. `DRY_RUN` flag added. Limits updated safely to 15000. 10k benchmark and idempotency passes executed perfectly. Full 50k import is strictly blocked. Raw dataset and environment tokens are not committed.
+Repo Truth: `import-normalized-questions-smoke.ts` successfully optimized to use `createMany` for options. `DRY_RUN` flag added. Limits updated safely to 15000. 10k benchmark completed; idempotency second pass completed. Full 50k import is strictly blocked. Raw dataset and environment tokens are not committed.
 
 ---
 
@@ -37,12 +37,13 @@ Drift Audit:
 - Protected core koduna temas YOK.
 - Schema ve migrationlara temas YOK.
 - Raw dataset ve Token güvende.
-- Yeni planlanan değişiklikler, repo gerçeğiyle 100% uyuşuyor.
+- Changed files match approved scope.
 
 Known Risks:
 - GradeLevel Unspecified fallback unresolved.
-- full 50k not yet validated.
-- transaction strategy still not introduced if true.
+- Full 50k not yet validated.
+- Transaction chunking not introduced.
+- DRY_RUN currently still requires DATABASE_URL because Prisma client setup/env guard remains global; no writes are performed in DRY_RUN.
 
 Scope Locked For Next Session:
 - No Auth/RBAC/tenant implementation.

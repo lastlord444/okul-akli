@@ -55,6 +55,7 @@ Command: `$env:IMPORT_LIMIT="10000"; $env:DRY_RUN="false"; npx tsx scripts/quest
 - Option count (alibayram/turkish_mmlu): 50000
 
 ## Known Risks
-- **GradeLevel Unspecified fallback unresolved**: Topics are still falling back to `Unspecified` grade level due to the raw dataset missing grade levels. This schema-level dependency remains untouched as part of the core isolation strategy for this slice.
-- **Full 50k not yet validated**: While the 10k benchmark demonstrates linear scaling and safety, network or DB pool fluctuations may still occur at 50,000 rows.
-- **Transaction strategy still not introduced**: To maintain extreme safety and simplicity in error recovery, transaction chunking was deferred. Each question upsert is its own commit, which limits ultimate speed but maximizes script stability.
+- GradeLevel Unspecified fallback unresolved.
+- Full 50k not yet validated.
+- Transaction chunking not introduced.
+- DRY_RUN currently still requires DATABASE_URL because Prisma client setup/env guard remains global; no writes are performed in DRY_RUN.
