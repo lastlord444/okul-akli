@@ -2,50 +2,53 @@
 
 Project: Okul Aklı
 Active Domain: Question Bank MVP
-Current Slice: Post-merge memory sync after PR #25
-Branch: main
-Repo Truth: Performance audit for 50k import completed. Bottlenecks (sequential option inserts) identified. Full 50k import is not performed yet. Raw JSONL and tokens remain uncommitted.
+Current Slice: Safe import optimizations + 10k benchmark
+Branch: feat/question-bank-import-10k-optimization
+Repo Truth: `import-normalized-questions-smoke.ts` successfully optimized to use `createMany` for options. `DRY_RUN` flag added. Limits updated safely to 15000. 10k benchmark and idempotency passes executed perfectly. Full 50k import is strictly blocked. Raw dataset and environment tokens are not committed.
 
 ---
 
 Completed This Session:
-- Performed performance audit of the import script
-- Identified sequential option queries as the main bottleneck
-- Created optimization roadmap (createMany for options, DRY_RUN flag)
-- Estimated 50k runtime (~12 minutes sequential, 1-2 minutes batched)
-- Full 50k import performed: no
-- Protected core boundaries respected
-- No sensitive data (token/env/jsonl) committed
+- createMany option insert optimization
+- DRY_RUN guard
+- LIMIT guard raised safely to 15000
+- 10k benchmark result (72.51s for 10k initial load)
+- idempotency result (81.53s for 10k reload)
 
-Files Changed (This session):
-- `docs/product/question-bank-import-performance-audit.md` (New)
+Files Changed:
+- `scripts/question-bank/import-normalized-questions-smoke.ts`
+- `docs/product/question-bank-10k-import-benchmark.md`
 - `.project-os/memory/session-handoff.md`
 
 Migrations:
 - No migration changes.
 
 Tests:
-- `tsc --noEmit` CLEAN
-- Import 5k benchmark SUCCESS
-- Idempotency pass SUCCESS
+- `pnpm --filter okul-akli-backend typecheck` (SUCCESS)
+- `DRY_RUN=true` 10k (0.06s)
+- `DRY_RUN=false` 10k import (72.51s)
+- `DRY_RUN=false` 10k idempotency pass (81.53s)
 
 GitHub Check:
-- Branch: main
-- PR: #25 MERGED
+- Branch: feat/question-bank-import-10k-optimization
+- Working tree is ready for commit.
 
 Drift Audit:
 - Protected core koduna temas YOK.
+- Schema ve migrationlara temas YOK.
 - Raw dataset ve Token güvende.
+- Yeni planlanan değişiklikler, repo gerçeğiyle 100% uyuşuyor.
 
 Known Risks:
-- Data import sırasında ilişki (Topic, Subject) oluşturma overhead'i büyük dosyalarda belirginleşebilir.
-- GradeLevel fallback riski: Dataset gradeLevel alanı null geldiği için Topic.gradeLevelId'ye geçici olarak `Unspecified` atanmıştır, ileride gerçek mapping olmadan production'da kullanılmamalıdır.
+- GradeLevel Unspecified fallback unresolved.
+- full 50k not yet validated.
+- transaction strategy still not introduced if true.
 
 Scope Locked For Next Session:
 - No Auth/RBAC/tenant implementation.
 
 Next Exact Task:
-- Implement safe optimizations to import script (createMany options, DRY_RUN) and run 10k benchmark
+- 50k readiness decision or GradeLevel mapping audit
 
 ---
 

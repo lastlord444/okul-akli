@@ -5,6 +5,13 @@ import readline from 'readline';
 
 const DATA_FILE = path.join(process.cwd(), '.local-data', 'question-bank', 'alibayram-turkish-mmlu-normalized-50k.jsonl');
 const LIMIT = parseInt(process.env.IMPORT_LIMIT || '500', 10);
+const DRY_RUN = process.env.DRY_RUN === 'true';
+
+if (LIMIT > 15000) {
+  console.error("Error: IMPORT_LIMIT cannot exceed 15000 on this branch to prevent accidental full imports.");
+  console.error("full 50k import is intentionally blocked in this slice.");
+  process.exit(1);
+}
 
 if (!process.env.DATABASE_URL) {
   console.error("Error: DATABASE_URL environment variable is not set.");
@@ -26,14 +33,18 @@ async function main() {
 
   // We need a default GradeLevel for Topics because Topic.gradeLevelId is required in schema, 
   // but the dataset has gradeLevel = null.
-  let defaultGradeLevel = await prisma.gradeLevel.findUnique({ where: { name: "Unspecified" } });
-  if (!defaultGradeLevel) {
-    defaultGradeLevel = await prisma.gradeLevel.create({
-      data: { name: "Unspecified", levelOrder: 999 }
-    });
+  let defaultGradeLevel: any = null;
+  if (!DRY_RUN) {
+    defaultGradeLevel = await prisma.gradeLevel.findUnique({ where: { name: "Unspecified" } });
+    if (!defaultGradeLevel) {
+      defaultGradeLevel = await prisma.gradeLevel.create({
+        data: { name: "Unspecified", levelOrder: 999 }
+      });
+    }
   }
 
   console.log(`[Smoke Import] Starting import with limit: ${LIMIT}`);
+  const startTime = performance.now();
   
   const fileStream = fs.createReadStream(DATA_FILE);
   const rl = readline.createInterface({
@@ -49,6 +60,7 @@ async function main() {
   let skippedRows = 0;
   let warningRows = 0;
   let duplicateQuestionTextWarnings = 0;
+  let gradeLevelFallbackCount = 0;
 
   let sourcesCreatedOrFound = 0;
   let subjectsCreatedOrFound = 0;
@@ -87,6 +99,14 @@ async function main() {
       duplicateQuestionTextWarnings++;
     } else {
       seenQuestionTexts.add(parsed.questionText);
+    }
+
+    if (DRY_RUN) {
+      if (!parsed.gradeLevel) gradeLevelFallbackCount++;
+      optionsWritten += parsed.options.length;
+      questionsCreated++; // mock counter for dry run visibility
+      rowsImported++;
+      continue;
     }
 
     // Process Source
@@ -139,6 +159,9 @@ async function main() {
     let topicId: string | null = null;
     if (parsed.topic && subjectId) {
       // Topic requires gradeLevelId in schema, fallback to default if dataset is null
+      if (!gradeLevelId) {
+        gradeLevelFallbackCount++;
+      }
       const topicGlId = gradeLevelId || defaultGradeLevel.id;
       const cacheKey = `${parsed.topic}_${subjectId}_${topicGlId}`;
       topicId = topicCache.get(cacheKey) || null;
@@ -217,46 +240,60 @@ async function main() {
     }
 
     // Process Options
-    for (const opt of parsed.options) {
-      const isCorrect = (parsed.correctOptionLabel === opt.label) || (opt.isCorrect === true);
-      await prisma.questionOption.create({
-        data: {
-          questionId: question.id,
-          label: opt.label,
-          text: opt.text,
-          isCorrect: isCorrect,
-        }
-      });
-      optionsWritten++;
-    }
+    const optionsData = parsed.options.map((opt: any) => ({
+      questionId: question.id,
+      label: opt.label,
+      text: opt.text,
+      isCorrect: (parsed.correctOptionLabel === opt.label) || (opt.isCorrect === true)
+    }));
+
+    await prisma.questionOption.createMany({
+      data: optionsData
+    });
+    optionsWritten += optionsData.length;
 
     rowsImported++;
   }
 
+  const endTime = performance.now();
+  const durationMs = endTime - startTime;
+  const rowsPerSec = rowsImported > 0 ? (rowsImported / (durationMs / 1000)).toFixed(2) : 0;
+
   // DB Verification Queries
-  const finalSourceCount = await prisma.questionSource.count();
-  const finalSubjectCount = await prisma.subject.count();
-  const finalTopicCount = await prisma.topic.count();
-  const finalQuestionCount = await prisma.question.count({
-    where: { source: { sourceName: "alibayram/turkish_mmlu" } }
-  });
-  const finalOptionCount = await prisma.questionOption.count({
-    where: { question: { source: { sourceName: "alibayram/turkish_mmlu" } } }
-  });
+  let finalSourceCount = 0, finalSubjectCount = 0, finalTopicCount = 0, finalGradeLevelCount = 0, finalQuestionCount = 0, finalOptionCount = 0;
+  
+  if (!DRY_RUN) {
+    finalSourceCount = await prisma.questionSource.count();
+    finalSubjectCount = await prisma.subject.count();
+    finalTopicCount = await prisma.topic.count();
+    finalGradeLevelCount = await prisma.gradeLevel.count();
+    finalQuestionCount = await prisma.question.count({
+      where: { source: { sourceName: "alibayram/turkish_mmlu" } }
+    });
+    finalOptionCount = await prisma.questionOption.count({
+      where: { question: { source: { sourceName: "alibayram/turkish_mmlu" } } }
+    });
+  }
 
   console.log(`\n[Smoke Import] Run Completed`);
-  console.log(` - Rows read: ${rowsRead}`);
-  console.log(` - Rows imported: ${rowsImported}`);
-  console.log(` - Skipped rows: ${skippedRows}`);
+  console.log(` - dryRun: ${DRY_RUN}`);
+  console.log(` - requested limit: ${LIMIT}`);
+  console.log(` - Duration: ${(durationMs / 1000).toFixed(2)}s`);
+  console.log(` - Rows per second: ${rowsPerSec}`);
+  console.log(` - processed rows count (read): ${rowsRead}`);
+  console.log(` - parsed rows count (imported): ${rowsImported}`);
+  console.log(` - skipped/malformed count: ${skippedRows}`);
   console.log(` - Warning rows (duplicate text): ${warningRows}`);
-  console.log(` - Questions created: ${questionsCreated}`);
+  console.log(` - Questions created/processed: ${questionsCreated}`);
   console.log(` - Questions updated: ${questionsUpdated}`);
-  console.log(` - Options written: ${optionsWritten}`);
+  console.log(` - total options that would be written (optionsWritten): ${optionsWritten}`);
+  console.log(` - GradeLevel fallbacks applied: ${gradeLevelFallbackCount}`);
   
   console.log(`\n[Verification Counts]`);
   console.log(` - Source count: ${finalSourceCount}`);
   console.log(` - Subject count: ${finalSubjectCount}`);
   console.log(` - Topic count: ${finalTopicCount}`);
+  console.log(` - GradeLevel count: ${finalGradeLevelCount}`);
   console.log(` - Question count (alibayram/turkish_mmlu): ${finalQuestionCount}`);
   console.log(` - Option count (alibayram/turkish_mmlu): ${finalOptionCount}`);
 }
