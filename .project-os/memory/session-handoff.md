@@ -4,7 +4,7 @@ Project: Okul Aklı
 Active Domain: Question Bank MVP
 Current Slice: GradeLevel mapping audit before 50k readiness decision
 Branch: feat/question-bank-gradelevel-mapping-audit
-Repo Truth: PR #26 MERGED. GradeLevel mapping audit completed. Sampled dataset confirms 100% of rows lack `gradeLevel`, and content is largely Higher Education/General Knowledge. The `Unspecified` fallback is verified as the safest and most accurate mapping. Application is designated READY for the full 50k import.
+Repo Truth: PR #26 MERGED. GradeLevel mapping audit completed. Unspecified fallback is accepted for this dataset. Full 50k import still requires a separate guarded runbook/readiness plan. Sampled dataset confirms 100% of rows lack `gradeLevel`, and content is largely Higher Education/General Knowledge.
 
 ---
 
@@ -42,7 +42,7 @@ Scope Locked For Next Session:
 - No schema modifications.
 
 Next Exact Task:
-- Execute Full 50k Question Bank Import and capture final benchmark
+- Prepare guarded 50k import runbook and temporary limit strategy
 
 ---
 

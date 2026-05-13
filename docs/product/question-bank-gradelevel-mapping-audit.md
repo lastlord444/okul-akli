@@ -51,8 +51,12 @@ A sample analysis of the normalized dataset reveals the following:
   - **Timing**: Blocks the 50k import completely, as 100% of the dataset would be rejected.
 
 ## Recommended Decision
-**Proceed with Option A (`Unspecified` Fallback).**
+- Recommended mapping decision: Proceed with Option A (`Unspecified` fallback).
+- 50k readiness decision: Conditionally proceed to a guarded 50k runbook/planning slice, not direct import.
+- Explicitly state:
+  - Full 50k import has not been approved/executed in this PR.
+  - This PR only removes GradeLevel mapping as a blocker.
 
 The `Unspecified` fallback is logically the most accurate mapping for the Turkish MMLU dataset. Since the content is predominantly Higher Education/General Knowledge, creating a fake K-12 grade mapping would severely pollute the application's domain truth. 
 
-**Conclusion for 50k Readiness**: The current import script logic is safe, idempotent, and architecturally sound. The application is **READY** for the full 50k import. The UI/Mobile teams should be advised to handle `Unspecified` grade levels gracefully by prioritizing Subject and Topic filters.
+**Conclusion for 50k Readiness**: GradeLevel mapping does not block a controlled 50k import readiness step. Proceeding with Unspecified fallback is the safest option for this dataset. Full 50k execution still requires a separate guarded run plan because the script limit guard currently blocks imports above 15,000 and full-scale DB behavior has not yet been validated. The UI/Mobile teams should be advised to handle `Unspecified` grade levels gracefully by prioritizing Subject and Topic filters.
