@@ -17,17 +17,6 @@ Mobil uygulama şu teknoloji yığınıyla geliştirilmektedir:
 - iOS uyumluluk göz önünde bulundurulur ancak iOS release süreci şu an aktif kapsam dışıdır
 - Kabul kriteri: Android development build veya doğrulanmış Android cihaz/emülatör çalışması
 
-## Rakip Kopyalama Yasağı
-
-Aşağıdaki rakiplerin ekran tasarımı, metinleri, ikonları, akışları, marka dili, özel modül kurgusu veya birebir iş mantığı kopyalanamaz:
-
-- Ebtex
-- Eyotek
-- K12NET
-- Edroof
-
-Rakipler sadece sektör analizi ve ihtiyaç çıkarımı için referans olabilir.
-
 ## Geliştirme Disiplini
 
 Bu projede katı geliştirme disiplini uygulanmaktadır:
